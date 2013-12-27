@@ -35,7 +35,7 @@ public class ComunioServiceImpl implements ComunioService {
 	}
 
 	@Transactional
-	public List getAllComunio() {
+	public List<Comunio> getAllComunio() {
 		return comunioDao.getAllComunio();
 	}
 

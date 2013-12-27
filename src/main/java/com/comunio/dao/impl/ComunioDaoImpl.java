@@ -35,7 +35,7 @@ public class ComunioDaoImpl implements ComunioDao {
 	}
 
 	@Override
-	public List getAllComunio() {
+	public List<Comunio> getAllComunio() {
 		return session.getCurrentSession().createQuery("from Comunio").list();
 	}
 

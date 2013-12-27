@@ -9,5 +9,5 @@ public interface ComunioService {
 	public void edit(Comunio comunio);
 	public void delete(int comId);
 	public Comunio getComunio(int comId);
-	public List getAllComunio();
+	public List<Comunio> getAllComunio();
 }
