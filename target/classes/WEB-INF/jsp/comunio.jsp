@@ -8,27 +8,25 @@
 <title>Comunio Management</title>
 </head>
 <body>
+<h1>Create new Comunio-ChampionsLeage</h1>
+
 <h1>Comunios Data</h1>
-<form:form action="comunio.do" method="POST" commandName="comunio">
+<form action="add" method="POST">
 	<table>
 		<tr>
-			<td>Comunio ID</td>
-			<td><form:input path="comunioId" /></td>
+			<td>Comunio name</td>
+			<td><input type="text" name="name" /></td>
 		</tr>
 		<tr>
-			<td>Team name</td>
-			<td><form:input path="name" /></td>
-		</tr>
+			<td>Number of Groups</td>
+			<td><input type="text" name="numberOfGroups" /></td>
 		<tr>
 			<td colspan="2">
 				<input type="submit" name="action" value="Add" />
-				<input type="submit" name="action" value="Edit" />
-				<input type="submit" name="action" value="Delete" />
-				<input type="submit" name="action" value="Search" />
 			</td>
 		</tr>
 	</table>
-</form:form>
+</form>
 <br>
 <table border="1">
 	<th>ID</th>
