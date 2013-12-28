@@ -25,13 +25,13 @@ public class ComunioDaoImpl implements ComunioDao {
 	}
 
 	@Override
-	public void delete(int comId) {		
-		session.getCurrentSession().delete(getComunio(comId));
+	public void delete(long comunioId) {		
+		session.getCurrentSession().delete(getComunio(comunioId));
 	}
 
 	@Override
-	public Comunio getComunio(int comId) {
-		return (Comunio)session.getCurrentSession().get(Comunio.class, comId);
+	public Comunio getComunio(long comunioId) {
+		return (Comunio)session.getCurrentSession().get(Comunio.class, comunioId);
 	}
 
 	@Override

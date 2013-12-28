@@ -1,36 +1,33 @@
 package com.comunio.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Comunio {
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	// for autonumber
-	private int comId;
+	private long comunioId;
 	@Column
 	private String name;
-
+	@OneToMany(mappedBy="comunio", fetch = FetchType.EAGER)
+	private Set<Groupe> groups;
+	
 	public Comunio() {
 	}
 
-	public Comunio(int comId, String name) {
+	public Comunio(long comunioId, String name) {
 		super();
-		this.setComId(comId);
+		this.setComunioId(comunioId);
 		this.setName(name);
-	}
-
-	public int getComId() {
-		return comId;
-	}
-
-	public void setComId(int comId) {
-		this.comId = comId;
 	}
 
 	public String getName() {
@@ -39,5 +36,21 @@ public class Comunio {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public long getComunioId() {
+		return comunioId;
+	}
+
+	public void setComunioId(long comunioId) {
+		this.comunioId = comunioId;
+	}
+
+	public Set<Groupe> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(Set<Groupe> groups) {
+		this.groups = groups;
 	}
 }

@@ -13,7 +13,7 @@
 	<table>
 		<tr>
 			<td>Comunio ID</td>
-			<td><form:input path="comId" /></td>
+			<td><form:input path="comunioId" /></td>
 		</tr>
 		<tr>
 			<td>Team name</td>
@@ -35,7 +35,7 @@
 	<th>Name</th>
 	<c:forEach items="${comunioList}" var="comunio">
 		<tr>
-			<td>${comunio.comId}</td>
+			<td>${comunio.comunioId}</td>
 			<td>${comunio.name}</td>
 		</tr>
 	</c:forEach>

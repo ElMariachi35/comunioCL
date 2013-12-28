@@ -25,13 +25,13 @@ public class ComunioServiceImpl implements ComunioService {
 	}
 
 	@Transactional
-	public void delete(int comId) {
-		comunioDao.delete(comId);
+	public void delete(long comunioId) {
+		comunioDao.delete(comunioId);
 	}
 
 	@Transactional
-	public Comunio getComunio(int comId) {
-		return comunioDao.getComunio(comId);
+	public Comunio getComunio(long comunioId) {
+		return comunioDao.getComunio(comunioId);
 	}
 
 	@Transactional

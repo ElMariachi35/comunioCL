@@ -7,7 +7,7 @@ import com.comunio.model.Comunio;
 public interface ComunioDao {
 	public void add(Comunio comunio);
 	public void edit(Comunio comunio);
-	public void delete(int comId);
-	public Comunio getComunio(int comId);
+	public void delete(long comuioId);
+	public Comunio getComunio(long comunioId);
 	public List<Comunio> getAllComunio();
 }

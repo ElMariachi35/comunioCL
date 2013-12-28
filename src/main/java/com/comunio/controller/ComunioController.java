@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.comunio.model.Comunio;
+import com.comunio.model.Groupe;
 import com.comunio.service.ComunioService;
+import com.comunio.service.GroupService;
 
 @Controller
 public class ComunioController {
 	@Autowired
 	private ComunioService comunioService;
+	@Autowired
+	private GroupService groupService;
 
 	@RequestMapping("/index")
 	public String setupForm(Map<String, Object> map) {
@@ -35,6 +39,11 @@ public class ComunioController {
 										// switch
 		case "add":
 			comunioService.add(comunio);
+			Groupe group = new Groupe();
+			group.setGroupId(0);
+			group.setComunio(comunio);
+			group.setGroupName("A");
+			groupService.add(group);
 			comunioResult = comunio;
 			break;
 		case "edit":
@@ -42,14 +51,18 @@ public class ComunioController {
 			comunioResult = comunio;
 			break;
 		case "delete":
-			comunioService.delete(comunio.getComId());
+			comunioService.delete(comunio.getComunioId());
 			comunioResult = new Comunio();
 			break;
 		case "search":
 			Comunio searchedComunio = comunioService.getComunio(comunio
-					.getComId());
-			comunioResult = searchedComunio != null ? searchedComunio
-					: new Comunio();
+					.getComunioId());
+			if (searchedComunio != null) {
+				comunioResult = searchedComunio;
+				System.out.println(comunioResult.getGroups().size());
+			} else {
+				comunioResult = new Comunio();
+			}
 			break;
 		}
 		map.put("comunio", comunioResult);
