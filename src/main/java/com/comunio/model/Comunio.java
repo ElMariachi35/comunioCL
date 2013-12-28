@@ -18,16 +18,19 @@ public class Comunio {
 	private long comunioId;
 	@Column
 	private String name;
+	@Column
+	private String password;
 	@OneToMany(mappedBy="comunio", fetch = FetchType.EAGER)
 	private Set<Groupe> groups;
 	
 	public Comunio() {
 	}
 
-	public Comunio(long comunioId, String name) {
+	public Comunio(long comunioId, String name, String password) {
 		super();
 		this.setComunioId(comunioId);
 		this.setName(name);
+		this.setPassword(password);
 	}
 
 	public String getName() {
@@ -52,5 +55,13 @@ public class Comunio {
 
 	public void setGroups(Set<Groupe> groups) {
 		this.groups = groups;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

@@ -10,4 +10,5 @@ public interface GroupService {
 	public void edit(Groupe group);
 	public void delete(long groupId);
 	public Groupe getGroup(long groupId);
+	void initializeGroups(long comunioId, int numberOfTeams, int numberOfGroups);
 }

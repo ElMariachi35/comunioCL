@@ -46,26 +46,17 @@ public class ComunioServiceImpl implements ComunioService {
 	}
 	
 	@Transactional
-	public void createComunio(String comunioName, int numberOfGroups){
+	public long createComunio(String comunioName, String password){
 		Comunio comunio = new Comunio();
 		comunio.setName(comunioName);
+		comunio.setPassword(password);
 		comunioDao.add(comunio);
-		comunio = getComunio(comunio.getComunioId());
-		comunio.setGroups(initializeGroups(numberOfGroups, comunio));
-		comunioDao.edit(comunio);
+		return comunio.getComunioId();
+//		comunio = getComunio(comunio.getComunioId());
+//		comunio.setGroups(initializeGroups(numberOfGroups, comunio));
+//		comunioDao.edit(comunio);
 	}
 
-	private Set<Groupe> initializeGroups(int numberOfGroups, Comunio comunio) {
-		String groupNames = "ABCDEFGHIJKLMN";
-		Set<Groupe> groupList = new HashSet<Groupe>();
-		for(int i=0;i<numberOfGroups;i++){
-			Groupe group = new Groupe();
-			group.setGroupName(groupNames.charAt(i)+"");
-			group.setComunio(comunio);
-			groupService.add(group);
-			groupList.add(group);
-		}
-		return groupList;
-	}
+
 
 }

@@ -1,6 +1,8 @@
 package com.comunio.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ import com.comunio.service.GroupService;
 public class GroupServiceImpl implements GroupService {
 	@Autowired
 	private GroupDao groupDao;
+	@Autowired
+	private ComunioService comunioService;
 	
 	@Transactional
 	public void add(Groupe group) {
@@ -35,6 +39,17 @@ public class GroupServiceImpl implements GroupService {
 	@Transactional
 	public Groupe getGroup(long groupId) {
 		return groupDao.getGroup(groupId);
+	}
+	
+	@Transactional
+	public void initializeGroups(long comunioId, int numberOfTeams, int numberOfGroups) {
+		String groupNames = "ABCDEFGHIJKLMN";
+		for(int i=0;i<numberOfGroups;i++){
+			Groupe group = new Groupe();
+			group.setGroupName(groupNames.charAt(i)+"");
+			group.setComunio(comunioService.getComunio(comunioId));
+			groupDao.add(group);
+		}
 	}
 }
 
