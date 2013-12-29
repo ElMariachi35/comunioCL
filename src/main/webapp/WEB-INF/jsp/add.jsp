@@ -11,40 +11,26 @@
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 <h1>Create new Comunio-ChampionsLeague</h1>
 
-<h1>Comunios Data</h1>
-<form action="add" method="POST">
-	<table>
-		<tr>
-			<td>Comunio name</td>
-			<td><input type="text" name="name" /></td>
-		</tr>
-		<tr>
-			<td>Password</td>
-			<td><input type="text" name="password" /></td>
-		<tr>
-			<td colspan="2">
-				<input type="submit" name="action" value="Continue" />
-			</td>
-		</tr>
-	</table>
-</form>
 <br>
 <div>
-	<h2>${comunio.name} ${comunio.comunioId}</h2>
-	<form action="inputComunioSize" method="POST">
+	<form action="add" method="POST">
 		<div>
+			<label for="name">Comunio name:</label>
+			<input type="text" name="name" /><br />
+			<label for="password">Password:</label>
+			<input type="password" name="password" /><br />
 			<label for="numberOfTeams">Number of teams:</label>
 			<input type="text" name="numberOfTeams" /><br />
 			<label for="numberOfGroups">Number of groups:</label>
 			<input type="text" name="numberOfGroups" />
-			<input type="hidden" name="comunioId" value=${comunio.comunioId}>
 		</div>
 		<input type="submit" name="action" value="Continue" />
 		
 	</form>
 </div>
 
-
+<h2>Name: ${comunio.name}</h2>
+<h3>ID: ${comunio.comunioId}</h3>
 <table border="1">
 	<th>ID</th>
 	<th>Name</th>

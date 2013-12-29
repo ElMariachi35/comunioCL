@@ -13,7 +13,7 @@ import com.comunio.service.ComunioService;
 import com.comunio.service.GroupService;
 
 @Controller
-public class ComunioController {
+public class ApplicationController {
 	@Autowired
 	private ComunioService comunioService;
 	@Autowired
@@ -34,23 +34,21 @@ public class ComunioController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addComunio(@RequestParam("name") String name,
+			@RequestParam("numberOfTeams") String numberOfTeamsStr,
+			@RequestParam("numberOfGroups") String numberOfGroupsStr,
 			@RequestParam("password") String password, Map<String, Object> map) {
-		long comunioId = comunioService.createComunio(name, password);
-		map.put("comunioList", comunioService.getAllComunio());
-		map.put("comunio", comunioService.getComunio(comunioId));
-		return "add";
-	}
 
-	@RequestMapping(value = "inputComunioSize", method = RequestMethod.POST)
-	public String addComunioSize(
-			@RequestParam("numberOfTeams") String numberOfTeams,
-			@RequestParam("numberOfGroups") String numberOfGroups,
-			@RequestParam("comunioId") String comunioId,
-			Map<String, Object> map) {
-		
-			groupService.initializeGroups(Long.parseLong(comunioId), Integer.parseInt(numberOfTeams), Integer.parseInt(numberOfGroups));
-			Comunio comunio = comunioService.getComunio(Long.parseLong(comunioId));
-			map.put("groups", comunio.getGroups());
+		long comunioId = comunioService.createComunio(name, password);
+
+		int numberOfTeams = Integer.parseInt(numberOfTeamsStr);
+		int numberOfGroups = Integer.parseInt(numberOfGroupsStr);
+
+		groupService.initializeGroups(comunioId, numberOfTeams, numberOfGroups);
+
+		Comunio comunio = comunioService.getComunio(comunioId);
+		map.put("comunio", comunio);
+		map.put("groups", comunio.getGroups());
+
 		return "add";
 	}
 }
