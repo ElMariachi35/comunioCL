@@ -1,9 +1,11 @@
 package com.comunio.controller;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,7 +50,14 @@ public class ApplicationController {
 		Comunio comunio = comunioService.getComunio(comunioId);
 		map.put("comunio", comunio);
 		map.put("groups", comunio.getGroups());
+		map.put("numberOfTeams", numberOfTeams);
 
-		return "add";
+		return "addTeams";
+	}
+	
+	@RequestMapping(value="/addTeams", method=RequestMethod.POST)
+	public String addTeams(){
+		
+		return null;
 	}
 }
