@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div id="header">
-		<a href="/CRUDWebAppMavenized/index">Index</a>
+		<a href="/ComunioCL/index">Index</a>
 	</div>
 </body>
 </html>
