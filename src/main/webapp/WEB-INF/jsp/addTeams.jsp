@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="WEB-INF/javascript/forms.js" type="text/javascript"></script>
 <title>Add Teams</title>
 </head>
 <body>
@@ -16,16 +17,11 @@
 	<br />
 	<h3>Input teamnames:</h3>
 	<form id="addTeamsForm" action="addTeams" method="POST">
-	
 	</form>
-
+	
 	<script>
 		var numberOfTeams = ${numberOfTeams};
-		for (var i = 0; i < numberOfTeams; i++) {
-			$('#addTeamsForm').append('<input type="text" name="team'+i+'" /><br />');
-		}
-		$('#addTeamsForm').append('<input type="submit" name="action" value="Continue"/><br />');
+		generateAddTeamsForm(numberOfTeams);
 	</script>
-
 </body>
 </html>

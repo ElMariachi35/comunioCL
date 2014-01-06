@@ -56,8 +56,8 @@ public class ApplicationController {
 	}
 	
 	@RequestMapping(value="/addTeams", method=RequestMethod.POST)
-	public String addTeams(){
-		
-		return null;
+	public String addTeams(@RequestParam("teams") String teamsString){
+		System.out.println(teamsString);
+		return "index";
 	}
 }
