@@ -21,7 +21,7 @@ public class Comunio {
 	@Column
 	private String password;
 	@OneToMany(mappedBy="comunio", fetch = FetchType.EAGER)
-	private Set<Groupe> groups;
+	private Set<Team> teams;
 	
 	public Comunio() {
 	}
@@ -49,19 +49,19 @@ public class Comunio {
 		this.comunioId = comunioId;
 	}
 
-	public Set<Groupe> getGroups() {
-		return groups;
-	}
-
-	public void setGroups(Set<Groupe> groups) {
-		this.groups = groups;
-	}
-
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Set<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(Set<Team> teams) {
+		this.teams = teams;
 	}
 }
