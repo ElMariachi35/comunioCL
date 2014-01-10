@@ -7,5 +7,6 @@
 	type="text/javascript"></script>
 
 <link href="<c:url value="../webapp/css/styles.css" />" rel="stylesheet">
-<script src="<c:url value="../webapp/javascript/forms.js" />"></script>
+<link href="<c:url value="/css/styles.css" />" rel="stylesheet">
+<script src="<c:url value="/javascript/forms.js" />"></script>
 <!-- This contains the most used tag libraries -->
