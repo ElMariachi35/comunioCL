@@ -23,33 +23,49 @@ public class GroupServiceImpl implements GroupService {
 	
 	@Transactional
 	public void add(Groupe group) {
-		groupDao.add(group);
+		getGroupDao().add(group);
 	}
 
 	@Transactional
 	public void edit(Groupe group) {
-		groupDao.edit(group);
+		getGroupDao().edit(group);
 	}
 
 	@Transactional
 	public void delete(long groupId) {
-		groupDao.delete(groupId);
+		getGroupDao().delete(groupId);
 	}
 
 	@Transactional
 	public Groupe getGroup(long groupId) {
-		return groupDao.getGroup(groupId);
+		return getGroupDao().getGroup(groupId);
 	}
 	
 	@Transactional
 	public void initializeGroups(long comunioId, int numberOfTeams, int numberOfGroups) {
-		String groupNames = "ABCDEFGHIJKLMN";
+		String groupNames = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		for(int i=0;i<numberOfGroups;i++){
 			Groupe group = new Groupe();
 			group.setGroupName(groupNames.charAt(i)+"");
-			group.setComunio(comunioService.getComunio(comunioId));
-			groupDao.add(group);
+			group.setComunio(getComunioService().getComunio(comunioId));
+			getGroupDao().add(group);
 		}
+	}
+
+	public GroupDao getGroupDao() {
+		return groupDao;
+	}
+
+	public void setGroupDao(GroupDao groupDao) {
+		this.groupDao = groupDao;
+	}
+
+	public ComunioService getComunioService() {
+		return comunioService;
+	}
+
+	public void setComunioService(ComunioService comunioService) {
+		this.comunioService = comunioService;
 	}
 }
 
