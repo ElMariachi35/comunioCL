@@ -12,7 +12,7 @@ function generateTeamFields() {
 	$('#createTeamFieldButton').remove();
 }
 
-function submitAddComunioForm() {
+function submitAddComunioForm(){
 	var teams="";
 	var numberOfTeams = $('#numberOfTeams').val();
 	for(var i=0;i<numberOfTeams;i++){
