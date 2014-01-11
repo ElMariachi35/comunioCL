@@ -1,71 +1,119 @@
 package com.comunio.service.impl;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.comunio.dao.ComunioDao;
 import com.comunio.dao.GroupDao;
-import com.comunio.model.Comunio;
 import com.comunio.model.Groupe;
+import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
 import com.comunio.service.GroupService;
+import com.comunio.service.TeamService;
+
 @Service
 public class GroupServiceImpl implements GroupService {
-	@Autowired
-	private GroupDao groupDao;
-	@Autowired
-	private ComunioService comunioService;
-	
-	@Transactional
-	public void add(Groupe group) {
-		getGroupDao().add(group);
-	}
+    @Autowired
+    private GroupDao groupDao;
+    @Autowired
+    private ComunioService comunioService;
+    @Autowired
+    private TeamService teamService;
 
-	@Transactional
-	public void edit(Groupe group) {
-		getGroupDao().edit(group);
-	}
+    @Transactional
+    public void add(Groupe group) {
+	getGroupDao().add(group);
+    }
 
-	@Transactional
-	public void delete(long groupId) {
-		getGroupDao().delete(groupId);
-	}
+    @Transactional
+    public void edit(Groupe group) {
+	getGroupDao().edit(group);
+    }
 
-	@Transactional
-	public Groupe getGroup(long groupId) {
-		return getGroupDao().getGroup(groupId);
-	}
-	
-	@Transactional
-	public void initializeGroups(long comunioId, int numberOfTeams, int numberOfGroups) {
-		String groupNames = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		for(int i=0;i<numberOfGroups;i++){
-			Groupe group = new Groupe();
-			group.setGroupName(groupNames.charAt(i)+"");
-			group.setComunio(getComunioService().getComunio(comunioId));
-			getGroupDao().add(group);
-		}
-	}
+    @Transactional
+    public void delete(long groupId) {
+	getGroupDao().delete(groupId);
+    }
 
-	public GroupDao getGroupDao() {
-		return groupDao;
-	}
+    @Transactional
+    public Groupe getGroup(long groupId) {
+	return getGroupDao().getGroup(groupId);
+    }
 
-	public void setGroupDao(GroupDao groupDao) {
-		this.groupDao = groupDao;
-	}
+    @Transactional
+    public void initializeGroups(long comunioId, int numberOfTeams,
+	    int numberOfGroups, String teamsString) {
+	List<Groupe> groups = createGroups(comunioId, numberOfGroups);
+	List<Team> teams = teamService.createTeamsFromString(teamsString);
+	Collections.shuffle(teams);
+	Map<Groupe, Integer> groupSizes = determineGroupSizes(numberOfTeams,
+		groups);
 
-	public ComunioService getComunioService() {
-		return comunioService;
+	for (Groupe group : groups) {
+	    int size = groupSizes.get(group);
+	    for (int i = 0; i < size; i++) {
+		teamService.saveTeam(teams.remove(0), group);
+	    }
 	}
+    }
 
-	public void setComunioService(ComunioService comunioService) {
-		this.comunioService = comunioService;
+    public GroupDao getGroupDao() {
+	return groupDao;
+    }
+
+    public void setGroupDao(GroupDao groupDao) {
+	this.groupDao = groupDao;
+    }
+
+    public ComunioService getComunioService() {
+	return comunioService;
+    }
+
+    public void setComunioService(ComunioService comunioService) {
+	this.comunioService = comunioService;
+    }
+
+    private List<Groupe> createGroups(long comunioId, int numberOfGroups) {
+	List<Groupe> groups = new ArrayList<>();
+	String groupNames = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	for (int i = 0; i < numberOfGroups; i++) {
+	    Groupe group = new Groupe();
+	    group.setGroupName(groupNames.charAt(i) + "");
+	    group.setComunio(getComunioService().getComunio(comunioId));
+	    getGroupDao().add(group);
+	    groups.add(group);
 	}
+	return groups;
+    }
+
+    private Map<Groupe, Integer> determineGroupSizes(int numberOfTeams,
+	    List<Groupe> groups) {
+	Map<Groupe, Integer> groupSizes = new HashMap<>();
+	int remainder = getRemainder(numberOfTeams, groups);
+	int groupSize = getGroupSize(numberOfTeams, groups);
+	int counter = 0;
+	for (Groupe group : groups) {
+	    if (counter < remainder) {
+		groupSizes.put(group, groupSize + 1);
+	    } else {
+		groupSizes.put(group, groupSize);
+	    }
+	    counter++;
+	}
+	return groupSizes;
+    }
+
+    private int getGroupSize(int numberOfTeams, List<Groupe> group) {
+	return numberOfTeams / group.size();
+    }
+
+    private int getRemainder(int numberOfTeams, List<Groupe> group) {
+	return numberOfTeams % group.size();
+    }
 }
-

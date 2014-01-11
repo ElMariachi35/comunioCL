@@ -1,8 +1,6 @@
 package com.comunio.service.impl;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.comunio.dao.ComunioDao;
 import com.comunio.model.Comunio;
-import com.comunio.model.Groupe;
 import com.comunio.service.ComunioService;
 import com.comunio.service.GroupService;
 
@@ -54,9 +51,6 @@ public class ComunioServiceImpl implements ComunioService {
 		comunio.setPassword(password);
 		getComunioDao().add(comunio);
 		return comunio.getComunioId();
-		// comunio = getComunio(comunio.getComunioId());
-		// comunio.setGroups(initializeGroups(numberOfGroups, comunio));
-		// comunioDao.edit(comunio);
 	}
 
 	public ComunioDao getComunioDao() {

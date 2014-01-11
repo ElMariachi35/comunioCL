@@ -20,10 +20,13 @@
 			<input type="password" name="password" /><br />
 			<label for="numberOfTeams">Number of teams:</label>
 			<input id="numberOfTeams" type="text" name="numberOfTeams" /><br />
+			<label for="numberOfGroups">Number of groups:</label>
+			<input id="numberOfGroups" type="text" name="numberOfGroups" />
 		</div>
 	</form>
 	<div id="addTeams"></div>
-	<input id="createTeamFieldButton" type="button" value="Create" onclick="generateTeamFields()" /><br />
+	
+	<input id="createTeamFieldButton" type="button" value="Continue" onclick="generateTeamFields()" /><br />
 </div>
 </body>
 </html>

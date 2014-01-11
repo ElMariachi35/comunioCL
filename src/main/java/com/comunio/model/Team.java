@@ -21,8 +21,8 @@ public class Team implements Serializable {
 	@Column
 	private String teamName;
 	@ManyToOne
-    @JoinColumn(name="comunioId")
-	private Comunio comunio;
+    @JoinColumn(name="groupId")
+	private Groupe groupe;
 	
 	public Team() {
 	}
@@ -35,11 +35,11 @@ public class Team implements Serializable {
 		this.teamName = teamName;
 	}
 
-	public Comunio getComunio() {
-		return comunio;
+	public Groupe getGroupe() {
+		return groupe;
 	}
 
-	public void setComunio(Comunio comunio) {
-		this.comunio = comunio;
+	public void setGroupe(Groupe groupe) {
+		this.groupe = groupe;
 	}
 }

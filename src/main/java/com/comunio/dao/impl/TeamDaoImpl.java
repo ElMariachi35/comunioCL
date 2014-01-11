@@ -17,11 +17,7 @@ public class TeamDaoImpl implements TeamDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void addTeams(List<Team> teams) {
-		Session session = sessionFactory.getCurrentSession();
-		for(Team team : teams){
-			session.save(team);
-		}
+	public void addTeam(Team team) {
+		sessionFactory.getCurrentSession().save(team);
 	}
-
 }

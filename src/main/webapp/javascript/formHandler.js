@@ -1,6 +1,6 @@
 function generateTeamFields() {
 	var numberOfTeams = $('#numberOfTeams').val();
-	$('#addTeams').append('<p>Input teams:</p><br />');
+	$('#addTeams').append('<span>Input teams:</span><br />');
 	for (var i = 0; i < numberOfTeams; i++) {
 		$('#addTeams').append(
 				'<input type="text" id="team' + i + '" /><br />');

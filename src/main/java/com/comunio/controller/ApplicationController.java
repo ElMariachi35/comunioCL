@@ -39,9 +39,12 @@ public class ApplicationController {
 	@RequestMapping(value = "/saveComunio", method = RequestMethod.POST)
 	public String addTeams(@RequestParam("teams") String teamsString,
 			@RequestParam("comunioName") String comunioName,
-			@RequestParam("password") String password) {
+			@RequestParam("password") String password,
+			@RequestParam("numberOfTeams") String numberOfTeams,
+			@RequestParam("numberOfGroups") String numberOfGroups) {
+		
 		long comunioId = comunioService.createComunio(comunioName, password);
-		teamService.addTeamsFromString(teamsString, comunioId);
+		groupService.initializeGroups(comunioId, Integer.parseInt(numberOfTeams), Integer.parseInt(numberOfGroups), teamsString);
 		return "index";
 	}
 }
