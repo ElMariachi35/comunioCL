@@ -41,10 +41,15 @@ public class ApplicationController {
 			@RequestParam("comunioName") String comunioName,
 			@RequestParam("password") String password,
 			@RequestParam("numberOfTeams") String numberOfTeams,
-			@RequestParam("numberOfGroups") String numberOfGroups) {
-		
+			@RequestParam("numberOfGroups") String numberOfGroups,
+			Map<String, Object> map) {
+
 		long comunioId = comunioService.createComunio(comunioName, password);
-		groupService.initializeGroups(comunioId, Integer.parseInt(numberOfTeams), Integer.parseInt(numberOfGroups), teamsString);
+		groupService.initializeGroups(comunioId,
+				Integer.parseInt(numberOfTeams),
+				Integer.parseInt(numberOfGroups), teamsString);
+		map.put("comunioName", comunioName);
+		map.put("comunioId", comunioId);
 		return "index";
 	}
 }
