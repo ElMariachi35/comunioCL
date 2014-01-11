@@ -50,7 +50,7 @@ public class GroupServiceImpl implements GroupService {
     public void initializeGroups(long comunioId, int numberOfTeams,
 	    int numberOfGroups, String teamsString) {
 	List<Groupe> groups = createGroups(comunioId, numberOfGroups);
-	List<Team> teams = teamService.createTeamsFromString(teamsString);
+	List<Team> teams = getTeamService().createTeamsFromString(teamsString);
 	Collections.shuffle(teams);
 	Map<Groupe, Integer> groupSizes = determineGroupSizes(numberOfTeams,
 		groups);
@@ -58,7 +58,7 @@ public class GroupServiceImpl implements GroupService {
 	for (Groupe group : groups) {
 	    int size = groupSizes.get(group);
 	    for (int i = 0; i < size; i++) {
-		teamService.saveTeam(teams.remove(0), group);
+		getTeamService().saveTeam(teams.remove(0), group);
 	    }
 	}
     }
@@ -115,5 +115,13 @@ public class GroupServiceImpl implements GroupService {
 
     private int getRemainder(int numberOfTeams, List<Groupe> group) {
 	return numberOfTeams % group.size();
+    }
+
+    public TeamService getTeamService() {
+	return teamService;
+    }
+
+    public void setTeamService(TeamService teamService) {
+	this.teamService = teamService;
     }
 }
