@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div id="header">
-		<a href="/ComunioCL/index">Index</a>
+		<a href="/index">Index</a>
 	</div>
 </body>
 </html>

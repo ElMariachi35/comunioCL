@@ -9,6 +9,6 @@
 <body>
 	<h1>Welcome to Comunio Champions League</h1>
 	
-	<a href="/ComunioCL/addComunio">Create new Champions League for your Comunio</a>
+	<a href="/addComunio">Create new Champions League for your Comunio</a>
 </body>
 </html>
