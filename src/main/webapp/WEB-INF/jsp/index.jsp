@@ -7,6 +7,8 @@
 <title>Comunio Champions League</title>
 </head>
 <body>
+
+	<%@ include file="/WEB-INF/jsp/header.jsp" %>
 	<h1>Welcome to Comunio Champions League</h1>
 	
 	<a href="/addComunio">Create new Champions League for your Comunio</a>

@@ -12,5 +12,7 @@
 	<div id="header">
 		<a href="/index">Index</a>
 	</div>
+	
+	<%@ include file="/WEB-INF/jsp/comunioHeaderInfo.jsp" %>
 </body>
 </html>
