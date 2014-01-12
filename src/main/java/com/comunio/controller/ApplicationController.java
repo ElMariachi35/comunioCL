@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.comunio.model.Comunio;
+import com.comunio.model.Groupe;
 import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
 import com.comunio.service.GroupService;
@@ -45,9 +46,11 @@ public class ApplicationController {
 		
 		long comunioId = comunioService.createComunio(comunioName, password);
 		groupService.initializeGroups(comunioId, Integer.parseInt(numberOfTeams), Integer.parseInt(numberOfGroups), teamsString);
+		Groupe group = groupService.getGroup(comunioId, "A");
 		
 		map.put("comunioName", comunioName);
 		map.put("comunioId", comunioId);
-		return "index";
+		map.put("group", group);
+		return "overview";
 	}
 }
