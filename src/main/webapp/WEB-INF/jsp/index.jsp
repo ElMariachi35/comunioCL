@@ -12,5 +12,14 @@
 	<h1>Welcome to Comunio Champions League</h1>
 	
 	<a href="/addComunio">Create new Champions League for your Comunio</a>
+	<br />
+	<br />
+	<form action="showComunio/group/A" method="POST">
+	<div>
+		<label for="inputComunioId">ComunioId</label>
+		<input type="text" name="inputComunioId" />
+		<input type="submit" value="Show" />
+	</div>
+	</form>
 </body>
 </html>

@@ -6,7 +6,8 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"
 	type="text/javascript"></script>
 
-<link href="<c:url value="../webapp/css/styles.css" />" rel="stylesheet">
 <link href="<c:url value="/css/styles.css" />" rel="stylesheet">
 <script src="<c:url value="/javascript/formHandler.js" />"></script>
+<script src="<c:url value="/javascript/menu.js" />"></script>
+
 <!-- This contains the most used tag libraries -->

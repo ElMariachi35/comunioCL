@@ -1,5 +1,6 @@
 package com.comunio.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -21,7 +22,7 @@ public class Comunio {
 	@Column
 	private String password;
 	@OneToMany(mappedBy="comunio", fetch = FetchType.EAGER)
-	private Set<Groupe> groups;
+	private List<Groupe> groups;
 	
 	public Comunio() {
 	}
@@ -57,11 +58,11 @@ public class Comunio {
 		this.password = password;
 	}
 
-	public Set<Groupe> getGroups() {
+	public List<Groupe> getGroups() {
 		return groups;
 	}
 
-	public void setGroups(Set<Groupe> groups) {
+	public void setGroups(List<Groupe> groups) {
 		this.groups = groups;
 	}
 }

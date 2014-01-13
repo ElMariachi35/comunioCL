@@ -2,6 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <%@ include file="/WEB-INF/jsp/includes.jsp"%>
 	<div>
-		<div id="comunioName">${comunioName}</div>
-		<div id="comunioId">${comunioId}</div>
+		<div id="comunioName">Comunio: ${comunio.name}</div>
+		<div id="comunioId">ID: ${comunio.comunioId}</div>
 	</div>
