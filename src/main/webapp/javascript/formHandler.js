@@ -22,3 +22,10 @@ function submitAddComunioForm(){
 	$('#addComunioForm').submit();
 	
 }
+
+
+function sendOverviewRequest(){
+	var comunioId = $('#inputComunioId').val();
+	var url='showComunio/'+comunioId+'/A';
+	window.location.href = url;
+}

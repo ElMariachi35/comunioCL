@@ -10,6 +10,6 @@
 	<%@ include file="/WEB-INF/jsp/header.jsp"%>
 	<%@ include file="/WEB-INF/jsp/menu.jsp"%>
 
-	<div>Gruppe ${comunio.groups[0].groupName}</div>
+	<div>Gruppe ${group.groupName}</div>
 </body>
 </html>
