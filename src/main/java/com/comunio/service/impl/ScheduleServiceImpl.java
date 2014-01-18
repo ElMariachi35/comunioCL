@@ -23,20 +23,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 	private ScheduleDao scheduleDao;
 	
 	@Transactional
-	public void addSchedule(Schedule schedule, Groupe group) {
+	public void createSchedule(Groupe group) {
+		Schedule schedule = new Schedule();
 		schedule.setGroupe(group);
 		scheduleDao.addSchedule(schedule);
 	}
-
-	public List<Team> createTeamsFromString(String teamsString) {
-		String[] teamsStringArr = teamsString.split(";");
-		List<Team> teams = new ArrayList<>();
-		for(int i=0;i<teamsStringArr.length;i++){
-			Team team = new Team();
-			team.setTeamName(teamsStringArr[i]);
-			teams.add(team);
-		}
-		return teams;
-	}
-	
 }

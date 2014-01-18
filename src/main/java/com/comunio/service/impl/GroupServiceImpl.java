@@ -29,7 +29,7 @@ public class GroupServiceImpl implements GroupService {
 	private TeamService teamService;
 	@Autowired
 	private ScheduleService scheduleService;
-	
+
 	@Transactional
 	public void add(Groupe group) {
 		getGroupDao().add(group);
@@ -64,19 +64,17 @@ public class GroupServiceImpl implements GroupService {
 			for (int i = 0; i < size; i++) {
 				getTeamService().saveTeam(teams.remove(0), group);
 			}
-			Schedule schedule = new Schedule();
-			scheduleService.addSchedule(schedule, group);
-		} 
+			scheduleService.createSchedule(group);
+		}
 	}
-	
+
 	@Transactional
 	public List<Groupe> findGroupsByComunioId(long comunioId) {
 		return groupDao.findGroupsByComunioId(comunioId);
 	}
 
-	
 	@Transactional
-	public Groupe getGroup(long comunioId, String groupName){
+	public Groupe getGroup(long comunioId, String groupName) {
 		return groupDao.getGroup(comunioId, groupName);
 	}
 
@@ -99,7 +97,7 @@ public class GroupServiceImpl implements GroupService {
 	public TeamService getTeamService() {
 		return teamService;
 	}
-	
+
 	public void setTeamService(TeamService teamService) {
 		this.teamService = teamService;
 	}
@@ -141,6 +139,5 @@ public class GroupServiceImpl implements GroupService {
 	private int getRemainder(int numberOfTeams, List<Groupe> group) {
 		return numberOfTeams % group.size();
 	}
-
 
 }
