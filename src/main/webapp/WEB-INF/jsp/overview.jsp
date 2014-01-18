@@ -13,29 +13,29 @@
 	<div>Gruppe ${group.groupName}</div>
 
 	<div id="groupHeader">
-		<div class="groupHeaderPadding position">Pos</div>
-		<div class="groupHeaderPadding team">Team</div>
-		<div class="groupHeaderPadding numeric">G</div>
-		<div class="groupHeaderPadding numeric">W</div>
-		<div class="groupHeaderPadding numeric">D</div>
-		<div class="groupHeaderPadding numeric">L</div>
-		<div class="groupHeaderPadding numeric">GF</div>
-		<div class="groupHeaderPadding numeric">GA</div>
-		<div class="groupHeaderPadding difference">Diff</div>
-		<div class="groupHeaderPadding numeric">Pts</div>
+		<div class="groupColumnPadding position">Pos</div>
+		<div class="groupColumnPadding team">Team</div>
+		<div class="groupColumnPadding numeric">G</div>
+		<div class="groupColumnPadding numeric">W</div>
+		<div class="groupColumnPadding numeric">D</div>
+		<div class="groupColumnPadding numeric">L</div>
+		<div class="groupColumnPadding numeric">GF</div>
+		<div class="groupColumnPadding numeric">GA</div>
+		<div class="groupColumnPadding difference">Diff</div>
+		<div class="groupColumnPadding numeric">Pts</div>
 	</div>
 	<div id="groupBody">
-		<c:forEach var="team" items="${group.teams}">
-		<div class="position"></div>
-		<div class="team">${team.teamName}</div>
-		<div class="numeric"></div>
-		<div class="numeric"></div>
-		<div class="numeric"></div>
-		<div class="numeric"></div>
-		<div class="numeric"></div>
-		<div class="numeric"></div>
-		<div class="difference"></div>
-		<div class="numeric"></div>
+		<c:forEach var="team" items="${group.teams}" varStatus="counter">
+		<div class="groupColumnPadding position">${counter.index+1}.</div>
+		<div class="groupColumnPadding team">${team.teamName}</div>
+		<div class="groupColumnPadding numeric"></div>
+		<div class="groupColumnPadding numeric"></div>
+		<div class="groupColumnPadding numeric"></div>
+		<div class="groupColumnPadding numeric"></div>
+		<div class="groupColumnPadding numeric"></div>
+		<div class="groupColumnPadding numeric"></div>
+		<div class="groupColumnPadding difference"></div>
+		<div id="points" class="groupColumnPadding numeric"></div>
 		</c:forEach>
 	</div>
 

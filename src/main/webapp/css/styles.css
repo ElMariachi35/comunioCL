@@ -55,9 +55,20 @@ ul#menu li:hover ul.sub-menu {
 	background-color: red;
 }
 
-#groupHeader .groupHeaderPadding {
-	padding-left: 3px;
-	padding-right: 3px;
+.groupColumnPadding {
+	padding-right: 5px;
+}
+
+#groupBody{
+	clear: both;
+}
+
+#groupBody div {
+	float: left;
+}
+
+#points{
+	clear: both;	
 }
 
 .position {

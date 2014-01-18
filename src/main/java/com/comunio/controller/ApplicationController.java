@@ -37,7 +37,17 @@ public class ApplicationController {
 		List<Groupe> groups = groupService.findGroupsByComunioId(Long.parseLong(comunioId));
 		map.put("comunio", comunio);
 		map.put("groups", groups);
+		map.put("group", getGroup(groups, groupName));
 		return "overview";
+	}
+
+	private Groupe getGroup(List<Groupe> groups, String groupName) {
+		for(Groupe group : groups){
+			if(group.getGroupName().equals(groupName)){
+				return group;
+			}
+		}
+		return null;
 	}
 
 	@RequestMapping("/addComunio")
@@ -61,6 +71,7 @@ public class ApplicationController {
 		List<Groupe> groups = groupService.findGroupsByComunioId(comunioId);
 		map.put("comunio", comunio);
 		map.put("groups", groups);
+		map.put("group", getGroup(groups, "A"));
 		return "overview";
 	}
 }
