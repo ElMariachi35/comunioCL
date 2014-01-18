@@ -5,8 +5,11 @@
 <ul id="menu">
 	<li><a href="">Groupstage</a>
 		<ul class="sub-menu">
-			<c:forEach var="group" items="${comunio.groups}">
-				<li><a href="${group.groupName}">Gruppe ${group.groupName}</a></li>
+			<c:forEach var="groupItem" items="${comunio.groups}">
+				<script>
+					console.log("${groupItem.groupName}");
+				</script>
+				<li><a href="${groupItem.groupName}">Gruppe ${groupItem.groupName}</a></li>
 			</c:forEach>
 		</ul></li>
 	<li><a href="#">Playoffs</a></li>
