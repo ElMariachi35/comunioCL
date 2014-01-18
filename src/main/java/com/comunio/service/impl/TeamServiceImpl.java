@@ -24,7 +24,7 @@ public class TeamServiceImpl implements TeamService {
 	@Transactional
 	public void saveTeam(Team team, Groupe group) {
 		team.setGroupe(group);
-		teamDao.addTeam(team);
+		teamDao.saveTeam(team);
 	}
 
 	public List<Team> createTeamsFromString(String teamsString) {

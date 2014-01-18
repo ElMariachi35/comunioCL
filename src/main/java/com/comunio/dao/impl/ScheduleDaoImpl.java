@@ -14,7 +14,12 @@ public class ScheduleDaoImpl implements ScheduleDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void addSchedule(Schedule schedule) {
+	public void saveSchedule(Schedule schedule) {
 		sessionFactory.getCurrentSession().save(schedule);
+	}
+
+	@Override
+	public void updateSchedule(Schedule schedule) {
+		sessionFactory.getCurrentSession().update(schedule);
 	}
 }

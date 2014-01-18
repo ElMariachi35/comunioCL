@@ -1,23 +1,20 @@
 package com.comunio.dao.impl;
 
-import java.util.List;
-
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.comunio.dao.TeamDao;
-import com.comunio.model.Team;
+import com.comunio.dao.MatchdayDao;
+import com.comunio.model.Matchday;
 
 @Repository
-public class TeamDaoImpl implements TeamDao {
+public class MatchdayDaoImpl implements MatchdayDao {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void saveTeam(Team team) {
-		sessionFactory.getCurrentSession().save(team);
+	public void saveMatchday(Matchday matchday) {
+		sessionFactory.getCurrentSession().save(matchday);
 	}
 }
