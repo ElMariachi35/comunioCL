@@ -1,5 +1,6 @@
 package com.comunio.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,9 @@ public class ApplicationController {
 	public String showComunio(@PathVariable String groupName, @PathVariable String comunioId,
 			Map<String, Object> map) {
 		Comunio comunio = comunioService.getComunio(Long.parseLong(comunioId));
-		Groupe group = getGroup(comunio, groupName);
-		map.put("group", group);
+		List<Groupe> groups = groupService.findGroupsByComunioId(Long.parseLong(comunioId));
 		map.put("comunio", comunio);
+		map.put("groups", groups);
 		return "overview";
 	}
 
@@ -57,18 +58,9 @@ public class ApplicationController {
 				Integer.parseInt(numberOfTeams),
 				Integer.parseInt(numberOfGroups), teamsString);
 		Comunio comunio = comunioService.getComunio(comunioId);
-		Groupe group = getGroup(comunio, "A");
+		List<Groupe> groups = groupService.findGroupsByComunioId(comunioId);
 		map.put("comunio", comunio);
-		map.put("group", group);
+		map.put("groups", groups);
 		return "overview";
-	}
-
-	private Groupe getGroup(Comunio comunio, String groupName) {
-		for (Groupe group : comunio.getGroups()) {
-			if (group.getGroupName().equals(groupName)) {
-				return group;
-			}
-		}
-		return null;
 	}
 }

@@ -64,6 +64,12 @@ public class GroupServiceImpl implements GroupService {
 	}
 	
 	@Transactional
+	public List<Groupe> findGroupsByComunioId(long comunioId) {
+		return groupDao.findGroupsByComunioId(comunioId);
+	}
+
+	
+	@Transactional
 	public Groupe getGroup(long comunioId, String groupName){
 		return groupDao.getGroup(comunioId, groupName);
 	}
@@ -129,4 +135,5 @@ public class GroupServiceImpl implements GroupService {
 	public void setTeamService(TeamService teamService) {
 		this.teamService = teamService;
 	}
+
 }
