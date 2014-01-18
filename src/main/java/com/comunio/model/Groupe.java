@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Groupe {
@@ -25,7 +26,9 @@ public class Groupe {
 	private Comunio comunio;
 	@OneToMany(mappedBy="groupe", fetch = FetchType.EAGER)
 	private Set<Team> teams;
-
+	@OneToOne(mappedBy="groupe", fetch = FetchType.EAGER)
+	private Schedule schedule;
+	
 	public Groupe() {
 	}
 
@@ -66,5 +69,13 @@ public class Groupe {
 
 	public void setTeams(Set<Team> teams) {
 		this.teams = teams;
+	}
+
+	public Schedule getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(Schedule schedule) {
+		this.schedule = schedule;
 	}
 }

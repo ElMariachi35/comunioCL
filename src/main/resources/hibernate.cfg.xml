@@ -8,5 +8,6 @@
         <mapping class="com.comunio.model.Comunio" />
         <mapping class="com.comunio.model.Groupe" />
         <mapping class="com.comunio.model.Team" />
+        <mapping class="com.comunio.model.Schedule" />
     </session-factory>         
 </hibernate-configuration>

@@ -12,9 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.comunio.dao.GroupDao;
 import com.comunio.model.Groupe;
+import com.comunio.model.Schedule;
 import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
 import com.comunio.service.GroupService;
+import com.comunio.service.ScheduleService;
 import com.comunio.service.TeamService;
 
 @Service
@@ -25,7 +27,9 @@ public class GroupServiceImpl implements GroupService {
 	private ComunioService comunioService;
 	@Autowired
 	private TeamService teamService;
-
+	@Autowired
+	private ScheduleService scheduleService;
+	
 	@Transactional
 	public void add(Groupe group) {
 		getGroupDao().add(group);
@@ -60,7 +64,9 @@ public class GroupServiceImpl implements GroupService {
 			for (int i = 0; i < size; i++) {
 				getTeamService().saveTeam(teams.remove(0), group);
 			}
-		}
+			Schedule schedule = new Schedule();
+			scheduleService.addSchedule(schedule, group);
+		} 
 	}
 	
 	@Transactional
@@ -88,6 +94,14 @@ public class GroupServiceImpl implements GroupService {
 
 	public void setComunioService(ComunioService comunioService) {
 		this.comunioService = comunioService;
+	}
+
+	public TeamService getTeamService() {
+		return teamService;
+	}
+	
+	public void setTeamService(TeamService teamService) {
+		this.teamService = teamService;
 	}
 
 	private List<Groupe> createGroups(long comunioId, int numberOfGroups) {
@@ -128,12 +142,5 @@ public class GroupServiceImpl implements GroupService {
 		return numberOfTeams % group.size();
 	}
 
-	public TeamService getTeamService() {
-		return teamService;
-	}
-
-	public void setTeamService(TeamService teamService) {
-		this.teamService = teamService;
-	}
 
 }
