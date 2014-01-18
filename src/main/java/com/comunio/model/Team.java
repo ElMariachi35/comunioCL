@@ -23,6 +23,22 @@ public class Team implements Serializable {
 	@ManyToOne
     @JoinColumn(name="groupId")
 	private Groupe groupe;
+	@Column
+	private int gamesPlayed;
+	@Column
+	private int gamesWon;
+	@Column
+	private int gamesDrawn;
+	@Column
+	private int gamesLost;
+	@Column
+	private int goalsFor;
+	@Column
+	private int goalsAgainst;
+	@Column
+	private int goalDifference;
+	@Column
+	private int points;
 	
 	public Team() {
 	}
@@ -41,5 +57,77 @@ public class Team implements Serializable {
 
 	public void setGroupe(Groupe groupe) {
 		this.groupe = groupe;
+	}
+
+	public int getGamesPlayed() {
+		return gamesPlayed;
+	}
+
+	public void setGamesPlayed(int gamesPlayed) {
+		this.gamesPlayed = gamesPlayed;
+	}
+
+	public int getGamesWon() {
+		return gamesWon;
+	}
+
+	public void setGamesWon(int gamesWon) {
+		this.gamesWon = gamesWon;
+	}
+
+	public int getGamesDrawn() {
+		return gamesDrawn;
+	}
+
+	public void setGamesDrawn(int gamesDrawn) {
+		this.gamesDrawn = gamesDrawn;
+	}
+
+	public int getGamesLost() {
+		return gamesLost;
+	}
+
+	public void setGamesLost(int gamesLost) {
+		this.gamesLost = gamesLost;
+	}
+
+	public int getGoalsFor() {
+		return goalsFor;
+	}
+
+	public void setGoalsFor(int goalsFor) {
+		this.goalsFor = goalsFor;
+	}
+
+	public int getGoalDifference() {
+		return goalDifference;
+	}
+
+	public void setGoalDifference(int goalDifference) {
+		this.goalDifference = goalDifference;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public long getTeamId() {
+		return teamId;
+	}
+
+	public void setTeamId(long teamId) {
+		this.teamId = teamId;
+	}
+
+	public int getGoalsAgainst() {
+		return goalsAgainst;
+	}
+
+	public void setGoalsAgainst(int goalsAgainst) {
+		this.goalsAgainst = goalsAgainst;
 	}
 }

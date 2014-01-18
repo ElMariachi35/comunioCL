@@ -67,11 +67,8 @@ ul#menu li:hover ul.sub-menu {
 	float: left;
 }
 
-#points{
-	clear: both;	
-}
-
 .position {
+	clear: both;
 	width: 40px;
 }
 

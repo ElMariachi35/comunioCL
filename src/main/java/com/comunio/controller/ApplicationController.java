@@ -30,29 +30,21 @@ public class ApplicationController {
 		return "index";
 	}
 
-	@RequestMapping(value="/showComunio/{comunioId}/{groupName}")
-	public String showComunio(@PathVariable String groupName, @PathVariable String comunioId,
-			Map<String, Object> map) {
+	@RequestMapping("/addComunio")
+	public String addComunio() {
+		return "addComunio";
+	}
+
+	@RequestMapping(value = "/showComunio/{comunioId}/{groupName}")
+	public String showComunio(@PathVariable String groupName,
+			@PathVariable String comunioId, Map<String, Object> map) {
 		Comunio comunio = comunioService.getComunio(Long.parseLong(comunioId));
-		List<Groupe> groups = groupService.findGroupsByComunioId(Long.parseLong(comunioId));
+		List<Groupe> groups = groupService.findGroupsByComunioId(Long
+				.parseLong(comunioId));
 		map.put("comunio", comunio);
 		map.put("groups", groups);
 		map.put("group", getGroup(groups, groupName));
 		return "overview";
-	}
-
-	private Groupe getGroup(List<Groupe> groups, String groupName) {
-		for(Groupe group : groups){
-			if(group.getGroupName().equals(groupName)){
-				return group;
-			}
-		}
-		return null;
-	}
-
-	@RequestMapping("/addComunio")
-	public String addComunio() {
-		return "addComunio";
 	}
 
 	@RequestMapping(value = "/saveComunio", method = RequestMethod.POST)
@@ -73,5 +65,14 @@ public class ApplicationController {
 		map.put("groups", groups);
 		map.put("group", getGroup(groups, "A"));
 		return "overview";
+	}
+
+	private Groupe getGroup(List<Groupe> groups, String groupName) {
+		for (Groupe group : groups) {
+			if (group.getGroupName().equals(groupName)) {
+				return group;
+			}
+		}
+		return null;
 	}
 }

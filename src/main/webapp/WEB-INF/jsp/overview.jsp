@@ -28,14 +28,14 @@
 		<c:forEach var="team" items="${group.teams}" varStatus="counter">
 		<div class="groupColumnPadding position">${counter.index+1}.</div>
 		<div class="groupColumnPadding team">${team.teamName}</div>
-		<div class="groupColumnPadding numeric"></div>
-		<div class="groupColumnPadding numeric"></div>
-		<div class="groupColumnPadding numeric"></div>
-		<div class="groupColumnPadding numeric"></div>
-		<div class="groupColumnPadding numeric"></div>
-		<div class="groupColumnPadding numeric"></div>
-		<div class="groupColumnPadding difference"></div>
-		<div id="points" class="groupColumnPadding numeric"></div>
+		<div class="groupColumnPadding numeric">${team.gamesPlayed}</div>
+		<div class="groupColumnPadding numeric">${team.gamesWon}</div>
+		<div class="groupColumnPadding numeric">${team.gamesDrawn}</div>
+		<div class="groupColumnPadding numeric">${team.gamesLost}</div>
+		<div class="groupColumnPadding numeric">${team.goalsFor}</div>
+		<div class="groupColumnPadding numeric">${team.goalsAgainst}</div>
+		<div class="groupColumnPadding difference">${team.goalDifference}</div>
+		<div id="points" class="groupColumnPadding numeric">${team.points}</div>
 		</c:forEach>
 	</div>
 
