@@ -28,6 +28,8 @@ public class RoundRobinServiceImpl {
 		List<Team> team3 = new ArrayList<>();
 		List<Team> team4 = new ArrayList<>();
 
+		int numberOfRounds = determineNumberOfRounds(teams);
+
 		if (teams.size() % 2 != 0) {
 			Team dummyTeam = new Team();
 			dummyTeam.setTeamName(DUMMY_TEAM);
@@ -37,30 +39,33 @@ public class RoundRobinServiceImpl {
 		team1 = teams.subList(0, teams.size() / 2);
 		team2 = teams.subList(teams.size() / 2, teams.size());
 
-		for (int matchdayNumber = 0; matchdayNumber < teams.size() - 1; matchdayNumber++) {
-			matchdays
-					.add(createMatches(team1, team2, matchdayNumber, schedule));
-			Collections.rotate(team1, 1);
-			Collections.rotate(team2, -1);
-			team3 = new ArrayList<>(team1);
-			team4 = new ArrayList<>(team2);
+		for (int i = 0; i < numberOfRounds; i++) {
+			for (int comunioMatchdayNumber = 1; comunioMatchdayNumber < teams
+					.size(); comunioMatchdayNumber++) {
+				matchdays.add(createMatches(team1, team2, schedule,
+						numberOfRounds));
+				Collections.rotate(team1, 1);
+				Collections.rotate(team2, -1);
+				team3 = new ArrayList<>(team1);
+				team4 = new ArrayList<>(team2);
 
-			team4.set(team4.size() - 1, team1.get(0));
-			team3.set(0, team1.get(1));
-			team3.set(1, team2.get(team2.size() - 1));
+				team4.set(team4.size() - 1, team1.get(0));
+				team3.set(0, team1.get(1));
+				team3.set(1, team2.get(team2.size() - 1));
 
-			team1 = new ArrayList<>(team3);
-			team2 = new ArrayList<>(team4);
+				team1 = new ArrayList<>(team3);
+				team2 = new ArrayList<>(team4);
+			}
 		}
-		return new HashSet<>(matchdays);
+		return new HashSet<>(setMatchdayNumbers(matchdays));
 	}
 
 	private Matchday createMatches(List<Team> team1, List<Team> team2,
-			int matchdayNumber, Schedule schedule) {
+			Schedule schedule, int numberOfRounds) {
 		Matchday matchday = new Matchday();
-		matchday.setComunioMatchdayNumber(matchdayNumber + 1);
 		matchday.setSchedule(schedule);
 		List<Game> games = new ArrayList<>();
+
 		for (int j = 0; j < team1.size(); j++) {
 			Game game = new Game();
 			game.setMatchday(matchday);
@@ -77,19 +82,41 @@ public class RoundRobinServiceImpl {
 				games.add(game);
 			}
 		}
+
 		matchday.setMatches(new HashSet<>(games));
 		return matchday;
+	}
+
+	private List<Matchday> setMatchdayNumbers(List<Matchday> matchdays) {
+		int i = 1;
+		for (Matchday matchday : matchdays) {
+			matchday.setComunioMatchdayNumber(i);
+			i++;
+		}
+		return matchdays;
 	}
 
 	private boolean awayTeamIsDummy(Game game) {
 		return game.getAwayTeam().getTeamName().equals(DUMMY_TEAM);
 	}
-	
+
 	private boolean homeTeamIsDummy(Game game) {
 		return game.getHomeTeam().getTeamName().equals(DUMMY_TEAM);
 	}
-	
+
 	private boolean gameHasDummyTeam(Game game) {
 		return awayTeamIsDummy(game) || homeTeamIsDummy(game);
+	}
+
+	private int determineNumberOfRounds(List<Team> teams) {
+		switch (teams.size()) {
+		case 4:
+			return 3;
+		case 5:
+			return 2;
+		case 6:
+			return 2;
+		}
+		return 1;
 	}
 }
