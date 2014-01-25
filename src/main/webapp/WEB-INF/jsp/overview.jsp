@@ -41,7 +41,7 @@
 	<br />
 	<br />
 	<br />
-	<div id="schedule">
+	<div id="schedule" class="clear">
 		<br />
 		<c:forEach var="matchday" items="${group.schedule.matchdays}">
 			<h2>Matchday ${matchday.comunioMatchdayNumber }</h2>
@@ -56,6 +56,7 @@
 				<div>${match.awayGoals }</div>
 				<div></div><br />
 			</c:forEach>
+			<div class="clear">Bye week: ${matchday.byeTeam.teamName}</div>
 			</div>
 		</c:forEach>
 	</div>

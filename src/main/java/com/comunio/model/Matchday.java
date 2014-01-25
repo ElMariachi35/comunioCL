@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Matchday implements Serializable {
@@ -31,6 +32,9 @@ public class Matchday implements Serializable {
 	@Column
 	@OneToMany(mappedBy="matchday", fetch = FetchType.EAGER)
 	private Set<Game> matches;
+	@OneToOne
+	@JoinColumn(name = "byeTeam", referencedColumnName = "teamId")
+	private Team byeTeam;
 	
 	public Matchday() {
 	}
@@ -73,6 +77,14 @@ public class Matchday implements Serializable {
 
 	public void setMatches(Set<Game> matches) {
 		this.matches = matches;
+	}
+
+	public Team getByeTeam() {
+		return byeTeam;
+	}
+
+	public void setByeTeam(Team byeTeam) {
+		this.byeTeam = byeTeam;
 	}
 	
 	
