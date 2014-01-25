@@ -24,7 +24,7 @@
 		<div class="groupColumnPadding difference">Diff</div>
 		<div class="groupColumnPadding numeric">Pts</div>
 	</div>
-	<div id="groupBody">
+	<div id="groupBody" class="clear">
 		<c:forEach var="team" items="${group.teams}" varStatus="counter">
 		<div class="groupColumnPadding position">${counter.index+1}.</div>
 		<div class="groupColumnPadding team">${team.teamName}</div>
@@ -36,6 +36,27 @@
 		<div class="groupColumnPadding numeric">${team.goalsAgainst}</div>
 		<div class="groupColumnPadding difference">${team.goalDifference}</div>
 		<div id="points" class="groupColumnPadding numeric">${team.points}</div>
+		</c:forEach>
+	</div>
+	<br />
+	<br />
+	<br />
+	<div id="schedule">
+		<br />
+		<c:forEach var="matchday" items="${group.schedule.matchdays}">
+			<h2>Matchday ${matchday.comunioMatchdayNumber }</h2>
+			<div class="match clear">
+			<c:forEach var="match" items="${matchday.matches}">
+				<div>${match.homeTeam.teamName }</div>
+				<div> - </div>
+				<div>${match.awayTeam.teamName }</div>
+				<div></div>
+				<div>${match.homeGoals }</div>
+				<div>:</div>
+				<div>${match.awayGoals }</div>
+				<div></div><br />
+			</c:forEach>
+			</div>
 		</c:forEach>
 	</div>
 

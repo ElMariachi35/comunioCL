@@ -30,7 +30,7 @@ public class Matchday implements Serializable {
 	private int leagueMatchdayNumber;
 	@Column
 	@OneToMany(mappedBy="matchday", fetch = FetchType.EAGER)
-	private Set<Match> matches;
+	private Set<Game> matches;
 	
 	public Matchday() {
 	}
@@ -67,11 +67,11 @@ public class Matchday implements Serializable {
 		this.leagueMatchdayNumber = leagueMatchdayNumber;
 	}
 
-	public Set<Match> getMatches() {
+	public Set<Game> getMatches() {
 		return matches;
 	}
 
-	public void setMatches(Set<Match> matches) {
+	public void setMatches(Set<Game> matches) {
 		this.matches = matches;
 	}
 	

@@ -7,5 +7,6 @@ import com.comunio.model.Matchday;
 import com.comunio.model.Schedule;
 
 public interface MatchdayService {
-	public Set<Matchday> createMatchdays(Groupe group, Schedule schedule);
+	public void saveMatchdays(Set<Matchday> matchdays);
+	public void saveMatchday(Matchday matchday);
 }

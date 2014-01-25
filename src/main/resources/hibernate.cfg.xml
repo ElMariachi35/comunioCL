@@ -10,6 +10,6 @@
         <mapping class="com.comunio.model.Team" />
         <mapping class="com.comunio.model.Schedule" />
         <mapping class="com.comunio.model.Matchday" />
-        <mapping class="com.comunio.model.Match" />
+        <mapping class="com.comunio.model.Game" />
     </session-factory>         
 </hibernate-configuration>

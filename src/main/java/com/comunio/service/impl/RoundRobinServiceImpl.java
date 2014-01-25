@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.comunio.model.Match;
+import com.comunio.model.Game;
 import com.comunio.model.Matchday;
 import com.comunio.model.Schedule;
 import com.comunio.model.Team;
@@ -54,17 +54,17 @@ public class RoundRobinServiceImpl {
 
 	private Matchday createMatches(List<Team> team1, List<Team> team2, int matchdayNumber, Schedule schedule) {
 		Matchday matchday = new Matchday();
-		matchday.setComunioMatchdayNumber(matchdayNumber);
+		matchday.setComunioMatchdayNumber(matchdayNumber+1);
 		matchday.setSchedule(schedule);
-		List<Match> matches = new ArrayList<>();
+		List<Game> games = new ArrayList<>();
 		for(int j=0;j<team1.size();j++){
-			Match match = new Match();
-			match.setHomeTeam(team1.get(j));
-			match.setAwayTeam(team2.get(j));
-			match.setMatchday(matchday);
-			matches.add(match);
+			Game game = new Game();
+			game.setMatchday(matchday);
+			game.setHomeTeam(team1.get(j));
+			game.setAwayTeam(team2.get(j));
+			games.add(game);
 		}
-		matchday.setMatches(new HashSet<>(matches));
+		matchday.setMatches(new HashSet<>(games));
 		return matchday;
 	}
 }

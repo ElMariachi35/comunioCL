@@ -83,3 +83,13 @@ ul#menu li:hover ul.sub-menu {
 .numeric {
 	width: 20px;
 }
+
+
+.match div {
+	float: left;
+	margin-left: 10px;
+}
+
+.clear{
+	clear: both;
+}
