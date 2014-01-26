@@ -1,7 +1,7 @@
 package com.comunio.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +25,7 @@ public class Schedule implements Serializable{
 	@JoinColumn(name="groupId")
 	private Groupe groupe;
 	@OneToMany(mappedBy="schedule", fetch = FetchType.EAGER)
-	private Set<Matchday> matchdays;
+	private List<Matchday> matchdays;
 	
 	public long getScheduleId() {
 		return scheduleId;
@@ -43,11 +43,11 @@ public class Schedule implements Serializable{
 		this.groupe = groupe;
 	}
 
-	public Set<Matchday> getMatchdays() {
+	public List<Matchday> getMatchdays() {
 		return matchdays;
 	}
 
-	public void setMatchdays(Set<Matchday> matchdays) {
+	public void setMatchdays(List<Matchday> matchdays) {
 		this.matchdays = matchdays;
 	}
 }

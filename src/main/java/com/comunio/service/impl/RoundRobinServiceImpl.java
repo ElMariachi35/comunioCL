@@ -2,9 +2,10 @@ package com.comunio.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import com.comunio.model.Game;
 import com.comunio.model.Matchday;
@@ -21,7 +22,7 @@ public class RoundRobinServiceImpl {
 		return schedule;
 	}
 
-	private Set<Matchday> createMatchdays(List<Team> teams, Schedule schedule) {
+	private List<Matchday> createMatchdays(List<Team> teams, Schedule schedule) {
 		List<Matchday> matchdays = new ArrayList<>();
 		List<Team> team1 = new ArrayList<>();
 		List<Team> team2 = new ArrayList<>();
@@ -57,7 +58,9 @@ public class RoundRobinServiceImpl {
 				team2 = new ArrayList<>(team4);
 			}
 		}
-		return new HashSet<>(setMatchdayNumbers(matchdays));
+		matchdays = setMatchdayNumbers(matchdays);
+		Collections.sort(matchdays);
+		return matchdays;
 	}
 
 	private Matchday createMatches(List<Team> team1, List<Team> team2,
@@ -83,7 +86,7 @@ public class RoundRobinServiceImpl {
 			}
 		}
 
-		matchday.setMatches(new HashSet<>(games));
+		matchday.setMatches(new LinkedHashSet<>(games));
 		return matchday;
 	}
 

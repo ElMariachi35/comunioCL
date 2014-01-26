@@ -1,11 +1,10 @@
 package com.comunio.service.impl;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.comunio.dao.GameDao;
 import com.comunio.dao.MatchdayDao;
 import com.comunio.model.Game;
 import com.comunio.model.Matchday;
@@ -21,7 +20,7 @@ public class MatchdayServiceImpl implements MatchdayService{
 	private GameService gameService;
 
 	@Override
-	public void saveMatchdays(Set<Matchday> matchdays) {
+	public void saveMatchdays(List<Matchday> matchdays) {
 		for (Matchday matchday : matchdays) {
 			saveMatchday(matchday);
 		}

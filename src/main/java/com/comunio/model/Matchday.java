@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Matchday implements Serializable {
+public class Matchday implements Serializable, Comparable<Matchday> {
 
 	private static final long serialVersionUID = 1421106637466976597L;
 	@Id
@@ -23,19 +23,19 @@ public class Matchday implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long matchdayId;
 	@ManyToOne
-	@JoinColumn(name="scheduleId")
+	@JoinColumn(name = "scheduleId")
 	private Schedule schedule;
 	@Column
 	private int comunioMatchdayNumber;
 	@Column
 	private int leagueMatchdayNumber;
 	@Column
-	@OneToMany(mappedBy="matchday", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "matchday", fetch = FetchType.EAGER)
 	private Set<Game> matches;
 	@OneToOne
 	@JoinColumn(name = "byeTeam", referencedColumnName = "teamId")
 	private Team byeTeam;
-	
+
 	public Matchday() {
 	}
 
@@ -86,7 +86,14 @@ public class Matchday implements Serializable {
 	public void setByeTeam(Team byeTeam) {
 		this.byeTeam = byeTeam;
 	}
-	
-	
 
+	@Override
+	public int compareTo(Matchday matchday) {
+		if (this.comunioMatchdayNumber > matchday.comunioMatchdayNumber) {
+			return 1;
+		} else if (this.comunioMatchdayNumber < matchday.comunioMatchdayNumber) {
+			return -1;
+		}
+		return 0;
+	}
 }

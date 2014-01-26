@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.comunio.dao.GameDao;
-import com.comunio.dao.impl.GameDaoImpl;
 import com.comunio.model.Comunio;
 import com.comunio.model.Groupe;
-import com.comunio.model.Game;
 import com.comunio.service.ComunioService;
 import com.comunio.service.GroupService;
 import com.comunio.service.TeamService;
