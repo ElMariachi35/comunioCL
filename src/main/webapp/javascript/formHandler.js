@@ -3,7 +3,7 @@ function generateTeamFields() {
 	$('#addTeams').append('<span>Input teams:</span><br />');
 	for (var i = 0; i < numberOfTeams; i++) {
 		$('#addTeams').append(
-				'<input type="text" id="team' + i + '" /><br />');
+				'<input type="text" id="team' + i + '" value="team'+(i+1)+'" /><br />');
 	}
 	$('#addTeams')
 			.append(

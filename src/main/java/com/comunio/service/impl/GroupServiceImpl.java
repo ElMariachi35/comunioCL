@@ -52,8 +52,8 @@ public class GroupServiceImpl implements GroupService {
 	}
 
 	@Transactional
-	public void initializeGroups(long comunioId, int numberOfTeams,
-			int numberOfGroups, String teamsString) {
+	public void initializeGroups(long comunioId, int numberOfTeams, String teamsString) {
+		int numberOfGroups = determineNumberOfGroups(numberOfTeams);
 		List<Groupe> groups = createGroups(comunioId, numberOfGroups);
 		List<Team> teams = getTeamService().createTeamsFromString(teamsString);
 		Collections.shuffle(teams);
@@ -72,6 +72,7 @@ public class GroupServiceImpl implements GroupService {
 			scheduleService.createSchedule(group);
 		}
 	}
+
 
 	@Transactional
 	public List<Groupe> findGroupsByComunioId(long comunioId) {
@@ -145,4 +146,15 @@ public class GroupServiceImpl implements GroupService {
 		return numberOfTeams % group.size();
 	}
 
+	private int determineNumberOfGroups(int numberOfTeams) {
+		if(numberOfTeams <=7){
+			return 1;
+		}else if(numberOfTeams <=11){
+			return 2;
+		}else if(numberOfTeams <=15){
+			return 3;
+		}else{
+			return 4;
+		}
+	}
 }

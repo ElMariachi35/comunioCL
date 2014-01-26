@@ -24,6 +24,7 @@ public class ApplicationController {
 	private ComunioService comunioService;
 	@Autowired
 	private TeamService teamService;
+
 	@RequestMapping("/index")
 	public String setupForm(Map<String, Object> map) {
 		return "index";
@@ -51,13 +52,11 @@ public class ApplicationController {
 			@RequestParam("comunioName") String comunioName,
 			@RequestParam("password") String password,
 			@RequestParam("numberOfTeams") String numberOfTeams,
-			@RequestParam("numberOfGroups") String numberOfGroups,
 			Map<String, Object> map) {
 
 		long comunioId = comunioService.createComunio(comunioName, password);
 		groupService.initializeGroups(comunioId,
-				Integer.parseInt(numberOfTeams),
-				Integer.parseInt(numberOfGroups), teamsString);
+				Integer.parseInt(numberOfTeams), teamsString);
 		Comunio comunio = comunioService.getComunio(comunioId);
 		List<Groupe> groups = groupService.findGroupsByComunioId(comunioId);
 		map.put("comunio", comunio);
