@@ -14,6 +14,7 @@ import com.comunio.model.Comunio;
 import com.comunio.model.Groupe;
 import com.comunio.service.ComunioService;
 import com.comunio.service.GroupService;
+import com.comunio.service.MatchdayService;
 import com.comunio.service.TeamService;
 
 @Controller
@@ -24,7 +25,8 @@ public class ApplicationController {
 	private ComunioService comunioService;
 	@Autowired
 	private TeamService teamService;
-
+	@Autowired
+	private MatchdayService matchdayService;
 	@RequestMapping("/index")
 	public String setupForm(Map<String, Object> map) {
 		return "index";
@@ -38,12 +40,12 @@ public class ApplicationController {
 	@RequestMapping(value = "/showComunio/{comunioId}/{groupName}")
 	public String showComunio(@PathVariable String groupName,
 			@PathVariable String comunioId, Map<String, Object> map) {
-		Comunio comunio = comunioService.getComunio(Long.parseLong(comunioId));
-		List<Groupe> groups = groupService.findGroupsByComunioId(Long
-				.parseLong(comunioId));
+		Comunio comunio = comunioService.getComunio(Long.parseLong(comunioId));		
+		Groupe group = groupService.getGroup(Long.parseLong(comunioId), groupName);
 		map.put("comunio", comunio);
-		map.put("groups", groups);
-		map.put("group", getGroup(groups, groupName));
+		map.put("group", group);
+		map.put("groupNames", groupService.determineGroupNames(Long.parseLong(comunioId)));
+		map.put("matchdays", matchdayService.getSortedMatchdays(group));
 		return "overview";
 	}
 

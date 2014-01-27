@@ -40,11 +40,6 @@ public class ComunioServiceImpl implements ComunioService {
 	}
 
 	@Transactional
-	public List<Comunio> getAllComunio() {
-		return getComunioDao().getAllComunio();
-	}
-
-	@Transactional
 	public long createComunio(String comunioName, String password) {
 		Comunio comunio = new Comunio();
 		comunio.setName(comunioName);

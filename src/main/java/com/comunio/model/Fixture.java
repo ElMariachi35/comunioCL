@@ -2,6 +2,7 @@ package com.comunio.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,26 +15,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Schedule implements Serializable{
+public class Fixture implements Serializable{
 	
 	private static final long serialVersionUID = -6153784244872375195L;
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long scheduleId;
+	private long fixtureId;
 	@OneToOne
 	@JoinColumn(name="groupId")
 	private Groupe groupe;
-	@OneToMany(mappedBy="schedule", fetch = FetchType.EAGER)
-	private List<Matchday> matchdays;
-	
-	public long getScheduleId() {
-		return scheduleId;
-	}
-
-	public void setScheduleId(long scheduleId) {
-		this.scheduleId = scheduleId;
-	}
+	@OneToMany(mappedBy="fixture", fetch = FetchType.EAGER)
+	private Set<Matchday> matchdays;
 
 	public Groupe getGroupe() {
 		return groupe;
@@ -43,11 +36,19 @@ public class Schedule implements Serializable{
 		this.groupe = groupe;
 	}
 
-	public List<Matchday> getMatchdays() {
+	public long getFixtureId() {
+		return fixtureId;
+	}
+
+	public void setFixtureId(long fixtureId) {
+		this.fixtureId = fixtureId;
+	}
+
+	public Set<Matchday> getMatchdays() {
 		return matchdays;
 	}
 
-	public void setMatchdays(List<Matchday> matchdays) {
+	public void setMatchdays(Set<Matchday> matchdays) {
 		this.matchdays = matchdays;
 	}
 }

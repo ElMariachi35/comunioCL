@@ -17,11 +17,12 @@ import com.comunio.model.Groupe;
 import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
 import com.comunio.service.GroupService;
-import com.comunio.service.ScheduleService;
+import com.comunio.service.FixtureService;
 import com.comunio.service.TeamService;
 
 @Service
 public class GroupServiceImpl implements GroupService {
+	private static final String GROUP_NAME_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	@Autowired
 	private GroupDao groupDao;
 	@Autowired
@@ -29,7 +30,7 @@ public class GroupServiceImpl implements GroupService {
 	@Autowired
 	private TeamService teamService;
 	@Autowired
-	private ScheduleService scheduleService;
+	private FixtureService fixtureService;
 
 	@Transactional
 	public void add(Groupe group) {
@@ -69,7 +70,7 @@ public class GroupServiceImpl implements GroupService {
 				getTeamService().saveTeam(team, group);
 			}
 			group.setTeams(teamsInGroup);
-			scheduleService.createSchedule(group);
+			fixtureService.createFixture(group);
 		}
 	}
 
@@ -108,9 +109,19 @@ public class GroupServiceImpl implements GroupService {
 		this.teamService = teamService;
 	}
 
+	@Transactional
+	public List<String> determineGroupNames(long comunioId) {
+		List<String> groupNames = new ArrayList<>();
+		int numberOfGroups =  groupDao.determineNumberOfGroups(comunioId);
+		for(int i=0;i<numberOfGroups;i++){
+			groupNames.add(GROUP_NAME_STRING.charAt(i)+"");
+		}
+		return groupNames;
+	}
+
 	private List<Groupe> createGroups(long comunioId, int numberOfGroups) {
 		List<Groupe> groups = new ArrayList<>();
-		String groupNames = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String groupNames = GROUP_NAME_STRING;
 		for (int i = 0; i < numberOfGroups; i++) {
 			Groupe group = new Groupe();
 			group.setGroupName(groupNames.charAt(i) + "");
@@ -157,4 +168,5 @@ public class GroupServiceImpl implements GroupService {
 			return 4;
 		}
 	}
+
 }

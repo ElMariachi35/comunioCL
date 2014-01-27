@@ -20,7 +20,7 @@ import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
 import com.comunio.service.GameService;
 import com.comunio.service.GroupService;
-import com.comunio.service.ScheduleService;
+import com.comunio.service.FixtureService;
 import com.comunio.service.TeamService;
 
 @Service

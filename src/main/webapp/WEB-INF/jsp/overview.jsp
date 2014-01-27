@@ -41,9 +41,9 @@
 	<br />
 	<br />
 	<br />
-	<div id="schedule" class="clear">
+	<div id="fixture" class="clear">
 		<br />
-		<c:forEach var="matchday" items="${group.schedule.matchdays}">
+		<c:forEach var="matchday" items="${matchdays}">
 			<h2>Matchday ${matchday.comunioMatchdayNumber }</h2>
 			<div class="match clear">
 			<c:forEach var="match" items="${matchday.matches}">

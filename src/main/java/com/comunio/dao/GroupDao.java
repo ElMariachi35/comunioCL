@@ -13,4 +13,5 @@ public interface GroupDao {
 	public Groupe getGroup(long groupId);
 	public Groupe getGroup(long comunioId, String groupName);
 	public List<Groupe> findGroupsByComunioId(long comunioId);
+	public int determineNumberOfGroups(long comunioId);
 }

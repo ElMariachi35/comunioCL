@@ -20,7 +20,7 @@ public class Comunio {
 	private String name;
 	@Column
 	private String password;
-	@OneToMany(mappedBy="comunio", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="comunio", fetch = FetchType.LAZY)
 	private Set<Groupe> groups;
 	
 	public Comunio() {

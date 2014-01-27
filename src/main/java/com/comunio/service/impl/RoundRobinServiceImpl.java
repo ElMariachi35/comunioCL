@@ -9,21 +9,21 @@ import java.util.TreeSet;
 
 import com.comunio.model.Game;
 import com.comunio.model.Matchday;
-import com.comunio.model.Schedule;
+import com.comunio.model.Fixture;
 import com.comunio.model.Team;
 
 public class RoundRobinServiceImpl {
 
 	private static final String DUMMY_TEAM = "SWCW13Q56";
 
-	public Schedule roundRobinCreateSchedule(List<Team> teams) {
-		Schedule schedule = new Schedule();
-		schedule.setMatchdays(createMatchdays(teams, schedule));
-		return schedule;
+	public Fixture roundRobinCreateFixture(List<Team> teams) {
+		Fixture fixture = new Fixture();
+		fixture.setMatchdays(createMatchdays(teams, fixture));
+		return fixture;
 	}
 
-	private List<Matchday> createMatchdays(List<Team> teams, Schedule schedule) {
-		List<Matchday> matchdays = new ArrayList<>();
+	private Set<Matchday> createMatchdays(List<Team> teams, Fixture fixture) {
+		Set<Matchday> matchdays = new LinkedHashSet<>();
 		List<Team> team1 = new ArrayList<>();
 		List<Team> team2 = new ArrayList<>();
 		List<Team> team3 = new ArrayList<>();
@@ -43,7 +43,7 @@ public class RoundRobinServiceImpl {
 		for (int i = 0; i < numberOfRounds; i++) {
 			for (int comunioMatchdayNumber = 1; comunioMatchdayNumber < teams
 					.size(); comunioMatchdayNumber++) {
-				matchdays.add(createMatches(team1, team2, schedule,
+				matchdays.add(createMatches(team1, team2, fixture,
 						numberOfRounds));
 				Collections.rotate(team1, 1);
 				Collections.rotate(team2, -1);
@@ -58,15 +58,13 @@ public class RoundRobinServiceImpl {
 				team2 = new ArrayList<>(team4);
 			}
 		}
-		matchdays = setMatchdayNumbers(matchdays);
-		Collections.sort(matchdays);
 		return matchdays;
 	}
 
 	private Matchday createMatches(List<Team> team1, List<Team> team2,
-			Schedule schedule, int numberOfRounds) {
+			Fixture fixture, int numberOfRounds) {
 		Matchday matchday = new Matchday();
-		matchday.setSchedule(schedule);
+		matchday.setFixture(fixture);
 		List<Game> games = new ArrayList<>();
 
 		for (int j = 0; j < team1.size(); j++) {

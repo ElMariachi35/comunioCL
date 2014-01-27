@@ -5,8 +5,8 @@
 <ul id="menu">
 	<li><a href="">Groupstage</a>
 		<ul class="sub-menu">
-			<c:forEach var="groupItem" items="${groups}">
-				<li><a href="${groupItem.groupName}">Gruppe ${groupItem.groupName}</a></li>
+			<c:forEach var="groupItem" items="${groupNames}">
+				<li><a href="${groupItem}">Gruppe ${groupItem}</a></li>
 			</c:forEach>
 		</ul></li>
 	<li><a href="#">Playoffs</a></li>

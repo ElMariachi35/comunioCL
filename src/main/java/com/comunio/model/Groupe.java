@@ -1,5 +1,6 @@
 package com.comunio.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -14,7 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Groupe {
+public class Groupe implements Serializable, Comparable<Groupe>{
+	
+	private static final long serialVersionUID = -1788815127657833676L;
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +30,7 @@ public class Groupe {
 	@OneToMany(mappedBy="groupe", fetch = FetchType.EAGER)
 	private Set<Team> teams;
 	@OneToOne(mappedBy="groupe", fetch = FetchType.EAGER)
-	private Schedule schedule;
+	private Fixture fixture;
 	
 	public Groupe() {
 	}
@@ -71,11 +74,16 @@ public class Groupe {
 		this.teams = teams;
 	}
 
-	public Schedule getSchedule() {
-		return schedule;
+	@Override
+	public int compareTo(Groupe group) {
+		return getGroupName().compareTo(group.getGroupName());
 	}
 
-	public void setSchedule(Schedule schedule) {
-		this.schedule = schedule;
+	public Fixture getFixture() {
+		return fixture;
+	}
+
+	public void setFixture(Fixture fixture) {
+		this.fixture = fixture;
 	}
 }

@@ -38,5 +38,4 @@ public class ComunioDaoImpl implements ComunioDao {
 	public List<Comunio> getAllComunio() {
 		return session.getCurrentSession().createQuery("from Comunio").list();
 	}
-
 }

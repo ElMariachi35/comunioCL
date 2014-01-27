@@ -3,6 +3,7 @@ package com.comunio.dao.impl;
 import java.security.acl.Group;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,16 @@ public class GroupDaoImpl implements GroupDao {
 				.addEntity(Groupe.class).setParameter("comunioId", comunioId);
 		List<Groupe> groups = query.list();
 		return groups;
+	}
+
+	@Override
+	public int determineNumberOfGroups(long comunioId) {
+		Query query = session
+				.getCurrentSession()
+				.createSQLQuery(
+						"select count(*) from groupe g where g.comunioId= :comunioId")
+				.setParameter("comunioId", comunioId);
+		return Integer.parseInt(query.uniqueResult().toString());
 	}
 
 }

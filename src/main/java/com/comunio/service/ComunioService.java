@@ -11,6 +11,5 @@ public interface ComunioService {
 	public void edit(Comunio comunio);
 	public void delete(long comunioId);
 	public Comunio getComunio(long comunioId);
-	public List<Comunio> getAllComunio();
 	long createComunio(String name, String password);
 }

@@ -23,7 +23,6 @@ function submitAddComunioForm(){
 	
 }
 
-
 function sendOverviewRequest(){
 	var comunioId = $('#inputComunioId').val();
 	var url='showComunio/'+comunioId+'/A';

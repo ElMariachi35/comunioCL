@@ -23,8 +23,8 @@ public class Matchday implements Serializable, Comparable<Matchday> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long matchdayId;
 	@ManyToOne
-	@JoinColumn(name = "scheduleId")
-	private Schedule schedule;
+	@JoinColumn(name = "fixtureId")
+	private Fixture fixture;
 	@Column
 	private int comunioMatchdayNumber;
 	@Column
@@ -45,14 +45,6 @@ public class Matchday implements Serializable, Comparable<Matchday> {
 
 	public void setMatchdayId(long matchdayId) {
 		this.matchdayId = matchdayId;
-	}
-
-	public Schedule getSchedule() {
-		return schedule;
-	}
-
-	public void setSchedule(Schedule schedule) {
-		this.schedule = schedule;
 	}
 
 	public int getComunioMatchdayNumber() {
@@ -95,5 +87,13 @@ public class Matchday implements Serializable, Comparable<Matchday> {
 			return -1;
 		}
 		return 0;
+	}
+
+	public Fixture getFixture() {
+		return fixture;
+	}
+
+	public void setFixture(Fixture fixture) {
+		this.fixture = fixture;
 	}
 }
