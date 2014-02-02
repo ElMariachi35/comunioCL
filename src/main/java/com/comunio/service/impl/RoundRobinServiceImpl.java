@@ -58,6 +58,7 @@ public class RoundRobinServiceImpl {
 				team2 = new ArrayList<>(team4);
 			}
 		}
+		matchdays = new LinkedHashSet(setMatchdayNumbers(new ArrayList(matchdays)));
 		return matchdays;
 	}
 
