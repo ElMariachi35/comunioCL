@@ -46,6 +46,7 @@ public class MatchdayServiceImpl implements MatchdayService{
 		Collections.sort(matchdays);
 		return matchdays;
 	}
+	
 
 	private void persistGamesInMatchday(Matchday matchday) {
 		for (Game game : matchday.getMatches()) {
