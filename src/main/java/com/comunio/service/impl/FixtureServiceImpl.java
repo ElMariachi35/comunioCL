@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.comunio.dao.FixtureDao;
-import com.comunio.model.Fixture;
 import com.comunio.model.Groupe;
-import com.comunio.service.FixtureService;
+import com.comunio.model.Matchday;
+import com.comunio.model.Fixture;
 import com.comunio.service.MatchdayService;
+import com.comunio.service.FixtureService;
 
 @Service
 public class FixtureServiceImpl implements FixtureService {
