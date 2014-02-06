@@ -1,7 +1,5 @@
 package com.comunio.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,47 +11,27 @@ import com.comunio.service.GroupService;
 
 @Service
 public class ComunioServiceImpl implements ComunioService {
-	@Autowired
-	private
-	ComunioDao comunioDao;
-	@Autowired
-	GroupService groupService;
+    @Autowired
+    ComunioDao comunioDao;
+    @Autowired
+    GroupService groupService;
 
-	@Transactional
-	public void add(Comunio comunio) {
-		getComunioDao().add(comunio);
-	}
+    @Transactional
+    public void add(Comunio comunio) {
+        comunioDao.add(comunio);
+    }
 
-	@Transactional
-	public void edit(Comunio comunio) {
-		getComunioDao().edit(comunio);
-	}
+    @Transactional
+    public Comunio getComunio(long comunioId) {
+        return comunioDao.getComunio(comunioId);
+    }
 
-	@Transactional
-	public void delete(long comunioId) {
-		getComunioDao().delete(comunioId);
-	}
-
-	@Transactional
-	public Comunio getComunio(long comunioId) {
-		return getComunioDao().getComunio(comunioId);
-	}
-
-	@Transactional
-	public long createComunio(String comunioName, String password) {
-		Comunio comunio = new Comunio();
-		comunio.setName(comunioName);
-		comunio.setPassword(password);
-		getComunioDao().add(comunio);
-		return comunio.getComunioId();
-	}
-
-	public ComunioDao getComunioDao() {
-		return comunioDao;
-	}
-
-	public void setComunioDao(ComunioDao comunioDao) {
-		this.comunioDao = comunioDao;
-	}
-
+    @Transactional
+    public long createComunio(String comunioName, String password) {
+        Comunio comunio = new Comunio();
+        comunio.setName(comunioName);
+        comunio.setPassword(password);
+        comunioDao.add(comunio);
+        return comunio.getComunioId();
+    }
 }

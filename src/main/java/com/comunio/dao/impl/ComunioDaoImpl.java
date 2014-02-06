@@ -20,16 +20,6 @@ public class ComunioDaoImpl implements ComunioDao {
 	}
 
 	@Override
-	public void edit(Comunio comunio) {
-		session.getCurrentSession().update(comunio);
-	}
-
-	@Override
-	public void delete(long comunioId) {		
-		session.getCurrentSession().delete(getComunio(comunioId));
-	}
-
-	@Override
 	public Comunio getComunio(long comunioId) {
 		return (Comunio)session.getCurrentSession().get(Comunio.class, comunioId);
 	}
