@@ -26,7 +26,7 @@ import com.comunio.service.TeamService;
 @Service
 public class GameServiceImpl implements GameService {
 	@Autowired
-	private GameDao gameDao;
+	GameDao gameDao;
 
 	@Transactional
 	public void saveGame(Game game) {

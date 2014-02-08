@@ -21,11 +21,11 @@ import com.comunio.service.MatchdayService;
 public class MatchdayServiceImpl implements MatchdayService{
 
 	@Autowired
-	private MatchdayDao matchdayDao;
+	MatchdayDao matchdayDao;
 	@Autowired
-	private GameService gameService;
+	GameService gameService;
 	@Autowired
-	private FixtureService fixtureService;
+	FixtureService fixtureService;
 	
 	@Override
 	public void saveMatchdays(Set<Matchday> matchdays) {
