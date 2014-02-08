@@ -22,8 +22,9 @@ public class RoundRobinServiceImpl {
 		return fixture;
 	}
 
-	private Set<Matchday> createMatchdays(List<Team> teams, Fixture fixture) {
-		Set<Matchday> matchdays = new LinkedHashSet<>();
+	private Set<Matchday> createMatchdays(List<Team> teamsOriginal, Fixture fixture) {
+	        List<Team> teams = new ArrayList<>(teamsOriginal);
+	        Set<Matchday> matchdays = new LinkedHashSet<>();
 		List<Team> team1 = new ArrayList<>();
 		List<Team> team2 = new ArrayList<>();
 		List<Team> team3 = new ArrayList<>();
