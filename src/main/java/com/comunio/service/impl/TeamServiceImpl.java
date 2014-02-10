@@ -17,9 +17,9 @@ import com.comunio.service.TeamService;
 public class TeamServiceImpl implements TeamService {
 
 	@Autowired
-	private GroupService groupService;
+	GroupService groupService;
 	@Autowired
-	private TeamDao teamDao;
+	TeamDao teamDao;
 	
 	@Transactional
 	public void saveTeam(Team team, Groupe group) {
@@ -36,6 +36,11 @@ public class TeamServiceImpl implements TeamService {
 			teams.add(team);
 		}
 		return teams;
+	}
+
+	@Transactional
+	public List<String> findTeamNamesByComunioId(long comunioId) {
+		return teamDao.findTeamNamesByComunioId(comunioId);
 	}
 	
 }
