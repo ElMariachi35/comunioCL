@@ -6,4 +6,6 @@ import com.comunio.model.Team;
 
 public interface TeamDao {
 	void saveTeam(Team team);
+
+	List<String> findTeamNamesByComunioId(long comunioId);
 }
