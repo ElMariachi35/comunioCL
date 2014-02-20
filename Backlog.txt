@@ -1,0 +1,3 @@
+-Validation of Point input
+
+-Comunio as session object
