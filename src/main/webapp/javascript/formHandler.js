@@ -53,17 +53,22 @@ function createPointInputTable(matchdays, teams) {
 }
 
 function saveInputTable(){
-	var comunioId = $('#inputComunioId').val()
+	var comunioId = $('#inputComunioId').val();
 	var inputTable = [];
-	for(var j=1; j<=matchdays;j++){
-		var matchday =[];
-		$("#admin").find('.matchday'+j).each(function(i){
-			var team = teams[i];
-			var points = $(this).val();
-			var result = {teamName: team, points: points};
-			matchday.push(result);
-		});
-		inputTable.push({matchday: j, teams: matchday});
+	var numberOfTeams = $.find('.teamHeader').length-1;
+	var teamResult = "";
+	for(var i=0; i<numberOfTeams; i++){
+		teamResult=$('#row'+i).find('.teamHeader').html()+";";
+		var inputFields = $.find('.team'+i);
+		for(var j=0;j<inputFields.length;j++){
+			var value = $(inputFields[j]).val();
+			if(value !=""){
+				teamResult+=value+";";
+			}else{
+				teamResult+="-;";
+			}
+		}
+		inputTable.push(teamResult);
 	}
 	$.ajax({
         url: '/updateComunio/'+comunioId,

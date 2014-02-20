@@ -11,5 +11,6 @@
         <mapping class="com.comunio.model.Fixture" />
         <mapping class="com.comunio.model.Matchday" />
         <mapping class="com.comunio.model.Game" />
+        <mapping class="com.comunio.model.Result" />
     </session-factory>         
 </hibernate-configuration>

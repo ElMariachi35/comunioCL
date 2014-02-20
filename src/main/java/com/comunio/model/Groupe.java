@@ -15,75 +15,75 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Groupe implements Serializable, Comparable<Groupe>{
-	
-	private static final long serialVersionUID = -1788815127657833676L;
-	@Id
-	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long groupId;
-	@Column
-	private String groupName;
+public class Groupe implements Serializable, Comparable<Groupe> {
+
+    private static final long serialVersionUID = -1788815127657833676L;
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long groupId;
+    @Column
+    private String groupName;
     @ManyToOne
-    @JoinColumn(name="comunioId")
-	private Comunio comunio;
-	@OneToMany(mappedBy="groupe", fetch = FetchType.EAGER)
-	private Set<Team> teams;
-	@OneToOne(mappedBy="groupe", fetch = FetchType.EAGER)
-	private Fixture fixture;
-	
-	public Groupe() {
-	}
+    @JoinColumn(name = "comunioId")
+    private Comunio comunio;
+    @OneToMany(mappedBy = "groupe", fetch = FetchType.EAGER)
+    private Set<Team> teams;
+    @OneToOne(mappedBy = "groupe", fetch = FetchType.EAGER)
+    private Fixture fixture;
 
-	public Groupe(long groupId, Comunio comunio, String groupName) {
-		super();
-		this.setGroupId(groupId);
-		this.setComunio(comunio);
-		this.setGroupName(groupName);
-	}
+    public Groupe() {
+    }
 
-	public long getGroupId() {
-		return groupId;
-	}
+    public Groupe(long groupId, Comunio comunio, String groupName) {
+        super();
+        this.setGroupId(groupId);
+        this.setComunio(comunio);
+        this.setGroupName(groupName);
+    }
 
-	public void setGroupId(long groupId) {
-		this.groupId = groupId;
-	}
+    public long getGroupId() {
+        return groupId;
+    }
 
-	public Comunio getComunio() {
-		return comunio;
-	}
+    public void setGroupId(long groupId) {
+        this.groupId = groupId;
+    }
 
-	public void setComunio(Comunio comunio) {
-		this.comunio = comunio;
-	}
+    public Comunio getComunio() {
+        return comunio;
+    }
 
-	public String getGroupName() {
-		return groupName;
-	}
+    public void setComunio(Comunio comunio) {
+        this.comunio = comunio;
+    }
 
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
-	}
+    public String getGroupName() {
+        return groupName;
+    }
 
-	public Set<Team> getTeams() {
-		return teams;
-	}
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
 
-	public void setTeams(Set<Team> teams) {
-		this.teams = teams;
-	}
+    public Set<Team> getTeams() {
+        return teams;
+    }
 
-	@Override
-	public int compareTo(Groupe group) {
-		return getGroupName().compareTo(group.getGroupName());
-	}
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
+    }
 
-	public Fixture getFixture() {
-		return fixture;
-	}
+    @Override
+    public int compareTo(Groupe group) {
+        return getGroupName().compareTo(group.getGroupName());
+    }
 
-	public void setFixture(Fixture fixture) {
-		this.fixture = fixture;
-	}
+    public Fixture getFixture() {
+        return fixture;
+    }
+
+    public void setFixture(Fixture fixture) {
+        this.fixture = fixture;
+    }
 }

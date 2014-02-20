@@ -10,58 +10,61 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.context.annotation.Scope;
+
 @Entity
+@Scope("session")
 public class Comunio {
-	@Id
-	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long comunioId;
-	@Column
-	private String name;
-	@Column
-	private String password;
-	@OneToMany(mappedBy="comunio", fetch = FetchType.LAZY)
-	private Set<Groupe> groups;
-	
-	public Comunio() {
-	}
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long comunioId;
+    @Column
+    private String name;
+    @Column
+    private String password;
+    @OneToMany(mappedBy = "comunio", fetch = FetchType.LAZY)
+    private Set<Groupe> groups;
 
-	public Comunio(long comunioId, String name, String password) {
-		super();
-		this.setComunioId(comunioId);
-		this.setName(name);
-		this.setPassword(password);
-	}
+    public Comunio() {
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Comunio(long comunioId, String name, String password) {
+        super();
+        this.setComunioId(comunioId);
+        this.setName(name);
+        this.setPassword(password);
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public long getComunioId() {
-		return comunioId;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setComunioId(long comunioId) {
-		this.comunioId = comunioId;
-	}
+    public long getComunioId() {
+        return comunioId;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setComunioId(long comunioId) {
+        this.comunioId = comunioId;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public Set<Groupe> getGroups() {
-		return groups;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setGroups(Set<Groupe> groups) {
-		this.groups = groups;
-	}
+    public Set<Groupe> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<Groupe> groups) {
+        this.groups = groups;
+    }
 }
