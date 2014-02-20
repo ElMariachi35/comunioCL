@@ -1,3 +1,30 @@
--Validation of Point input
+Backlog - Comunio
 
--Comunio as session object
+-  5 - Validation of Point input
+
+-  5 - Comunio as session object
+		--check how it is supposed to be
+		--delete unnecessary queries
+		--change URL of requests
+			--- / 					->indexView
+			--- /add 				->registrationView
+			--- /{comunioId} 		->overView
+			--- /{comunioId}/admin 	->adminView
+
+-  3 - Dao testing
+
+- 13 - Integration testing
+
+-  3 - Loading of previous results when in admin view
+
+-  1 - rename jsp to <name>View
+
+-  8 - update data model when point input
+
+-  3 - show result in overView
+
+-  3 - implement table sorting
+
+- 20 - style frontend
+
+- 20 - implement playoffs
