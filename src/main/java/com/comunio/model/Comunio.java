@@ -23,7 +23,7 @@ public class Comunio {
     private String name;
     @Column
     private String password;
-    @OneToMany(mappedBy = "comunio", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "comunio", fetch = FetchType.EAGER)
     private Set<Groupe> groups;
 
     public Comunio() {

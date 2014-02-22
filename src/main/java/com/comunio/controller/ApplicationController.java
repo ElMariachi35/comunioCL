@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.comunio.model.Comunio;
 import com.comunio.model.Groupe;
+import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
 import com.comunio.service.GroupService;
 import com.comunio.service.MatchdayService;
@@ -39,7 +39,6 @@ public class ApplicationController {
     private MatchdayService matchdayService;
     @Autowired
     private ResultService resultService;
-    private Comunio comunio;
 
     private ObjectMapper objectMapper = new ObjectMapper();
     private Logger logger = LoggerFactory.getLogger(ApplicationController.class);
@@ -56,9 +55,9 @@ public class ApplicationController {
 
     @RequestMapping(value = "/showComunio/{comunioId}/{groupName}")
     public String showComunio(@PathVariable String groupName, @PathVariable String comunioId, Map<String, Object> map) {
-        comunio = comunioService.getComunio(Long.parseLong(comunioId));
+        comunioService.loadComunio(Long.parseLong(comunioId));
         Groupe group = groupService.getGroup(Long.parseLong(comunioId), groupName);
-        map.put("comunio", comunio);
+        map.put("comunio", comunioService.getComunio());
         map.put("group", group);
         map.put("groupNames", groupService.determineGroupNames(Long.parseLong(comunioId)));
         map.put("matchdays", matchdayService.getSortedMatchdays(group));
@@ -72,9 +71,9 @@ public class ApplicationController {
 
         long comunioId = comunioService.createComunio(comunioName, password);
         groupService.initializeGroups(comunioId, Integer.parseInt(numberOfTeams), teamsString);
-        comunio = comunioService.getComunio(comunioId);
+        comunioService.refreshComunio();
         List<Groupe> groups = groupService.findGroupsByComunioId(comunioId);
-        map.put("comunio", comunio);
+        map.put("comunio", comunioService.getComunio());
         map.put("groups", groups);
         map.put("group", getGroup(groups, "A"));
         return "overview";
@@ -82,12 +81,11 @@ public class ApplicationController {
 
     @RequestMapping("/admin/{comunioId}")
     public String admin(@PathVariable String comunioId, Map<String, Object> map) {
-        List<String> teamNames = teamService.findTeamNamesByComunioId(Long.parseLong(comunioId));
-        ObjectMapper objectMapper = new ObjectMapper();
-
+        List<Team> teams = comunioService.getAllTeams(Long.parseLong(comunioId));
         try {
-            map.put("teams", objectMapper.writeValueAsString(teamNames));
+            map.put("teams", objectMapper.writeValueAsString(teams));
         } catch (Exception e) {
+            e.printStackTrace();
         }
         map.put("numberOfMatchdays", NUMBER_OF_MATCHDAYS);
         return "admin";
@@ -96,8 +94,9 @@ public class ApplicationController {
     @RequestMapping("/updateComunio/{comunioId}")
     public void updateComunio(@RequestBody String jsonString, @PathVariable String comunioId) {
         List<?> resultList = parseResultListFromJSON(jsonString);
-        if (comunio != null) {
-            resultService.updateResult(resultList, comunio.getComunioId());
+        if (comunioService.getComunio() != null) {
+            resultService.updateResult(resultList, comunioService.getComunio().getComunioId());
+            comunioService.refreshComunio();
         }
     }
 

@@ -1,7 +1,7 @@
 package com.comunio.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,126 +10,146 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
-public class Team implements Serializable {
-	private static final long serialVersionUID = 4266516923336677208L;
-	
-	@Id
-	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long teamId;
-	@Column
-	private String teamName;
-	@ManyToOne
-    @JoinColumn(name="groupId")
-	private Groupe groupe;
-	@Column
-	private int gamesPlayed;
-	@Column
-	private int gamesWon;
-	@Column
-	private int gamesDrawn;
-	@Column
-	private int gamesLost;
-	@Column
-	private int goalsFor;
-	@Column
-	private int goalsAgainst;
-	@Column
-	private int goalDifference;
-	@Column
-	private int points;
-	public Team() {
-	}
+public class Team implements Serializable, Comparable<Team> {
+    private static final long serialVersionUID = 4266516923336677208L;
 
-	public String getTeamName() {
-		return teamName;
-	}
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long teamId;
+    @Column
+    private String teamName;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "groupId")
+    private Groupe groupe;
+    @Column
+    private int gamesPlayed;
+    @Column
+    private int gamesWon;
+    @Column
+    private int gamesDrawn;
+    @Column
+    private int gamesLost;
+    @Column
+    private int goalsFor;
+    @Column
+    private int goalsAgainst;
+    @Column
+    private int goalDifference;
+    @Column
+    private int points;
+    @Column
+    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
+    private List<Result> result;
 
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
-	}
+    public Team() {
+    }
 
-	public Groupe getGroupe() {
-		return groupe;
-	}
+    public String getTeamName() {
+        return teamName;
+    }
 
-	public void setGroupe(Groupe groupe) {
-		this.groupe = groupe;
-	}
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
 
-	public int getGamesPlayed() {
-		return gamesPlayed;
-	}
+    public Groupe getGroupe() {
+        return groupe;
+    }
 
-	public void setGamesPlayed(int gamesPlayed) {
-		this.gamesPlayed = gamesPlayed;
-	}
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
+    }
 
-	public int getGamesWon() {
-		return gamesWon;
-	}
+    public int getGamesPlayed() {
+        return gamesPlayed;
+    }
 
-	public void setGamesWon(int gamesWon) {
-		this.gamesWon = gamesWon;
-	}
+    public void setGamesPlayed(int gamesPlayed) {
+        this.gamesPlayed = gamesPlayed;
+    }
 
-	public int getGamesDrawn() {
-		return gamesDrawn;
-	}
+    public int getGamesWon() {
+        return gamesWon;
+    }
 
-	public void setGamesDrawn(int gamesDrawn) {
-		this.gamesDrawn = gamesDrawn;
-	}
+    public void setGamesWon(int gamesWon) {
+        this.gamesWon = gamesWon;
+    }
 
-	public int getGamesLost() {
-		return gamesLost;
-	}
+    public int getGamesDrawn() {
+        return gamesDrawn;
+    }
 
-	public void setGamesLost(int gamesLost) {
-		this.gamesLost = gamesLost;
-	}
+    public void setGamesDrawn(int gamesDrawn) {
+        this.gamesDrawn = gamesDrawn;
+    }
 
-	public int getGoalsFor() {
-		return goalsFor;
-	}
+    public int getGamesLost() {
+        return gamesLost;
+    }
 
-	public void setGoalsFor(int goalsFor) {
-		this.goalsFor = goalsFor;
-	}
+    public void setGamesLost(int gamesLost) {
+        this.gamesLost = gamesLost;
+    }
 
-	public int getGoalDifference() {
-		return goalDifference;
-	}
+    public int getGoalsFor() {
+        return goalsFor;
+    }
 
-	public void setGoalDifference(int goalDifference) {
-		this.goalDifference = goalDifference;
-	}
+    public void setGoalsFor(int goalsFor) {
+        this.goalsFor = goalsFor;
+    }
 
-	public int getPoints() {
-		return points;
-	}
+    public int getGoalDifference() {
+        return goalDifference;
+    }
 
-	public void setPoints(int points) {
-		this.points = points;
-	}
+    public void setGoalDifference(int goalDifference) {
+        this.goalDifference = goalDifference;
+    }
 
-	public long getTeamId() {
-		return teamId;
-	}
+    public int getPoints() {
+        return points;
+    }
 
-	public void setTeamId(long teamId) {
-		this.teamId = teamId;
-	}
+    public void setPoints(int points) {
+        this.points = points;
+    }
 
-	public int getGoalsAgainst() {
-		return goalsAgainst;
-	}
+    public long getTeamId() {
+        return teamId;
+    }
 
-	public void setGoalsAgainst(int goalsAgainst) {
-		this.goalsAgainst = goalsAgainst;
-	}
+    public void setTeamId(long teamId) {
+        this.teamId = teamId;
+    }
+
+    public int getGoalsAgainst() {
+        return goalsAgainst;
+    }
+
+    public void setGoalsAgainst(int goalsAgainst) {
+        this.goalsAgainst = goalsAgainst;
+    }
+
+    @Override
+    public int compareTo(Team otherTeam) {
+        return teamName.compareTo(otherTeam.teamName);
+    }
+
+    public List<Result> getResult() {
+        return result;
+    }
+
+    public void setResult(List<Result> result) {
+        this.result = result;
+    }
 }

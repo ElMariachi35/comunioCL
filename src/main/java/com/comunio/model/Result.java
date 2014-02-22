@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 public class Result implements Serializable {
 
@@ -18,6 +20,7 @@ public class Result implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long resultId;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "teamId")
     private Team team;
     @Column

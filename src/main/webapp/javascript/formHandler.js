@@ -42,14 +42,25 @@ function createPointInputTable(matchdays, teams) {
 	$('#admin').append("<div id='rowBody'></div>");
 	for (var i = 0; i < teams.length; i++) {
 		$('#rowBody').append("<div id='row" + i + "'></div>");
-		$('#row' + i).append("<div class='teamHeader'>" + teams[i] + "</div>");
+		$('#row' + i).append("<div class='teamHeader'>" + teams[i].teamName + "</div>");
 		for (var k = 1; k <= matchdays; k++) {
+			var points = getPointsForMatchday(teams[i],k);
 			$('#row' + i).append(
-					'<input type="text" class="pointInput matchday' + k
+					'<input type="text" value="'+points+'" class="pointInput matchday' + k
 							+ ' team' + i + '">');
 		}
 	}
 	$('#admin').append("<input type='button' value='Save' onclick='saveInputTable()'></div>");
+}
+
+function getPointsForMatchday (team, matchday){
+	var points="";
+	for(var i=0;i<team.result.length;i++){
+		if(team.result[i].matchday==matchday){
+			points=team.result[i].points;
+		}
+	}
+	return points;
 }
 
 function saveInputTable(){

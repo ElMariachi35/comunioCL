@@ -16,8 +16,8 @@ import com.comunio.dao.GroupDao;
 import com.comunio.model.Groupe;
 import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
-import com.comunio.service.GroupService;
 import com.comunio.service.FixtureService;
+import com.comunio.service.GroupService;
 import com.comunio.service.TeamService;
 
 @Service
@@ -37,7 +37,7 @@ public class GroupServiceImpl implements GroupService {
         List<Groupe> groups = createGroups(comunioId, determineNumberOfGroups(numberOfTeams));
         Map<Groupe, Integer> groupSizes = determineGroupSizes(numberOfTeams, groups);
         List<Team> teams = createShuffledTeams(teamsString);
-        
+
         for (Groupe group : groups) {
             setUpGroup(teams, groupSizes.get(group), group);
         }
@@ -45,7 +45,7 @@ public class GroupServiceImpl implements GroupService {
 
     private List<Team> createShuffledTeams(String teamsString) {
         List<Team> teams = new ArrayList<>();
-        teams =teamService.createTeamsFromString(teamsString);
+        teams = teamService.createTeamsFromString(teamsString);
         Collections.shuffle(teams);
         return teams;
     }
@@ -87,7 +87,8 @@ public class GroupServiceImpl implements GroupService {
         for (int i = 0; i < numberOfGroups; i++) {
             Groupe group = new Groupe();
             group.setGroupName(groupNames.charAt(i) + "");
-            group.setComunio(comunioService.getComunio(comunioId));
+            comunioService.loadComunio(comunioId);
+            group.setComunio(comunioService.getComunio());
             groupDao.add(group);
             groups.add(group);
         }
