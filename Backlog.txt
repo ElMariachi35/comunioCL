@@ -1,6 +1,6 @@
 Backlog - Comunio
+-  2 - globale comunio variable in javascript
 
--  5 - Validation of Point input
 
 -  5 - Comunio as session object
 		--check how it is supposed to be
@@ -15,7 +15,7 @@ Backlog - Comunio
 
 - 13 - Integration testing
 
--  3 - Loading of previous results when in admin view
+-  DONE - Loading of previous results when in admin view
 
 -  1 - rename jsp to <name>View
 
@@ -26,5 +26,8 @@ Backlog - Comunio
 -  3 - implement table sorting
 
 - 20 - style frontend
+
+-  5 - Validation of Point input
+
 
 - 20 - implement playoffs

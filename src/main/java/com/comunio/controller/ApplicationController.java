@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +25,9 @@ import com.comunio.service.TeamService;
 
 @Controller
 public class ApplicationController {
-    EntityManager entityManager;
+
     private static final int NUMBER_OF_MATCHDAYS = 17;
+
     @Autowired
     private GroupService groupService;
     @Autowired
@@ -43,17 +42,17 @@ public class ApplicationController {
     private ObjectMapper objectMapper = new ObjectMapper();
     private Logger logger = LoggerFactory.getLogger(ApplicationController.class);
 
-    @RequestMapping("/index")
+    @RequestMapping(value = { "/index", "", "/" })
     public String setupForm(Map<String, Object> map) {
         return "index";
     }
 
-    @RequestMapping("/addComunio")
+    @RequestMapping("/add")
     public String addComunio() {
         return "addComunio";
     }
 
-    @RequestMapping(value = "/showComunio/{comunioId}/{groupName}")
+    @RequestMapping(value = "/show/{comunioId}/{groupName}")
     public String showComunio(@PathVariable String groupName, @PathVariable String comunioId, Map<String, Object> map) {
         comunioService.loadComunio(Long.parseLong(comunioId));
         Groupe group = groupService.getGroup(Long.parseLong(comunioId), groupName);
@@ -64,7 +63,7 @@ public class ApplicationController {
         return "overview";
     }
 
-    @RequestMapping(value = "/saveComunio", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String addTeams(@RequestParam("teams") String teamsString, @RequestParam("comunioName") String comunioName,
             @RequestParam("password") String password, @RequestParam("numberOfTeams") String numberOfTeams,
             Map<String, Object> map) {
@@ -88,6 +87,7 @@ public class ApplicationController {
             e.printStackTrace();
         }
         map.put("numberOfMatchdays", NUMBER_OF_MATCHDAYS);
+        map.put("comunio", comunioService.getComunio());
         return "admin";
     }
 

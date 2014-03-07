@@ -11,7 +11,7 @@
 	<%@ include file="/WEB-INF/jsp/header.jsp"%>
 	<h1>Welcome to Comunio Champions League</h1>
 
-	<a href="/addComunio">Create new Champions League for your Comunio</a>
+	<a href="/add">Create new Champions League for your Comunio</a>
 	<br />
 	<br />
 	<label for="inputComunioId">ComunioId</label>

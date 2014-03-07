@@ -12,7 +12,7 @@
 
 <br>
 <div>
-	<form id="addComunioForm" action="saveComunio" method="POST">
+	<form id="addComunioForm" action="save" method="POST">
 		<div>
 			<label for="comunioName">Comunio name:</label>
 			<input type="text" name="comunioName" /><br />

@@ -27,7 +27,7 @@ function submitAddComunioForm() {
 
 function sendOverviewRequest() {
 	var comunioId = $('#inputComunioId').val();
-	var url = 'showComunio/' + comunioId + '/A';
+	var url = 'show/' + comunioId + '/A';
 	window.location.href = url;
 }
 
@@ -64,7 +64,7 @@ function getPointsForMatchday (team, matchday){
 }
 
 function saveInputTable(){
-	var comunioId = $('#inputComunioId').val();
+	//var comunioId; = '${comunio.comunioId}';
 	var inputTable = [];
 	var numberOfTeams = $.find('.teamHeader').length-1;
 	var teamResult = "";
