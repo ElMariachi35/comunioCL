@@ -18,6 +18,7 @@ import com.comunio.dao.ResultDao;
 import com.comunio.dao.TeamDao;
 import com.comunio.model.Result;
 import com.comunio.model.Team;
+import com.comunio.service.ComunioService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ResultServiceImplTest {
@@ -34,6 +35,8 @@ public class ResultServiceImplTest {
     private GoalCalculator goalCalculator;
     @Mock
     private Result result;
+    @Mock
+    private ComunioService comunioService;
 
     private ResultServiceImpl resultService = new ResultServiceImpl();
 
@@ -41,6 +44,7 @@ public class ResultServiceImplTest {
     public void setUp() {
         resultService.teamDao = teamDao;
         resultService.resultDao = resultDao;
+        resultService.comunioService = comunioService;
         resultService.goalCalculator = goalCalculator;
     }
 
