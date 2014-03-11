@@ -19,7 +19,7 @@ Backlog - Comunio
 
 -  1 - rename jsp to <name>View
 
--  8 - update data model when point input
+-  DONE - update data model when point input
 
 -  3 - show result in overView
 
@@ -29,5 +29,6 @@ Backlog - Comunio
 
 -  5 - Validation of Point input
 
-
 - 20 - implement playoffs
+
+-  2 - unique constraint auf teamName

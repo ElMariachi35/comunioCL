@@ -25,7 +25,7 @@
 		<div class="groupColumnPadding numeric">Pts</div>
 	</div>
 	<div id="groupBody" class="clear">
-		<c:forEach var="team" items="${group.teams}" varStatus="counter">
+		<c:forEach var="team" items="${teams}" varStatus="counter">
 		<div class="groupColumnPadding position">${counter.index+1}.</div>
 		<div class="groupColumnPadding team">${team.teamName}</div>
 		<div class="groupColumnPadding numeric">${team.gamesPlayed}</div>

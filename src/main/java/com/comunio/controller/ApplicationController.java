@@ -58,6 +58,7 @@ public class ApplicationController {
         Groupe group = groupService.getGroup(Long.parseLong(comunioId), groupName);
         map.put("comunio", comunioService.getComunio());
         map.put("group", group);
+        map.put("teams", group.getSortedTeams());
         map.put("groupNames", groupService.determineGroupNames(Long.parseLong(comunioId)));
         map.put("matchdays", matchdayService.getSortedMatchdays(group));
         return "overview";
@@ -74,7 +75,9 @@ public class ApplicationController {
         List<Groupe> groups = groupService.findGroupsByComunioId(comunioId);
         map.put("comunio", comunioService.getComunio());
         map.put("groups", groups);
-        map.put("group", getGroup(groups, "A"));
+        Groupe group = getGroup(groups, "A");
+        map.put("group", group);
+        map.put("teams", group.getSortedTeams());
         return "overview";
     }
 

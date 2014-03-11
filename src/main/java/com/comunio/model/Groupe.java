@@ -1,6 +1,9 @@
 package com.comunio.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -85,5 +88,11 @@ public class Groupe implements Serializable, Comparable<Groupe> {
 
     public void setFixture(Fixture fixture) {
         this.fixture = fixture;
+    }
+
+    public List<Team> getSortedTeams() {
+        List<Team> teams = new ArrayList<>(this.teams);
+        Collections.sort(teams);
+        return teams;
     }
 }

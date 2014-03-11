@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+import com.google.common.collect.ComparisonChain;
+
 @Entity
 public class Team implements Serializable, Comparable<Team> {
     private static final long serialVersionUID = 4266516923336677208L;
@@ -142,7 +144,12 @@ public class Team implements Serializable, Comparable<Team> {
 
     @Override
     public int compareTo(Team otherTeam) {
-        return teamName.compareTo(otherTeam.teamName);
+        return ComparisonChain.start().compare(otherTeam.getPoints(), getPoints())
+                .compare(otherTeam.getGoalDifference(), getGoalDifference())
+                .compare(otherTeam.getGoalsFor(), getGoalsFor())
+                .compare(otherTeam.getGoalsAgainst(), getGoalsAgainst())
+                .compare(otherTeam.getGamesWon(), getGamesWon())
+                .compare(otherTeam.getTeamName().hashCode(), getTeamName().hashCode()).result();
     }
 
     public List<Result> getResult() {
@@ -162,5 +169,9 @@ public class Team implements Serializable, Comparable<Team> {
         setGoalsAgainst(0);
         setGoalsFor(0);
         setPoints(0);
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 }

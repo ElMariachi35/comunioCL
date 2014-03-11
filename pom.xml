@@ -127,6 +127,13 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
+
+		<!-- Guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>r09</version>
+		</dependency>
 	</dependencies>
 
 	<pluginRepositories>
@@ -153,32 +160,12 @@
 		</plugins>
 	</build>
 
-<!-- 	<build>
-		<testSourceDirectory>src/main/test</testSourceDirectory>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</resource>
-			<resource>
-				<directory>src/main/webapp</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
- -->	<artifactId>ComunioCL</artifactId>
+	<!-- <build> <testSourceDirectory>src/main/test</testSourceDirectory> <resources> 
+		<resource> <directory>src/main/resources</directory> <excludes> <exclude>**/*.java</exclude> 
+		</excludes> </resource> <resource> <directory>src/main/webapp</directory> 
+		<excludes> <exclude>**/*.java</exclude> </excludes> </resource> </resources> 
+		<plugins> <plugin> <artifactId>maven-compiler-plugin</artifactId> <version>2.3.2</version> 
+		<configuration> <source>1.7</source> <target>1.7</target> </configuration> 
+		</plugin> </plugins> </build> -->
+	<artifactId>ComunioCL</artifactId>
 </project>
