@@ -10,4 +10,6 @@ public interface TeamDao {
     List<String> findTeamNamesByComunioId(long comunioId);
 
     Team findTeamByTeamNameAndComunioId(String teamName, long comunioId);
+
+    void updateTeam(Team team);
 }

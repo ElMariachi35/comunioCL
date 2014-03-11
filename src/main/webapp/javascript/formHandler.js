@@ -64,7 +64,6 @@ function getPointsForMatchday (team, matchday){
 }
 
 function saveInputTable(){
-	//var comunioId; = '${comunio.comunioId}';
 	var inputTable = [];
 	var numberOfTeams = $.find('.teamHeader').length-1;
 	var teamResult = "";

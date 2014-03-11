@@ -152,4 +152,15 @@ public class Team implements Serializable, Comparable<Team> {
     public void setResult(List<Result> result) {
         this.result = result;
     }
+
+    public void resetAttributes() {
+        setGamesPlayed(0);
+        setGamesLost(0);
+        setGamesDrawn(0);
+        setGamesWon(0);
+        setGoalDifference(0);
+        setGoalsAgainst(0);
+        setGoalsFor(0);
+        setPoints(0);
+    }
 }

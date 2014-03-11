@@ -43,4 +43,9 @@ public class TeamDaoImpl implements TeamDao {
                 .addEntity(Team.class).setParameter("comunioId", comunioId).setParameter("teamName", teamName);
         return (Team) query.list().get(0);
     }
+
+    @Override
+    public void updateTeam(Team team) {
+        sessionFactory.getCurrentSession().update(team);
+    }
 }

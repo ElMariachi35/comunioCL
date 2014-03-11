@@ -16,31 +16,36 @@ import com.comunio.service.TeamService;
 @Service
 public class TeamServiceImpl implements TeamService {
 
-	@Autowired
-	GroupService groupService;
-	@Autowired
-	TeamDao teamDao;
-	
-	@Transactional
-	public void saveTeam(Team team, Groupe group) {
-		team.setGroupe(group);
-		teamDao.saveTeam(team);
-	}
+    @Autowired
+    GroupService groupService;
+    @Autowired
+    TeamDao teamDao;
 
-	public List<Team> createTeamsFromString(String teamsString) {
-		String[] teamsStringArr = teamsString.split(";");
-		List<Team> teams = new ArrayList<>();
-		for(int i=0;i<teamsStringArr.length;i++){
-			Team team = new Team();
-			team.setTeamName(teamsStringArr[i]);
-			teams.add(team);
-		}
-		return teams;
-	}
+    @Transactional
+    public void saveTeam(Team team, Groupe group) {
+        team.setGroupe(group);
+        teamDao.saveTeam(team);
+    }
 
-	@Transactional
-	public List<String> findTeamNamesByComunioId(long comunioId) {
-		return teamDao.findTeamNamesByComunioId(comunioId);
-	}
-	
+    public List<Team> createTeamsFromString(String teamsString) {
+        String[] teamsStringArr = teamsString.split(";");
+        List<Team> teams = new ArrayList<>();
+        for (int i = 0; i < teamsStringArr.length; i++) {
+            Team team = new Team();
+            team.setTeamName(teamsStringArr[i]);
+            teams.add(team);
+        }
+        return teams;
+    }
+
+    @Transactional
+    public List<String> findTeamNamesByComunioId(long comunioId) {
+        return teamDao.findTeamNamesByComunioId(comunioId);
+    }
+
+    @Override
+    public void updateTeam(Team team) {
+        teamDao.updateTeam(team);
+    }
+
 }
