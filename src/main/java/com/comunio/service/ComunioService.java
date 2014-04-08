@@ -18,4 +18,6 @@ public interface ComunioService {
 
     public List<Team> getAllTeams(long comunioId);
 
+    public Comunio returnComunio(long parseLong);
+
 }

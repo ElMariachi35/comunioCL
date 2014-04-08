@@ -8,12 +8,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.NoResultException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.comunio.dao.GroupDao;
 import com.comunio.model.Groupe;
+import com.comunio.model.SessionData;
 import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
 import com.comunio.service.FixtureService;
@@ -31,6 +34,8 @@ public class GroupServiceImpl implements GroupService {
     TeamService teamService;
     @Autowired
     FixtureService fixtureService;
+    @Autowired
+    SessionData sessionData;
 
     @Transactional
     public void initializeGroups(long comunioId, int numberOfTeams, String teamsString) {
@@ -72,9 +77,8 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Transactional
-    public List<String> determineGroupNames(long comunioId) {
+    public List<String> determineGroupNames(int numberOfGroups) {
         List<String> groupNames = new ArrayList<>();
-        int numberOfGroups = groupDao.determineNumberOfGroups(comunioId);
         for (int i = 0; i < numberOfGroups; i++) {
             groupNames.add(GROUP_NAME_STRING.charAt(i) + "");
         }
@@ -129,6 +133,20 @@ public class GroupServiceImpl implements GroupService {
         } else {
             return 4;
         }
+    }
+
+    public Groupe getGroup(String groupName) {
+        for (Groupe group : sessionData.getComunio().getGroups()) {
+            if (group.getGroupName().equals(groupName)) {
+                return group;
+            }
+        }
+        throw new NoResultException();
+    }
+
+    @Override
+    public Set<Groupe> getGroups() {
+        return sessionData.getComunio().getGroups();
     }
 
 }

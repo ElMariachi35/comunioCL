@@ -74,4 +74,9 @@ public class ComunioServiceImpl implements ComunioService {
         Collections.sort(teams);
         return teams;
     }
+
+    @Transactional
+    public Comunio returnComunio(long comunioId) {
+        return comunioDao.getComunio(comunioId);
+    }
 }

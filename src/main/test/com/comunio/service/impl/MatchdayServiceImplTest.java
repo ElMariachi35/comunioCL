@@ -26,7 +26,7 @@ import com.comunio.service.GameService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MatchdayServiceImplTest {
-    
+
     private static final int COMUNIO_MATCHDAY_NUMBER_THREE = 3;
     private static final int COMUNIO_MATCHDAY_NUMBER_TWO = 2;
     private static final int COMUNIO_MATCHDAY_NUMBER_ONE = 1;
@@ -40,16 +40,16 @@ public class MatchdayServiceImplTest {
     private Matchday matchday;
     @Mock
     private Fixture fixture;
-    
+
     private MatchdayServiceImpl matchdayService = new MatchdayServiceImpl();
-    
+
     @Before
-    public void setUp(){
+    public void setUp() {
         matchdayService.matchdayDao = matchdayDao;
         matchdayService.gameService = gameService;
         matchdayService.fixtureService = fixtureService;
     }
-    
+
     @Test
     public void saveMatchdaysSavesAllMatchdays() {
         Set<Matchday> matchdays = mockMatchdays();
@@ -59,22 +59,22 @@ public class MatchdayServiceImplTest {
         verify(matchdayDao).saveMatchday(any(Matchday.class));
         verify(gameService, times(2)).saveGame(any(Game.class));
     }
-    
+
     @Test
     public void getSortedMatchdaysReturnsAListOfMatchdaysSortedByComunioMatchdayNumber() {
         Set<Matchday> unsortedMatchdays = mockUnsortedMatchdays();
         when(fixtureService.getFixture(any(Groupe.class))).thenReturn(fixture);
         when(fixture.getMatchdays()).thenReturn(unsortedMatchdays);
-        
-        List<Matchday> sortedMatchdays = matchdayService.getSortedMatchdays(new Groupe());
-        
+
+        List<Matchday> sortedMatchdays = matchdayService.getSortedMatchdays(fixture);
+
         assertEquals(COMUNIO_MATCHDAY_NUMBER_ONE, sortedMatchdays.get(0).getComunioMatchdayNumber());
         assertEquals(COMUNIO_MATCHDAY_NUMBER_TWO, sortedMatchdays.get(1).getComunioMatchdayNumber());
         assertEquals(COMUNIO_MATCHDAY_NUMBER_THREE, sortedMatchdays.get(2).getComunioMatchdayNumber());
     }
 
     private Set<Matchday> mockUnsortedMatchdays() {
-        Set<Matchday> matchdays =  new HashSet<Matchday>();
+        Set<Matchday> matchdays = new HashSet<Matchday>();
         Matchday matchday1 = new Matchday();
         matchday1.setComunioMatchdayNumber(COMUNIO_MATCHDAY_NUMBER_ONE);
         Matchday matchday2 = new Matchday();

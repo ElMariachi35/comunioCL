@@ -1,4 +1,6 @@
 Backlog - Comunio
+-  5 - unit testing
+
 -  2 - globale comunio variable in javascript
 
 

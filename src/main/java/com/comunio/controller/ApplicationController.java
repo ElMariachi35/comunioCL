@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.comunio.model.Groupe;
+import com.comunio.model.SessionData;
 import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
 import com.comunio.service.GroupService;
@@ -38,6 +39,8 @@ public class ApplicationController {
     private MatchdayService matchdayService;
     @Autowired
     private ResultService resultService;
+    @Autowired
+    private SessionData sessionData;
 
     private ObjectMapper objectMapper = new ObjectMapper();
     private Logger logger = LoggerFactory.getLogger(ApplicationController.class);
@@ -54,13 +57,16 @@ public class ApplicationController {
 
     @RequestMapping(value = "/show/{comunioId}/{groupName}")
     public String showComunio(@PathVariable String groupName, @PathVariable String comunioId, Map<String, Object> map) {
-        comunioService.loadComunio(Long.parseLong(comunioId));
-        Groupe group = groupService.getGroup(Long.parseLong(comunioId), groupName);
-        map.put("comunio", comunioService.getComunio());
+        // comunioService.loadComunio(Long.parseLong(comunioId));
+        // Groupe group = groupService.getGroup(Long.parseLong(comunioId),
+        // groupName);
+        sessionData.setComunio(comunioService.returnComunio(Long.parseLong(comunioId)));
+        map.put("comunio", sessionData.getComunio());
+        Groupe group = groupService.getGroup(groupName);
         map.put("group", group);
         map.put("teams", group.getSortedTeams());
-        map.put("groupNames", groupService.determineGroupNames(Long.parseLong(comunioId)));
-        map.put("matchdays", matchdayService.getSortedMatchdays(group));
+        map.put("groupNames", groupService.determineGroupNames(groupService.getGroups().size()));
+        map.put("matchdays", matchdayService.getSortedMatchdays(group.getFixture()));
         return "overview";
     }
 

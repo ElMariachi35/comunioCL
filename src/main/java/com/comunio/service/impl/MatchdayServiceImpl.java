@@ -11,46 +11,43 @@ import org.springframework.stereotype.Service;
 import com.comunio.dao.MatchdayDao;
 import com.comunio.model.Fixture;
 import com.comunio.model.Game;
-import com.comunio.model.Groupe;
 import com.comunio.model.Matchday;
 import com.comunio.service.FixtureService;
 import com.comunio.service.GameService;
 import com.comunio.service.MatchdayService;
 
 @Service
-public class MatchdayServiceImpl implements MatchdayService{
+public class MatchdayServiceImpl implements MatchdayService {
 
-	@Autowired
-	MatchdayDao matchdayDao;
-	@Autowired
-	GameService gameService;
-	@Autowired
-	FixtureService fixtureService;
-	
-	@Override
-	public void saveMatchdays(Set<Matchday> matchdays) {
-		for (Matchday matchday : matchdays) {
-			saveMatchday(matchday);
-		}
-	}
+    @Autowired
+    MatchdayDao matchdayDao;
+    @Autowired
+    GameService gameService;
+    @Autowired
+    FixtureService fixtureService;
 
-	@Override
-	public void saveMatchday(Matchday matchday) {
-		matchdayDao.saveMatchday(matchday);		
-		persistGamesInMatchday(matchday);
-	}
-	
-	public List<Matchday> getSortedMatchdays(Groupe group){
-		Fixture fixture = fixtureService.getFixture(group);
-		List<Matchday> matchdays = new ArrayList<>(fixture.getMatchdays());
-		Collections.sort(matchdays);
-		return matchdays;
-	}
-	
+    @Override
+    public void saveMatchdays(Set<Matchday> matchdays) {
+        for (Matchday matchday : matchdays) {
+            saveMatchday(matchday);
+        }
+    }
 
-	private void persistGamesInMatchday(Matchday matchday) {
-		for (Game game : matchday.getMatches()) {
-			gameService.saveGame(game);
-		}
-	}
+    @Override
+    public void saveMatchday(Matchday matchday) {
+        matchdayDao.saveMatchday(matchday);
+        persistGamesInMatchday(matchday);
+    }
+
+    public List<Matchday> getSortedMatchdays(Fixture fixture) {
+        List<Matchday> matchdays = new ArrayList<>(fixture.getMatchdays());
+        Collections.sort(matchdays);
+        return matchdays;
+    }
+
+    private void persistGamesInMatchday(Matchday matchday) {
+        for (Game game : matchday.getMatches()) {
+            gameService.saveGame(game);
+        }
+    }
 }
