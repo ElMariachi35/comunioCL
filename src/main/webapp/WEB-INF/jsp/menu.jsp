@@ -11,5 +11,5 @@
 		</ul></li>
 	<li><a href="#">Playoffs</a></li>
 	<li><a href="#">Rules</a></li>
-	<li><a href="../../admin/${comunio.comunioId}">Admin</a>
-</ul>
+ 	<li><a href="../../admin">Admin</a>
+ </ul>

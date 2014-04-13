@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.context.annotation.Scope;
 
 @Entity
@@ -22,6 +23,7 @@ public class Comunio {
     @Column
     private String name;
     @Column
+    @JsonIgnore
     private String password;
     @OneToMany(mappedBy = "comunio", fetch = FetchType.EAGER)
     private Set<Groupe> groups;

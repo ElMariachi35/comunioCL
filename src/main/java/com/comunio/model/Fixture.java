@@ -1,7 +1,6 @@
 package com.comunio.model;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -14,41 +13,44 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
-public class Fixture implements Serializable{
-	
-	private static final long serialVersionUID = -6153784244872375195L;
-	@Id
-	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long fixtureId;
-	@OneToOne
-	@JoinColumn(name="groupId")
-	private Groupe groupe;
-	@OneToMany(mappedBy="fixture", fetch = FetchType.EAGER)
-	private Set<Matchday> matchdays;
+public class Fixture implements Serializable {
 
-	public Groupe getGroupe() {
-		return groupe;
-	}
+    private static final long serialVersionUID = -6153784244872375195L;
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long fixtureId;
+    @OneToOne
+    @JsonIgnore
+    @JoinColumn(name = "groupId")
+    private Groupe groupe;
+    @OneToMany(mappedBy = "fixture", fetch = FetchType.EAGER)
+    private Set<Matchday> matchdays;
 
-	public void setGroupe(Groupe groupe) {
-		this.groupe = groupe;
-	}
+    public Groupe getGroupe() {
+        return groupe;
+    }
 
-	public long getFixtureId() {
-		return fixtureId;
-	}
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
+    }
 
-	public void setFixtureId(long fixtureId) {
-		this.fixtureId = fixtureId;
-	}
+    public long getFixtureId() {
+        return fixtureId;
+    }
 
-	public Set<Matchday> getMatchdays() {
-		return matchdays;
-	}
+    public void setFixtureId(long fixtureId) {
+        this.fixtureId = fixtureId;
+    }
 
-	public void setMatchdays(Set<Matchday> matchdays) {
-		this.matchdays = matchdays;
-	}
+    public Set<Matchday> getMatchdays() {
+        return matchdays;
+    }
+
+    public void setMatchdays(Set<Matchday> matchdays) {
+        this.matchdays = matchdays;
+    }
 }

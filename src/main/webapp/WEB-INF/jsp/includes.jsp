@@ -8,5 +8,6 @@
 
 <link href="<c:url value="/css/styles.css" />" rel="stylesheet">
 <script src="<c:url value="/javascript/formHandler.js" />"></script>
+<script src="<c:url value="/javascript/knockout-3.1.0.js" />"></script>
 
 <!-- This contains the most used tag libraries -->

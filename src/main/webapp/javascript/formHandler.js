@@ -1,3 +1,4 @@
+
 function generateTeamFields() {
 	var numberOfTeams = $('#numberOfTeams').val();
 	$('#addTeams').append('<span>Input teams:</span><br />');

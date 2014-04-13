@@ -14,86 +14,89 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 public class Matchday implements Serializable, Comparable<Matchday> {
 
-	private static final long serialVersionUID = 1421106637466976597L;
-	@Id
-	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long matchdayId;
-	@ManyToOne
-	@JoinColumn(name = "fixtureId")
-	private Fixture fixture;
-	@Column
-	private int comunioMatchdayNumber;
-	@Column
-	private int leagueMatchdayNumber;
-	@Column
-	@OneToMany(mappedBy = "matchday", fetch = FetchType.EAGER)
-	private Set<Game> matches;
-	@OneToOne
-	@JoinColumn(name = "byeTeam", referencedColumnName = "teamId")
-	private Team byeTeam;
+    private static final long serialVersionUID = 1421106637466976597L;
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long matchdayId;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "fixtureId")
+    private Fixture fixture;
+    @Column
+    private int comunioMatchdayNumber;
+    @Column
+    private int leagueMatchdayNumber;
+    @Column
+    @OneToMany(mappedBy = "matchday", fetch = FetchType.EAGER)
+    private Set<Game> matches;
+    @OneToOne
+    @JoinColumn(name = "byeTeam", referencedColumnName = "teamId")
+    private Team byeTeam;
 
-	public Matchday() {
-	}
+    public Matchday() {
+    }
 
-	public long getMatchdayId() {
-		return matchdayId;
-	}
+    public long getMatchdayId() {
+        return matchdayId;
+    }
 
-	public void setMatchdayId(long matchdayId) {
-		this.matchdayId = matchdayId;
-	}
+    public void setMatchdayId(long matchdayId) {
+        this.matchdayId = matchdayId;
+    }
 
-	public int getComunioMatchdayNumber() {
-		return comunioMatchdayNumber;
-	}
+    public int getComunioMatchdayNumber() {
+        return comunioMatchdayNumber;
+    }
 
-	public void setComunioMatchdayNumber(int comunioMatchdayNumber) {
-		this.comunioMatchdayNumber = comunioMatchdayNumber;
-	}
+    public void setComunioMatchdayNumber(int comunioMatchdayNumber) {
+        this.comunioMatchdayNumber = comunioMatchdayNumber;
+    }
 
-	public int getLeagueMatchdayNumber() {
-		return leagueMatchdayNumber;
-	}
+    public int getLeagueMatchdayNumber() {
+        return leagueMatchdayNumber;
+    }
 
-	public void setLeagueMatchdayNumber(int leagueMatchdayNumber) {
-		this.leagueMatchdayNumber = leagueMatchdayNumber;
-	}
+    public void setLeagueMatchdayNumber(int leagueMatchdayNumber) {
+        this.leagueMatchdayNumber = leagueMatchdayNumber;
+    }
 
-	public Set<Game> getMatches() {
-		return matches;
-	}
+    public Set<Game> getMatches() {
+        return matches;
+    }
 
-	public void setMatches(Set<Game> matches) {
-		this.matches = matches;
-	}
+    public void setMatches(Set<Game> matches) {
+        this.matches = matches;
+    }
 
-	public Team getByeTeam() {
-		return byeTeam;
-	}
+    public Team getByeTeam() {
+        return byeTeam;
+    }
 
-	public void setByeTeam(Team byeTeam) {
-		this.byeTeam = byeTeam;
-	}
+    public void setByeTeam(Team byeTeam) {
+        this.byeTeam = byeTeam;
+    }
 
-	@Override
-	public int compareTo(Matchday matchday) {
-		if (this.comunioMatchdayNumber > matchday.comunioMatchdayNumber) {
-			return 1;
-		} else if (this.comunioMatchdayNumber < matchday.comunioMatchdayNumber) {
-			return -1;
-		}
-		return 0;
-	}
+    @Override
+    public int compareTo(Matchday matchday) {
+        if (this.comunioMatchdayNumber > matchday.comunioMatchdayNumber) {
+            return 1;
+        } else if (this.comunioMatchdayNumber < matchday.comunioMatchdayNumber) {
+            return -1;
+        }
+        return 0;
+    }
 
-	public Fixture getFixture() {
-		return fixture;
-	}
+    public Fixture getFixture() {
+        return fixture;
+    }
 
-	public void setFixture(Fixture fixture) {
-		this.fixture = fixture;
-	}
+    public void setFixture(Fixture fixture) {
+        this.fixture = fixture;
+    }
 }

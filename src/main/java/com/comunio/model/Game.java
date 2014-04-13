@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 public class Game implements Serializable {
 
@@ -20,6 +22,7 @@ public class Game implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long gameId;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "matchdayId")
     private Matchday matchday;
     @OneToOne

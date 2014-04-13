@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 public class Groupe implements Serializable, Comparable<Groupe> {
 
@@ -28,6 +30,7 @@ public class Groupe implements Serializable, Comparable<Groupe> {
     @Column
     private String groupName;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "comunioId")
     private Comunio comunio;
     @OneToMany(mappedBy = "groupe", fetch = FetchType.EAGER)

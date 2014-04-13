@@ -1,9 +1,12 @@
 package com.comunio.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,7 +57,8 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "/show/{comunioId}/{groupName}")
-    public String showComunio(@PathVariable String groupName, @PathVariable String comunioId, Map<String, Object> map) {
+    public String showComunio(@PathVariable String groupName, @PathVariable String comunioId, Map<String, Object> map)
+            throws JsonGenerationException, JsonMappingException, IOException {
         sessionData.setComunio(comunioService.retrieveComunio(Long.parseLong(comunioId)));
         map.put("comunio", sessionData.getComunio());
         Groupe group = groupService.getGroup(groupName);
@@ -80,12 +84,13 @@ public class ApplicationController {
         map.put("group", group);
         map.put("teams", group.getSortedTeams());
         map.put("groupNames", groupService.determineGroupNames(groups.size()));
+
         map.put("matchdays", matchdayService.getSortedMatchdays(group.getFixture()));
         return "overview";
     }
 
-    @RequestMapping("/admin/{comunioId}")
-    public String admin(@PathVariable String comunioId, Map<String, Object> map) {
+    @RequestMapping("/admin")
+    public String admin(Map<String, Object> map) {
         List<Team> teams = comunioService.getAllTeams();
         try {
             map.put("teams", objectMapper.writeValueAsString(teams));
