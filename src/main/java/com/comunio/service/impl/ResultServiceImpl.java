@@ -39,16 +39,41 @@ public class ResultServiceImpl implements ResultService {
 
     @Transactional
     public void updateResult(List<?> collectiveResult, long comunioId) {
+        saveResults(collectiveResult, comunioId);
+
+        List<Result> results = resultDao.getResults(comunioId);
+        List<Game> games = gameService.getGames();
+        updateGames(games, results);
+
+        for (Team team : comunioService.getAllTeams()) {
+            updateTeams(team);
+        }
+    }
+
+    private void saveResults(List<?> collectiveResult, long comunioId) {
         for (Object singleResultObject : collectiveResult) {
             saveTeamResult(comunioId, singleResultObject);
         }
-        List<Team> teams = comunioService.getAllTeams(comunioId);
-        for (Team team : teams) {
-            updateFixture(team);
+    }
+
+    private void updateGames(List<Game> games, List<Result> results) {
+        for (Game game : games) {
+            Team homeTeam = game.getHomeTeam();
+            Team awayTeam = game.getAwayTeam();
+            int matchdayNumber = game.getMatchday().getComunioMatchdayNumber();
+            game.setHomeGoals(findGoalsFromResult(homeTeam, matchdayNumber, results));
+            game.setAwayGoals(findGoalsFromResult(awayTeam, matchdayNumber, results));
+            gameService.updateGame(game);
         }
-        for (Team team : teams) {
-            updateTeams(team);
+    }
+
+    private int findGoalsFromResult(Team team, int matchdayNumber, List<Result> results) {
+        for (Result result : results) {
+            if (result.getMatchday() == matchdayNumber && result.getTeam().getTeamId() == team.getTeamId()) {
+                return result.getGoals();
+            }
         }
+        return 0;
     }
 
     private void updateTeams(Team team) {
@@ -69,24 +94,6 @@ public class ResultServiceImpl implements ResultService {
 
     public List<Result> getResultsByTeam(Team team) {
         return resultDao.getResultsByTeam(team);
-    }
-
-    private void updateFixture(Team team) {
-        List<Game> games = gameService.getGamesByTeam(team);
-        List<Result> results = getResultsByTeam(team);
-        for (Result result : results) {
-            for (Game game : games) {
-                if (result.getMatchday() == game.getMatchday().getComunioMatchdayNumber()) {
-                    if (game.getHomeTeam().equals(result.getTeam())) {
-                        game.setHomeGoals(result.getGoals());
-                    }
-                    if (game.getAwayTeam().equals(result.getTeam())) {
-                        game.setAwayGoals(result.getGoals());
-                    }
-                }
-                gameService.updateGame(game);
-            }
-        }
     }
 
     private void updateTeamResult(Team team, Game game) {
@@ -189,11 +196,11 @@ public class ResultServiceImpl implements ResultService {
     }
 
     private boolean isAwayTeam(Team team, Game game) {
-        return team.equals(game.getAwayTeam());
+        return team.getTeamId() == game.getAwayTeam().getTeamId();
     }
 
     private boolean isHomeTeam(Team team, Game game) {
-        return team.equals(game.getHomeTeam());
+        return team.getTeamId() == game.getHomeTeam().getTeamId();
     }
 
     private void saveTeamResult(long comunioId, Object singleResultObject) {
@@ -220,7 +227,11 @@ public class ResultServiceImpl implements ResultService {
     }
 
     private Team findTeam(long comunioId, List<String> resultStringList) {
-        return teamDao.findTeamByTeamNameAndComunioId(resultStringList.get(0), comunioId);
+        // return
+        // teamDao.findTeamByTeamNameAndComunioId(resultStringList.get(0),
+        // comunioId);
+        return teamService.findTeamByTeamNameAndComunioId(resultStringList.get(0), comunioId);
+
     }
 
     private List<String> prepareTeamResult(Object singleTeamResult) {

@@ -38,14 +38,15 @@ public class GroupServiceImpl implements GroupService {
     SessionData sessionData;
 
     @Transactional
-    public void initializeGroups(long comunioId, int numberOfTeams, String teamsString) {
-        List<Groupe> groups = createGroups(comunioId, determineNumberOfGroups(numberOfTeams));
+    public void initializeGroups(int numberOfTeams, String teamsString) {
+        List<Groupe> groups = createGroups(sessionData.getComunioId(), determineNumberOfGroups(numberOfTeams));
         Map<Groupe, Integer> groupSizes = determineGroupSizes(numberOfTeams, groups);
         List<Team> teams = createShuffledTeams(teamsString);
 
         for (Groupe group : groups) {
             setUpGroup(teams, groupSizes.get(group), group);
         }
+        sessionData.getComunio().setGroups(new HashSet<>(groups));
     }
 
     private List<Team> createShuffledTeams(String teamsString) {
@@ -91,8 +92,7 @@ public class GroupServiceImpl implements GroupService {
         for (int i = 0; i < numberOfGroups; i++) {
             Groupe group = new Groupe();
             group.setGroupName(groupNames.charAt(i) + "");
-            comunioService.loadComunio(comunioId);
-            group.setComunio(comunioService.getComunio());
+            group.setComunio(sessionData.getComunio());
             groupDao.add(group);
             groups.add(group);
         }

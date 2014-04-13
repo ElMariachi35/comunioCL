@@ -11,21 +11,22 @@ import com.comunio.model.Comunio;
 
 @Repository
 public class ComunioDaoImpl implements ComunioDao {
-	@Autowired
-	private SessionFactory session;
-	
-	@Override
-	public void add(Comunio comunio) {
-		session.getCurrentSession().save(comunio);
-	}
+    @Autowired
+    private SessionFactory session;
 
-	@Override
-	public Comunio getComunio(long comunioId) {
-		return (Comunio)session.getCurrentSession().get(Comunio.class, comunioId);
-	}
+    @Override
+    public Comunio add(Comunio comunio) {
+        session.getCurrentSession().save(comunio);
+        return comunio;
+    }
 
-	@Override
-	public List<Comunio> getAllComunio() {
-		return session.getCurrentSession().createQuery("from Comunio").list();
-	}
+    @Override
+    public Comunio getComunio(long comunioId) {
+        return (Comunio) session.getCurrentSession().get(Comunio.class, comunioId);
+    }
+
+    @Override
+    public List<Comunio> getAllComunio() {
+        return session.getCurrentSession().createQuery("from Comunio").list();
+    }
 }

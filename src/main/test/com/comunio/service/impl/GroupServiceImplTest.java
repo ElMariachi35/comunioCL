@@ -19,6 +19,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.comunio.dao.GroupDao;
 import com.comunio.model.Comunio;
 import com.comunio.model.Groupe;
+import com.comunio.model.SessionData;
 import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
 import com.comunio.service.FixtureService;
@@ -39,6 +40,8 @@ public class GroupServiceImplTest {
     ComunioService comunioService;
     @Mock
     FixtureService fixtureService;
+    @Mock
+    SessionData sessionData;
 
     List<Team> teams;
     GroupServiceImpl groupService = new GroupServiceImpl();
@@ -49,6 +52,9 @@ public class GroupServiceImplTest {
         groupService.teamService = teamService;
         groupService.fixtureService = fixtureService;
         groupService.comunioService = comunioService;
+        groupService.sessionData = sessionData;
+        when(sessionData.getComunioId()).thenReturn(COMUNIO_ID);
+        when(sessionData.getComunio()).thenReturn(new Comunio());
     }
 
     @Test
@@ -71,9 +77,8 @@ public class GroupServiceImplTest {
     public void initializeGroupsCreatesTwoGroupsWithFiveTeams() throws Exception {
         teams = mockTeams(8);
         when(teamService.createTeamsFromString(TEAM_STRING)).thenReturn(teams);
-        when(comunioService.getComunio()).thenReturn(new Comunio());
 
-        groupService.initializeGroups(COMUNIO_ID, teams.size(), TEAM_STRING);
+        groupService.initializeGroups(teams.size(), TEAM_STRING);
 
         verifyInitializeGroups(2, 8, 2);
     }
@@ -82,9 +87,8 @@ public class GroupServiceImplTest {
     public void initializeGroupsCreatesTwoGroupsWithFourAndFiveTeams() throws Exception {
         teams = mockTeams(9);
         when(teamService.createTeamsFromString(TEAM_STRING)).thenReturn(teams);
-        when(comunioService.getComunio()).thenReturn(new Comunio());
 
-        groupService.initializeGroups(COMUNIO_ID, teams.size(), TEAM_STRING);
+        groupService.initializeGroups(teams.size(), TEAM_STRING);
 
         verifyInitializeGroups(2, 9, 2);
     }
@@ -93,9 +97,8 @@ public class GroupServiceImplTest {
     public void initializeGroupsCreatesOneGroupWithFiveTeams() throws Exception {
         teams = mockTeams(5);
         when(teamService.createTeamsFromString(TEAM_STRING)).thenReturn(teams);
-        when(comunioService.getComunio()).thenReturn(new Comunio());
 
-        groupService.initializeGroups(COMUNIO_ID, teams.size(), TEAM_STRING);
+        groupService.initializeGroups(teams.size(), TEAM_STRING);
         verifyInitializeGroups(1, 5, 1);
     }
 
@@ -103,9 +106,8 @@ public class GroupServiceImplTest {
     public void initializeGroupsCreatesThreeGroupsWithFourOrFiveTeams() throws Exception {
         teams = mockTeams(13);
         when(teamService.createTeamsFromString(TEAM_STRING)).thenReturn(teams);
-        when(comunioService.getComunio()).thenReturn(new Comunio());
 
-        groupService.initializeGroups(COMUNIO_ID, teams.size(), TEAM_STRING);
+        groupService.initializeGroups(teams.size(), TEAM_STRING);
 
         verifyInitializeGroups(3, 13, 3);
     }
@@ -114,9 +116,8 @@ public class GroupServiceImplTest {
     public void initializeGroupsCreatesFourGroupsWithFourTeams() throws Exception {
         teams = mockTeams(16);
         when(teamService.createTeamsFromString(TEAM_STRING)).thenReturn(teams);
-        when(comunioService.getComunio()).thenReturn(new Comunio());
 
-        groupService.initializeGroups(COMUNIO_ID, teams.size(), TEAM_STRING);
+        groupService.initializeGroups(teams.size(), TEAM_STRING);
 
         verifyInitializeGroups(4, 16, 4);
     }

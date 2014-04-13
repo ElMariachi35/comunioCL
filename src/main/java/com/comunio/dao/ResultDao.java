@@ -9,4 +9,6 @@ public interface ResultDao {
     public void saveOrUpdate(Result result);
 
     public List<Result> getResultsByTeam(Team team);
+
+    public List<Result> getResults(long comunioId);
 }

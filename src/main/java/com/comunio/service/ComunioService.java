@@ -8,16 +8,10 @@ import com.comunio.model.Team;
 public interface ComunioService {
     public void add(Comunio comunio);
 
-    public void loadComunio(long comunioId);
+    Comunio createComunio(String name, String password);
 
-    long createComunio(String name, String password);
+    public List<Team> getAllTeams();
 
-    public Comunio getComunio();
-
-    public void refreshComunio();
-
-    public List<Team> getAllTeams(long comunioId);
-
-    public Comunio returnComunio(long parseLong);
+    public Comunio retrieveComunio(long parseLong);
 
 }

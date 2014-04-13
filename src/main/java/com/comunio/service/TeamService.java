@@ -10,7 +10,9 @@ public interface TeamService {
 
     public List<Team> createTeamsFromString(String teamsString);
 
-    public List<String> findTeamNamesByComunioId(long parseLong);
+    public List<String> findAllTeamNames();
 
     public void updateTeam(Team team);
+
+    public Team findTeamByTeamNameAndComunioId(String string, long comunioId);
 }

@@ -1,6 +1,6 @@
 package com.comunio.service.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -28,15 +28,15 @@ public class TeamServiceImplTest {
     TeamDao teamDao;
     @Mock
     GroupService groupService;
-    
+
     private TeamServiceImpl teamService = new TeamServiceImpl();
 
     @Before
-    public void setUp(){
+    public void setUp() {
         teamService.teamDao = teamDao;
         teamService.groupService = groupService;
     }
-    
+
     @Test
     public void saveTeamCallsCorrectMethod() {
         Groupe group = mock(Groupe.class);
@@ -45,7 +45,7 @@ public class TeamServiceImplTest {
         verify(team).setGroupe(group);
         verify(teamDao).saveTeam(team);
     }
-    
+
     @Test
     public void createTeamsFromStringReturnsCorrectListOfTeams() {
         List<Team> teams = teamService.createTeamsFromString(TEAMS_STRING);
@@ -54,10 +54,10 @@ public class TeamServiceImplTest {
         assertEquals(TEAM2_NAME, teams.get(1).getTeamName());
         assertEquals(TEAM3_NAME, teams.get(2).getTeamName());
     }
-    
+
     @Test
     public void findTeamNameByComunioIdCallsCorrectMethod() {
-        teamService.findTeamNamesByComunioId(COMUNIO_ID);
-        verify(teamDao).findTeamNamesByComunioId(COMUNIO_ID);
+        teamService.findAllTeamNames();
+        verify(groupService).getGroups();
     }
 }

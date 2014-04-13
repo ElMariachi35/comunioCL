@@ -11,4 +11,7 @@ public interface GameService {
     List<Game> getGamesByTeam(Team team);
 
     public void updateGame(Game game);
+
+    public List<Game> getGames();
+
 }

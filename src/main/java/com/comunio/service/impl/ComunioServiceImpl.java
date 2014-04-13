@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.comunio.dao.ComunioDao;
-import com.comunio.exception.NoComunioLoadedException;
 import com.comunio.model.Comunio;
 import com.comunio.model.Groupe;
+import com.comunio.model.SessionData;
 import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
 import com.comunio.service.GroupService;
@@ -22,8 +22,8 @@ public class ComunioServiceImpl implements ComunioService {
     ComunioDao comunioDao;
     @Autowired
     GroupService groupService;
-
-    private Comunio comunio;
+    @Autowired
+    SessionData sessionData;
 
     @Transactional
     public void add(Comunio comunio) {
@@ -31,42 +31,17 @@ public class ComunioServiceImpl implements ComunioService {
     }
 
     @Transactional
-    public void loadComunio(long comunioId) {
-        if (comunio == null || comunio.getComunioId() != comunioId)
-            comunio = comunioDao.getComunio(comunioId);
-    }
-
-    @Transactional
-    public void refreshComunio() {
-        if (comunio != null) {
-            comunio = comunioDao.getComunio(comunio.getComunioId());
-        } else {
-            throw new NoComunioLoadedException();
-        }
-    }
-
-    @Transactional
-    public long createComunio(String comunioName, String password) {
+    public Comunio createComunio(String comunioName, String password) {
         Comunio comunio = new Comunio();
         comunio.setName(comunioName);
         comunio.setPassword(password);
-        comunioDao.add(comunio);
-        return comunio.getComunioId();
-    }
-
-    public Comunio getComunio() {
-        return comunio;
-    }
-
-    public void setComunio(Comunio comunio) {
-        this.comunio = comunio;
+        return comunioDao.add(comunio);
     }
 
     @Transactional
-    public List<Team> getAllTeams(long comunioId) {
-        loadComunio(comunioId);
+    public List<Team> getAllTeams() {
         List<Team> teams = new ArrayList<>();
-        for (Groupe group : comunio.getGroups()) {
+        for (Groupe group : groupService.getGroups()) {
             for (Team team : group.getTeams()) {
                 teams.add(team);
             }
@@ -76,7 +51,7 @@ public class ComunioServiceImpl implements ComunioService {
     }
 
     @Transactional
-    public Comunio returnComunio(long comunioId) {
+    public Comunio retrieveComunio(long comunioId) {
         return comunioDao.getComunio(comunioId);
     }
 }

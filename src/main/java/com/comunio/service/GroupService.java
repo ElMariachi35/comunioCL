@@ -10,7 +10,7 @@ public interface GroupService {
 
     public List<Groupe> findGroupsByComunioId(long comunioId);
 
-    public void initializeGroups(long comunioId, int numberOfTeams, String teamsString);
+    public void initializeGroups(int numberOfTeams, String teamsString);
 
     public List<String> determineGroupNames(int numberOfGroups);
 

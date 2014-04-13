@@ -1,8 +1,5 @@
 package com.comunio.dao.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,29 +20,14 @@ public class TeamDaoImpl implements TeamDao {
     }
 
     @Override
-    public List<String> findTeamNamesByComunioId(long comunioId) {
-        List<String> teamNames = new ArrayList<>();
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createSQLQuery(
-                        "SELECT t.teamName FROM team t WHERE t.groupId = (SELECT g.groupId FROM groupe g WHERE comunioId=:comunioId) ORDER BY t.teamName ASC")
-                .setParameter("comunioId", comunioId);
-        teamNames = query.list();
-        return teamNames;
-    }
-
-    @Override
-    public Team findTeamByTeamNameAndComunioId(String teamName, long comunioId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createSQLQuery(
-                        "SELECT * FROM team t WHERE t.groupId = (SELECT g.groupId FROM groupe g WHERE comunioId=:comunioId) AND t.teamName =:teamName")
-                .addEntity(Team.class).setParameter("comunioId", comunioId).setParameter("teamName", teamName);
-        return (Team) query.list().get(0);
-    }
-
-    @Override
     public void updateTeam(Team team) {
-        sessionFactory.getCurrentSession().update(team);
+        String queryString = "UPDATE team t SET t.gamesPlayed=" + team.getGamesPlayed() + ", t.gamesWon="
+                + team.getGamesWon() + ", t.gamesDrawn=" + team.getGamesDrawn() + ", t.gamesLost="
+                + team.getGamesLost() + ", t.goalsFor=" + team.getGoalsFor() + ", t.goalsAgainst="
+                + team.getGoalsAgainst() + ", t.goalDifference=" + team.getGoalDifference() + ", t.points="
+                + team.getPoints() + " WHERE t.teamId=" + team.getTeamId();
+        System.out.println(queryString);
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(queryString);
+        query.executeUpdate();
     }
 }

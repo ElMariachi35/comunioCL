@@ -16,9 +16,12 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.comunio.dao.ResultDao;
 import com.comunio.dao.TeamDao;
+import com.comunio.model.Game;
 import com.comunio.model.Result;
 import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
+import com.comunio.service.GameService;
+import com.comunio.service.TeamService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ResultServiceImplTest {
@@ -37,6 +40,10 @@ public class ResultServiceImplTest {
     private Result result;
     @Mock
     private ComunioService comunioService;
+    @Mock
+    private TeamService teamService;
+    @Mock
+    private GameService gameService;
 
     private ResultServiceImpl resultService = new ResultServiceImpl();
 
@@ -46,17 +53,20 @@ public class ResultServiceImplTest {
         resultService.resultDao = resultDao;
         resultService.comunioService = comunioService;
         resultService.goalCalculator = goalCalculator;
+        resultService.teamService = teamService;
+        resultService.gameService = gameService;
     }
 
     @Test
     public void whenUpdatingResultEveryTeamInResultIsLookedFor() {
-        when(teamDao.findTeamByTeamNameAndComunioId(TEAM, COMUNIO_ID)).thenReturn(new Team());
+        when(teamService.findTeamByTeamNameAndComunioId(TEAM, COMUNIO_ID)).thenReturn(new Team());
         when(goalCalculator.calculateGoalsFromPoints(POINTS)).thenReturn(GOALS);
+        when(gameService.getGames()).thenReturn(new ArrayList<Game>());
 
         resultService.updateResult(mockCollectiveResult(), COMUNIO_ID);
 
-        verify(teamDao).findTeamByTeamNameAndComunioId(TEAM, COMUNIO_ID);
-        verify(teamDao).findTeamByTeamNameAndComunioId(TEAM2, COMUNIO_ID);
+        verify(teamService).findTeamByTeamNameAndComunioId(TEAM, COMUNIO_ID);
+        verify(teamService).findTeamByTeamNameAndComunioId(TEAM2, COMUNIO_ID);
         verify(resultDao, times(4)).saveOrUpdate(any(Result.class));
     }
 

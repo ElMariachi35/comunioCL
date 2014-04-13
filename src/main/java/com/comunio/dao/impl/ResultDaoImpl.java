@@ -18,6 +18,7 @@ public class ResultDaoImpl implements ResultDao {
     private SessionFactory sessionFactory;
 
     @Override
+    @SuppressWarnings("unchecked")
     public void saveOrUpdate(Result result) {
         Query query = sessionFactory.getCurrentSession()
                 .createSQLQuery("Select * from result where matchday=:matchday and teamId=:teamId")
@@ -39,6 +40,17 @@ public class ResultDaoImpl implements ResultDao {
     public List<Result> getResultsByTeam(Team team) {
         Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM result WHERE teamId=:teamId")
                 .addEntity(Result.class).setParameter("teamId", team.getTeamId());
+        return query.list();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Result> getResults(long comunioId) {
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createSQLQuery(
+                        "SELECT DISTINCT r.resultId, r.teamId, r.matchday, r.points, r.goals FROM groupe g JOIN team t ON g.groupId=t.groupId JOIN result r ON t.teamId=r.teamId WHERE g.comunioId=:comunioId")
+                .addEntity(Result.class).setParameter("comunioId", comunioId);
         return query.list();
     }
 }

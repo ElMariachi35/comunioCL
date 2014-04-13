@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.comunio.model.Comunio;
 import com.comunio.model.Groupe;
 import com.comunio.model.SessionData;
 import com.comunio.model.Team;
@@ -43,7 +42,6 @@ public class ApplicationController {
     private SessionData sessionData;
 
     private ObjectMapper objectMapper = new ObjectMapper();
-    private Logger logger = LoggerFactory.getLogger(ApplicationController.class);
 
     @RequestMapping(value = { "/index", "", "/" })
     public String setupForm(Map<String, Object> map) {
@@ -57,10 +55,7 @@ public class ApplicationController {
 
     @RequestMapping(value = "/show/{comunioId}/{groupName}")
     public String showComunio(@PathVariable String groupName, @PathVariable String comunioId, Map<String, Object> map) {
-        // comunioService.loadComunio(Long.parseLong(comunioId));
-        // Groupe group = groupService.getGroup(Long.parseLong(comunioId),
-        // groupName);
-        sessionData.setComunio(comunioService.returnComunio(Long.parseLong(comunioId)));
+        sessionData.setComunio(comunioService.retrieveComunio(Long.parseLong(comunioId)));
         map.put("comunio", sessionData.getComunio());
         Groupe group = groupService.getGroup(groupName);
         map.put("group", group);
@@ -75,38 +70,37 @@ public class ApplicationController {
             @RequestParam("password") String password, @RequestParam("numberOfTeams") String numberOfTeams,
             Map<String, Object> map) {
 
-        long comunioId = comunioService.createComunio(comunioName, password);
-        groupService.initializeGroups(comunioId, Integer.parseInt(numberOfTeams), teamsString);
-        comunioService.refreshComunio();
-        List<Groupe> groups = groupService.findGroupsByComunioId(comunioId);
-        map.put("comunio", comunioService.getComunio());
-        map.put("groups", groups);
-        Groupe group = getGroup(groups, "A");
+        Comunio comunio = comunioService.createComunio(comunioName, password);
+        sessionData.setComunio(comunio);
+        groupService.initializeGroups(Integer.parseInt(numberOfTeams), teamsString);
+        sessionData.setComunio(comunioService.retrieveComunio(comunio.getComunioId()));
+        List<Groupe> groups = new ArrayList<Groupe>(groupService.getGroups());
+        map.put("comunio", sessionData.getComunio());
+        Groupe group = groupService.getGroup("A");
         map.put("group", group);
         map.put("teams", group.getSortedTeams());
+        map.put("groupNames", groupService.determineGroupNames(groups.size()));
+        map.put("matchdays", matchdayService.getSortedMatchdays(group.getFixture()));
         return "overview";
     }
 
     @RequestMapping("/admin/{comunioId}")
     public String admin(@PathVariable String comunioId, Map<String, Object> map) {
-        List<Team> teams = comunioService.getAllTeams(Long.parseLong(comunioId));
+        List<Team> teams = comunioService.getAllTeams();
         try {
             map.put("teams", objectMapper.writeValueAsString(teams));
         } catch (Exception e) {
             e.printStackTrace();
         }
         map.put("numberOfMatchdays", NUMBER_OF_MATCHDAYS);
-        map.put("comunio", comunioService.getComunio());
+        map.put("comunio", sessionData.getComunio());
         return "admin";
     }
 
     @RequestMapping("/updateComunio/{comunioId}")
     public void updateComunio(@RequestBody String jsonString, @PathVariable String comunioId) {
         List<?> resultList = parseResultListFromJSON(jsonString);
-        if (comunioService.getComunio() != null) {
-            resultService.updateResult(resultList, comunioService.getComunio().getComunioId());
-            comunioService.refreshComunio();
-        }
+        resultService.updateResult(resultList, Long.parseLong(comunioId));
     }
 
     private List<?> parseResultListFromJSON(String jsonString) {
@@ -117,14 +111,5 @@ public class ApplicationController {
             e.printStackTrace();
         }
         return jsonObject;
-    }
-
-    private Groupe getGroup(List<Groupe> groups, String groupName) {
-        for (Groupe group : groups) {
-            if (group.getGroupName().equals(groupName)) {
-                return group;
-            }
-        }
-        return null;
     }
 }
