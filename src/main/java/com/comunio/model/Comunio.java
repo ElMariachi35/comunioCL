@@ -28,6 +28,8 @@ public class Comunio {
     @OneToMany(mappedBy = "comunio", fetch = FetchType.EAGER)
     private Set<Groupe> groups;
 
+    private Playoff playoff;
+
     public Comunio() {
     }
 
@@ -68,5 +70,13 @@ public class Comunio {
 
     public void setGroups(Set<Groupe> groups) {
         this.groups = groups;
+    }
+
+    public Playoff getPlayoff() {
+        return playoff;
+    }
+
+    public void setPlayoff(Playoff playoff) {
+        this.playoff = playoff;
     }
 }

@@ -1,36 +1,27 @@
 Backlog - Comunio
 -  5 - unit testing
-
--  2 - globale comunio variable in javascript
-
-
--  5 - Comunio as session object
-		--check how it is supposed to be
-		--delete unnecessary queries
-		--change URL of requests
-			--- / 					->indexView
-			--- /add 				->registrationView
-			--- /{comunioId} 		->overView
-			--- /{comunioId}/admin 	->adminView
-
 -  3 - Dao testing
-
 - 13 - Integration testing
 
--  DONE - Loading of previous results when in admin view
+
+-  5 - REST einbauen
+-  5 - Validation of Point input
+-  2 - globale comunio variable in javascript
 
 -  1 - rename jsp to <name>View
 
+-  DONE - Loading of previous results when in admin view
+
 -  DONE - update data model when point input
 
--  3 - show result in overView
+-  DONE - show result in overView
 
--  3 - implement table sorting
+-  DONE - implement table sorting
 
 - 20 - style frontend
-
--  5 - Validation of Point input
 
 - 20 - implement playoffs
 
 -  2 - unique constraint auf teamName
+
+-  8 - Error handling
