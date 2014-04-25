@@ -28,7 +28,7 @@ public class Comunio {
     private String password;
     @OneToMany(mappedBy = "comunio", fetch = FetchType.EAGER)
     private Set<Groupe> groups;
-    @OneToOne
+    @OneToOne(mappedBy="comunio")
     private Playoff playoff;
 
     public Comunio() {

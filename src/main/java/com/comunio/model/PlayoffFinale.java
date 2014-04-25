@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class PlayoffFinal implements Serializable {
+public class PlayoffFinale implements Serializable {
     private static final long serialVersionUID = -2037855491866687846L;
 
     @Id
@@ -34,7 +34,7 @@ public class PlayoffFinal implements Serializable {
     @JoinColumn(name = "thirdLeg", referencedColumnName = "playoffGameId")
     private PlayoffGame thirdLeg;
 
-    public PlayoffFinal() {
+    public PlayoffFinale() {
     }
 
     public long getPlayoffFinalId() {
