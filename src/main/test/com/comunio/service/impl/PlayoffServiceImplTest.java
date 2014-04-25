@@ -43,7 +43,7 @@ public class PlayoffServiceImplTest {
         Comunio comunio = new Comunio();
         when(sessionData.getComunio()).thenReturn(comunio);
         playoffService.initializePlayoffs(teams);
-        assertNotNull(comunio.getPlayoff().getQuaterfinal());
+        assertNotNull(comunio.getPlayoff().getQuaterFinal());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class PlayoffServiceImplTest {
         Comunio comunio = new Comunio();
         when(sessionData.getComunio()).thenReturn(comunio);
         playoffService.initializePlayoffs(teams);
-        assertNotNull(comunio.getPlayoff().getSemifinal());
+        assertNotNull(comunio.getPlayoff().getSemiFinal());
     }
 
     private Map<Integer, Team> createTeams(int numberOfTeams) {
