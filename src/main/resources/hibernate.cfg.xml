@@ -12,5 +12,10 @@
         <mapping class="com.comunio.model.Matchday" />
         <mapping class="com.comunio.model.Game" />
         <mapping class="com.comunio.model.Result" />
+        <mapping class="com.comunio.model.PlayoffFinal" />
+        <mapping class="com.comunio.model.Playoff" />
+        <mapping class="com.comunio.model.PlayoffFixture" />
+        <mapping class="com.comunio.model.PlayoffGame" />
+        <mapping class="com.comunio.model.KnockoutPairing" />
     </session-factory>         
 </hibernate-configuration>

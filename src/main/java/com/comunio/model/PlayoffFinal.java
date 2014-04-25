@@ -2,69 +2,86 @@ package com.comunio.model;
 
 import java.io.Serializable;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
+@Entity
 public class PlayoffFinal implements Serializable {
     private static final long serialVersionUID = -2037855491866687846L;
 
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long playoffFinalId;
-    @JsonIgnore
-    private Playoff playoff;
+    @OneToOne
+    @JoinColumn(name = "teamOne", referencedColumnName = "teamId")
     private Team teamOne;
+    @OneToOne
+    @JoinColumn(name = "teamTwo", referencedColumnName = "teamId")
     private Team teamTwo;
-
+    @OneToOne
+    @JoinColumn(name = "firstLeg", referencedColumnName = "playoffGameId")
     private PlayoffGame firstLeg;
+    @OneToOne
+    @JoinColumn(name = "secondLeg", referencedColumnName = "playoffGameId")
     private PlayoffGame secondLeg;
+    @OneToOne
+    @JoinColumn(name = "thirdLeg", referencedColumnName = "playoffGameId")
     private PlayoffGame thirdLeg;
 
     public PlayoffFinal() {
     }
 
     public long getPlayoffFinalId() {
-        return playoffFinalId;
+	return playoffFinalId;
     }
 
     public void setPlayoffFinalId(long playoffFinalId) {
-        this.playoffFinalId = playoffFinalId;
+	this.playoffFinalId = playoffFinalId;
     }
 
     public Team getTeamOne() {
-        return teamOne;
+	return teamOne;
     }
 
     public void setTeamOne(Team teamOne) {
-        this.teamOne = teamOne;
+	this.teamOne = teamOne;
     }
 
     public Team getTeamTwo() {
-        return teamTwo;
+	return teamTwo;
     }
 
     public void setTeamTwo(Team teamTwo) {
-        this.teamTwo = teamTwo;
+	this.teamTwo = teamTwo;
     }
 
     public PlayoffGame getFirstLeg() {
-        return firstLeg;
+	return firstLeg;
     }
 
     public void setFirstLeg(PlayoffGame firstLeg) {
-        this.firstLeg = firstLeg;
+	this.firstLeg = firstLeg;
     }
 
     public PlayoffGame getSecondLeg() {
-        return secondLeg;
+	return secondLeg;
     }
 
     public void setSecondLeg(PlayoffGame secondLeg) {
-        this.secondLeg = secondLeg;
+	this.secondLeg = secondLeg;
     }
 
     public PlayoffGame getThirdLeg() {
-        return thirdLeg;
+	return thirdLeg;
     }
 
     public void setThirdLeg(PlayoffGame thirdLeg) {
-        this.thirdLeg = thirdLeg;
+	this.thirdLeg = thirdLeg;
     }
 }

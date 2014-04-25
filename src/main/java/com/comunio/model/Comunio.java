@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.context.annotation.Scope;
@@ -27,7 +28,7 @@ public class Comunio {
     private String password;
     @OneToMany(mappedBy = "comunio", fetch = FetchType.EAGER)
     private Set<Groupe> groups;
-
+    @OneToOne
     private Playoff playoff;
 
     public Comunio() {

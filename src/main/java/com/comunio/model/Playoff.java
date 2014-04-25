@@ -1,60 +1,64 @@
 package com.comunio.model;
 
 import java.io.Serializable;
-import java.util.Map;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Playoff implements Serializable {
     private static final long serialVersionUID = 8354340646218407497L;
-
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long playoffId;
-    private Map<Integer, Team> teams;
-    private PlayoffFixture quaterfinal;
-    private PlayoffFixture semifinal;
-    private PlayoffFinal finale;
+    @OneToOne
+    @JoinColumn(name = "quaterFinal", referencedColumnName = "playoffFixtureId")
+    private PlayoffFixture quaterFinal;
+    @OneToOne
+    @JoinColumn(name = "semiFinal", referencedColumnName = "playoffFixtureId")
+    private PlayoffFixture semiFinal;
+    @OneToOne
+    @JoinColumn(name = "playoffFinal", referencedColumnName = "playoffFinalId")
+    private PlayoffFinal playoffFinal;
 
     public Playoff() {
     }
 
     public long getPlayoffId() {
-        return playoffId;
+	return playoffId;
     }
 
     public void setPlayoffId(long playoffId) {
-        this.playoffId = playoffId;
+	this.playoffId = playoffId;
     }
 
-    public Map<Integer, Team> getTeams() {
-        return teams;
+    public PlayoffFixture getQuaterFinal() {
+	return quaterFinal;
     }
 
-    public void setTeams(Map<Integer, Team> teams) {
-        this.teams = teams;
+    public void setQuaterFinal(PlayoffFixture quaterFinal) {
+	this.quaterFinal = quaterFinal;
     }
 
-    public PlayoffFixture getQuaterfinal() {
-        return quaterfinal;
+    public PlayoffFixture getSemiFinal() {
+	return semiFinal;
     }
 
-    public void setQuaterfinal(PlayoffFixture quaterfinal) {
-        this.quaterfinal = quaterfinal;
+    public void setSemiFinal(PlayoffFixture semiFinal) {
+	this.semiFinal = semiFinal;
     }
 
-    public PlayoffFixture getSemifinal() {
-        return semifinal;
+    public PlayoffFinal getPlayoffFinal() {
+	return playoffFinal;
     }
 
-    public void setSemifinal(PlayoffFixture semifinal) {
-        this.semifinal = semifinal;
-    }
-
-    public PlayoffFinal getFinale() {
-        return finale;
-    }
-
-    public void setFinale(PlayoffFinal finale) {
-        this.finale = finale;
+    public void setPlayoffFinal(PlayoffFinal playoffFinal) {
+	this.playoffFinal = playoffFinal;
     }
 }

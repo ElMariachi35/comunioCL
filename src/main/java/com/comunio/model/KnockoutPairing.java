@@ -2,16 +2,36 @@ package com.comunio.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+@Entity
 public class KnockoutPairing implements Serializable {
     private static final long serialVersionUID = 4392931109345422072L;
-
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long knockoutPairingId;
     @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="playoffFixture")
     private PlayoffFixture playoffFixture;
+    @OneToOne
+    @JoinColumn(name = "firstLeg", referencedColumnName = "playoffGameId")
     private PlayoffGame firstLeg;
+    @OneToOne
+    @JoinColumn(name = "secondLeg", referencedColumnName = "playoffGameId")
     private PlayoffGame secondLeg;
+    @OneToOne
+    @JoinColumn(name = "promotedTeam", referencedColumnName = "teamId")
     private Team promotedTeam;
 
     public KnockoutPairing() {
