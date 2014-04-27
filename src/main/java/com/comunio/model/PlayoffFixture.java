@@ -26,7 +26,7 @@ public class PlayoffFixture implements Serializable {
     private Set<Team> teams;
     @Transient
     private Map<Integer, Team> promotedTeams;
-    @OneToMany(mappedBy="knockoutPairingId")
+    @OneToMany(mappedBy="knockoutPairingId", fetch=FetchType.EAGER)
     private List<KnockoutPairing> pairings;
 
     public PlayoffFixture() {

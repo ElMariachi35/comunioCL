@@ -8,10 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 public class KnockoutPairing implements Serializable {
@@ -20,10 +17,6 @@ public class KnockoutPairing implements Serializable {
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long knockoutPairingId;
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name="playoffFixture")
-    private PlayoffFixture playoffFixture;
     @OneToOne
     @JoinColumn(name = "firstLeg", referencedColumnName = "playoffGameId")
     private PlayoffGame firstLeg;

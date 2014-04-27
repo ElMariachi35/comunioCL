@@ -21,6 +21,9 @@ Backlog - Comunio
 - 20 - style frontend
 
 - 20 - implement playoffs
+	-TODO: 
+		--add PlayoffFixtureId to knockoutPairing
+		--research lazy-loading
 
 -  2 - unique constraint auf teamName
 

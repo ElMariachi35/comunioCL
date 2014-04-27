@@ -8,5 +8,4 @@ import com.comunio.model.Team;
 public interface PlayoffFixtureService {
     PlayoffFixture createFixture(Map<Integer, Team> teams);
 
-    void saveFixture(PlayoffFixture fixture);
 }

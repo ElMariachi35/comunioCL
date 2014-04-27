@@ -2,6 +2,7 @@ package com.comunio.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
 import com.comunio.service.GroupService;
 import com.comunio.service.MatchdayService;
+import com.comunio.service.PlayoffService;
 import com.comunio.service.ResultService;
 import com.comunio.service.TeamService;
 
@@ -42,79 +44,115 @@ public class ApplicationController {
     @Autowired
     private ResultService resultService;
     @Autowired
+    private PlayoffService playoffService;
+    @Autowired
     private SessionData sessionData;
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @RequestMapping(value = { "/index", "", "/" })
     public String setupForm(Map<String, Object> map) {
-        return "index";
+	return "index";
     }
 
     @RequestMapping("/add")
     public String addComunio() {
-        return "addComunio";
+	return "addComunio";
     }
 
     @RequestMapping(value = "/show/{comunioId}/{groupName}")
-    public String showComunio(@PathVariable String groupName, @PathVariable String comunioId, Map<String, Object> map)
-            throws JsonGenerationException, JsonMappingException, IOException {
-        sessionData.setComunio(comunioService.retrieveComunio(Long.parseLong(comunioId)));
-        map.put("comunio", sessionData.getComunio());
-        Groupe group = groupService.getGroup(groupName);
-        map.put("group", group);
-        map.put("teams", group.getSortedTeams());
-        map.put("groupNames", groupService.determineGroupNames(groupService.getGroups().size()));
-        map.put("matchdays", matchdayService.getSortedMatchdays(group.getFixture()));
-        return "overview";
+    public String showComunio(@PathVariable String groupName,
+	    @PathVariable String comunioId, Map<String, Object> map)
+	    throws JsonGenerationException, JsonMappingException, IOException {
+	sessionData.setComunio(comunioService.retrieveComunio(Long
+		.parseLong(comunioId)));
+	map.put("comunio", sessionData.getComunio());
+	Groupe group = groupService.getGroup(groupName);
+	map.put("group", group);
+	map.put("teams", group.getSortedTeams());
+	map.put("groupNames", groupService.determineGroupNames(groupService
+		.getGroups().size()));
+	map.put("matchdays",
+		matchdayService.getSortedMatchdays(group.getFixture()));
+	return "overview";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String addTeams(@RequestParam("teams") String teamsString, @RequestParam("comunioName") String comunioName,
-            @RequestParam("password") String password, @RequestParam("numberOfTeams") String numberOfTeams,
-            Map<String, Object> map) {
+    public String addTeams(@RequestParam("teams") String teamsString,
+	    @RequestParam("comunioName") String comunioName,
+	    @RequestParam("password") String password,
+	    @RequestParam("numberOfTeams") String numberOfTeams,
+	    Map<String, Object> map) {
 
-        Comunio comunio = comunioService.createComunio(comunioName, password);
-        sessionData.setComunio(comunio);
-        groupService.initializeGroups(Integer.parseInt(numberOfTeams), teamsString);
-        sessionData.setComunio(comunioService.retrieveComunio(comunio.getComunioId()));
-        List<Groupe> groups = new ArrayList<Groupe>(groupService.getGroups());
-        map.put("comunio", sessionData.getComunio());
-        Groupe group = groupService.getGroup("A");
-        map.put("group", group);
-        map.put("teams", group.getSortedTeams());
-        map.put("groupNames", groupService.determineGroupNames(groups.size()));
+	Comunio comunio = comunioService.createComunio(comunioName, password);
+	sessionData.setComunio(comunio);
+	groupService.initializeGroups(Integer.parseInt(numberOfTeams),
+		teamsString);
+	sessionData.setComunio(comunioService.retrieveComunio(comunio
+		.getComunioId()));
+	List<Groupe> groups = new ArrayList<Groupe>(groupService.getGroups());
+	map.put("comunio", sessionData.getComunio());
+	Groupe group = groupService.getGroup("A");
+	map.put("group", group);
+	map.put("teams", group.getSortedTeams());
+	map.put("groupNames", groupService.determineGroupNames(groups.size()));
 
-        map.put("matchdays", matchdayService.getSortedMatchdays(group.getFixture()));
-        return "overview";
+	map.put("matchdays",
+		matchdayService.getSortedMatchdays(group.getFixture()));
+	return "overview";
     }
 
     @RequestMapping("/admin")
     public String admin(Map<String, Object> map) {
-        List<Team> teams = comunioService.getAllTeams();
-        try {
-            map.put("teams", objectMapper.writeValueAsString(teams));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        map.put("numberOfMatchdays", NUMBER_OF_MATCHDAYS);
-        map.put("comunio", sessionData.getComunio());
-        return "admin";
+	List<Team> teams = comunioService.getAllTeams();
+	try {
+	    map.put("teams", objectMapper.writeValueAsString(teams));
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	map.put("numberOfMatchdays", NUMBER_OF_MATCHDAYS);
+	map.put("comunio", sessionData.getComunio());
+	return "admin";
     }
 
     @RequestMapping("/updateComunio/{comunioId}")
-    public void updateComunio(@RequestBody String jsonString, @PathVariable String comunioId) {
-        List<?> resultList = parseResultListFromJSON(jsonString);
-        resultService.updateResult(resultList, Long.parseLong(comunioId));
+    public void updateComunio(@RequestBody String jsonString,
+	    @PathVariable String comunioId) {
+	List<?> resultList = parseResultListFromJSON(jsonString);
+	resultService.updateResult(resultList, Long.parseLong(comunioId));
+    }
+
+    @RequestMapping("/createPlayoff")
+    public void createPlayoff() {
+	List<Team> teams = comunioService.getAllTeams();
+	Map<Integer, Team> playoffTeams = new HashMap<>();
+	for (int i = 0; i < 8; i++) {
+	    playoffTeams.put(i + 1, teams.get(i));
+	}
+	Map<Integer, Team> semiTeams = new HashMap<>();
+	for (int i = 0; i < 4; i++) {
+	    semiTeams.put(i + 1, teams.get(i));
+	}
+	playoffService.initializePlayoffs(playoffTeams);
+	playoffService.initializeSemifinal(semiTeams);
+	playoffService.initializeFinal(teams.get(0), teams.get(1));
+    }
+    
+    @RequestMapping("/showPlayoff")
+    public String showPlayoff(Map<String, Object> map){
+	Comunio comunio = sessionData.getComunio();
+	map.put("comunio", sessionData.getComunio());
+	return "playoff";
+	
     }
 
     private List<?> parseResultListFromJSON(String jsonString) {
-        List<?> jsonObject = null;
-        try {
-            jsonObject = objectMapper.readValue(jsonString, ArrayList.class);
-        } catch (final Exception e) {
-            e.printStackTrace();
-        }
-        return jsonObject;
+	List<?> jsonObject = null;
+	try {
+	    jsonObject = objectMapper.readValue(jsonString, ArrayList.class);
+	} catch (final Exception e) {
+	    e.printStackTrace();
+	}
+	return jsonObject;
     }
 }
