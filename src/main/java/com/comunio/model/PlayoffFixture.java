@@ -1,8 +1,7 @@
 package com.comunio.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -22,52 +21,52 @@ public class PlayoffFixture implements Serializable {
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long playoffFixtureId;
-    @OneToMany(mappedBy="teamId")
+    @OneToMany(mappedBy = "teamId", fetch = FetchType.EAGER)
     private Set<Team> teams;
     @Transient
     private Map<Integer, Team> promotedTeams;
-    @OneToMany(mappedBy="knockoutPairingId", fetch=FetchType.EAGER)
-    private List<KnockoutPairing> pairings;
+    @OneToMany(mappedBy = "knockoutPairingId", fetch = FetchType.EAGER)
+    private Set<KnockoutPairing> pairings;
 
     public PlayoffFixture() {
     }
 
     public long getPlayoffFixtureId() {
-	return playoffFixtureId;
+        return playoffFixtureId;
     }
 
     public void setPlayoffFixtureId(long playoffFixtureId) {
-	this.playoffFixtureId = playoffFixtureId;
+        this.playoffFixtureId = playoffFixtureId;
     }
 
     public Map<Integer, Team> getPromotedTeams() {
-	return promotedTeams;
+        return promotedTeams;
     }
 
     public void setPromotedTeams(Map<Integer, Team> promotedTeams) {
-	this.promotedTeams = promotedTeams;
-    }
-
-    public List<KnockoutPairing> getPairings() {
-	return pairings;
-    }
-
-    public void setPairings(List<KnockoutPairing> pairings) {
-	this.pairings = pairings;
+        this.promotedTeams = promotedTeams;
     }
 
     public void addPairing(KnockoutPairing pairing) {
-	if (pairings == null) {
-	    pairings = new ArrayList<KnockoutPairing>();
-	}
-	pairings.add(pairing);
+        if (getPairings() == null) {
+            setPairings(new HashSet<KnockoutPairing>());
+        }
+        getPairings().add(pairing);
     }
 
     public Set<Team> getTeams() {
-	return teams;
+        return teams;
     }
 
     public void setTeams(Set<Team> teams) {
-	this.teams = teams;
+        this.teams = teams;
+    }
+
+    public Set<KnockoutPairing> getPairings() {
+        return pairings;
+    }
+
+    public void setPairings(Set<KnockoutPairing> pairings) {
+        this.pairings = pairings;
     }
 }

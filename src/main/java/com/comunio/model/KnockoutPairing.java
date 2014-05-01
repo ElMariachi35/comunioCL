@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -26,6 +27,9 @@ public class KnockoutPairing implements Serializable {
     @OneToOne
     @JoinColumn(name = "promotedTeam", referencedColumnName = "teamId")
     private Team promotedTeam;
+    @ManyToOne
+    @JoinColumn(name = "playoffFixtureId")
+    private PlayoffFixture playoffFixture;
 
     public KnockoutPairing() {
     }
@@ -60,5 +64,13 @@ public class KnockoutPairing implements Serializable {
 
     public void setSecondLeg(PlayoffGame secondLeg) {
         this.secondLeg = secondLeg;
+    }
+
+    public PlayoffFixture getPlayoffFixture() {
+        return playoffFixture;
+    }
+
+    public void setPlayoffFixture(PlayoffFixture playoffFixture) {
+        this.playoffFixture = playoffFixture;
     }
 }

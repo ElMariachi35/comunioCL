@@ -10,6 +10,12 @@
 	<%@ include file="/WEB-INF/jsp/header.jsp" %>
 	<h1>Playoff</h1>
 	<h3>Viertelfinale</h3>
+	<span>${comunio.playoff.quaterFinal}</span>
+	<c:forEach var="pairing" items="${comunio.playoff.quaterFinal.pairings}" varStatus="counter">
+		<p>Paarung ${counter.index+1 }</p>
+		<span>${pairing.firstLeg.homeTeam.teamName } : ${pairing.firstLeg.awayTeam.teamName } </span><br />
+		<span>${pairing.secondLeg.homeTeam.teamName } : ${pairing.secondLeg.awayTeam.teamName } </span><br />
+	</c:forEach>
 	<h3>Halbfinale</h3>
 	<h3>Finale</h3>
 </body>

@@ -8,14 +8,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.comunio.dao.KnockoutPairingDao;
 import com.comunio.model.KnockoutPairing;
+import com.comunio.model.PlayoffFixture;
 import com.comunio.model.PlayoffGame;
 import com.comunio.model.Team;
 import com.comunio.service.KnockoutPairingService;
 import com.comunio.service.PlayoffGameService;
 
 @Service
-public class KnockoutPairingServiceImpl implements KnockoutPairingService,
-	Serializable {
+public class KnockoutPairingServiceImpl implements KnockoutPairingService, Serializable {
     private static final long serialVersionUID = -3022115382308667780L;
 
     @Autowired
@@ -25,15 +25,14 @@ public class KnockoutPairingServiceImpl implements KnockoutPairingService,
 
     @Override
     @Transactional
-    public KnockoutPairing createPairing(Team team1, Team team2) {
-	KnockoutPairing pairing = new KnockoutPairing();
-	PlayoffGame firstLeg = playoffGameService.createPlayoffGame(team1,
-		team2);
-	PlayoffGame secondLeg = playoffGameService.createPlayoffGame(team2,
-		team1);
-	pairing.setFirstLeg(firstLeg);
-	pairing.setSecondLeg(secondLeg);
-	knockoutPairingDao.save(pairing);
-	return pairing;
+    public KnockoutPairing createPairing(Team team1, Team team2, PlayoffFixture playoffFixture) {
+        KnockoutPairing pairing = new KnockoutPairing();
+        PlayoffGame firstLeg = playoffGameService.createPlayoffGame(team1, team2);
+        PlayoffGame secondLeg = playoffGameService.createPlayoffGame(team2, team1);
+        pairing.setFirstLeg(firstLeg);
+        pairing.setSecondLeg(secondLeg);
+        pairing.setPlayoffFixture(playoffFixture);
+        knockoutPairingDao.save(pairing);
+        return pairing;
     }
 }
