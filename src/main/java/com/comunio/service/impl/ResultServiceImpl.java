@@ -12,10 +12,13 @@ import com.comunio.dao.TeamDao;
 import com.comunio.model.Game;
 import com.comunio.model.GameResult;
 import com.comunio.model.Result;
+import com.comunio.model.SessionData;
 import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
 import com.comunio.service.FixtureService;
 import com.comunio.service.GameService;
+import com.comunio.service.GroupService;
+import com.comunio.service.PlayoffResultService;
 import com.comunio.service.ResultService;
 import com.comunio.service.TeamService;
 
@@ -34,6 +37,14 @@ public class ResultServiceImpl implements ResultService {
     ComunioService comunioService;
     @Autowired
     TeamService teamService;
+    @Autowired
+    SessionData sessionData;
+    @Autowired
+    GroupService groupService;
+    @Autowired
+    PlayoffResultService playoffResultService;
+    @Autowired
+    ResultGoalFinder resultGoalFinder;
 
     GoalCalculator goalCalculator = new GoalCalculator();
 
@@ -44,10 +55,10 @@ public class ResultServiceImpl implements ResultService {
         List<Result> results = resultDao.getResults(comunioId);
         List<Game> games = gameService.getGames();
         updateGames(games, results);
-
         for (Team team : comunioService.getAllTeams()) {
             updateTeams(team);
         }
+        playoffResultService.handlePlayoff(results);
     }
 
     private void saveResults(List<?> collectiveResult, long comunioId) {
@@ -61,19 +72,10 @@ public class ResultServiceImpl implements ResultService {
             Team homeTeam = game.getHomeTeam();
             Team awayTeam = game.getAwayTeam();
             int matchdayNumber = game.getMatchday().getComunioMatchdayNumber();
-            game.setHomeGoals(findGoalsFromResult(homeTeam, matchdayNumber, results));
-            game.setAwayGoals(findGoalsFromResult(awayTeam, matchdayNumber, results));
+            game.setHomeGoals(resultGoalFinder.findGoalsFromResult(homeTeam, matchdayNumber, results));
+            game.setAwayGoals(resultGoalFinder.findGoalsFromResult(awayTeam, matchdayNumber, results));
             gameService.updateGame(game);
         }
-    }
-
-    private int findGoalsFromResult(Team team, int matchdayNumber, List<Result> results) {
-        for (Result result : results) {
-            if (result.getMatchday() == matchdayNumber && result.getTeam().getTeamId() == team.getTeamId()) {
-                return result.getGoals();
-            }
-        }
-        return 0;
     }
 
     private void updateTeams(Team team) {
@@ -227,9 +229,6 @@ public class ResultServiceImpl implements ResultService {
     }
 
     private Team findTeam(long comunioId, List<String> resultStringList) {
-        // return
-        // teamDao.findTeamByTeamNameAndComunioId(resultStringList.get(0),
-        // comunioId);
         return teamService.findTeamByTeamNameAndComunioId(resultStringList.get(0), comunioId);
 
     }

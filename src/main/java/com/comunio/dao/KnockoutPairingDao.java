@@ -5,5 +5,7 @@ import com.comunio.model.KnockoutPairing;
 public interface KnockoutPairingDao {
 
     void save(KnockoutPairing pairing);
-    
+
+    void update(KnockoutPairing pairing);
+
 }

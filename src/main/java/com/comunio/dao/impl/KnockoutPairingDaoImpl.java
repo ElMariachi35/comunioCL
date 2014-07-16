@@ -18,7 +18,11 @@ public class KnockoutPairingDaoImpl implements KnockoutPairingDao, Serializable 
 
     @Override
     public void save(KnockoutPairing pairing) {
-	sessionFactory.getCurrentSession().save(pairing);
+        sessionFactory.getCurrentSession().save(pairing);
     }
 
+    @Override
+    public void update(KnockoutPairing pairing) {
+        sessionFactory.getCurrentSession().merge(pairing);
+    }
 }

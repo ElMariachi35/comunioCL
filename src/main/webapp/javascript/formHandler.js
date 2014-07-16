@@ -46,6 +46,9 @@ function createPointInputTable(matchdays, teams) {
 		$('#row' + i).append("<div class='teamHeader'>" + teams[i].teamName + "</div>");
 		for (var k = 1; k <= matchdays; k++) {
 			var points = getPointsForMatchday(teams[i],k);
+			if(!points){
+				points = Math.floor(Math.random() * 33) + 15;
+			}
 			$('#row' + i).append(
 					'<input type="text" value="'+points+'" class="pointInput matchday' + k
 							+ ' team' + i + '">');

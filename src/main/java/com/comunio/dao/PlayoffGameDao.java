@@ -6,4 +6,6 @@ public interface PlayoffGameDao {
 
     void save(PlayoffGame game);
 
+    void update(PlayoffGame playoffGame);
+
 }

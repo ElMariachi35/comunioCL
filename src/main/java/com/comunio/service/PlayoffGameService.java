@@ -5,4 +5,6 @@ import com.comunio.model.Team;
 
 public interface PlayoffGameService {
     public PlayoffGame createPlayoffGame(Team homeTeam, Team awayTeam);
+
+    public void update(PlayoffGame playoffGame);
 }

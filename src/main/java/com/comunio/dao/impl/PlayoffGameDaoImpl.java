@@ -10,15 +10,20 @@ import com.comunio.dao.PlayoffGameDao;
 import com.comunio.model.PlayoffGame;
 
 @Repository
-public class PlayoffGameDaoImpl implements PlayoffGameDao, Serializable{
+public class PlayoffGameDaoImpl implements PlayoffGameDao, Serializable {
     private static final long serialVersionUID = 1295903019833001862L;
 
     @Autowired
     SessionFactory sessionFactory;
-    
+
     @Override
     public void save(PlayoffGame game) {
-	sessionFactory.getCurrentSession().save(game);
+        sessionFactory.getCurrentSession().save(game);
+    }
+
+    @Override
+    public void update(PlayoffGame playoffGame) {
+        sessionFactory.getCurrentSession().merge(playoffGame);
     }
 
 }

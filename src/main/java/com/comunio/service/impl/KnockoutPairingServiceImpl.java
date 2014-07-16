@@ -35,4 +35,9 @@ public class KnockoutPairingServiceImpl implements KnockoutPairingService, Seria
         knockoutPairingDao.save(pairing);
         return pairing;
     }
+
+    @Override
+    public void update(KnockoutPairing pairing) {
+        knockoutPairingDao.update(pairing);
+    }
 }

@@ -9,21 +9,21 @@
 <body>
 	<%@ include file="/WEB-INF/jsp/header.jsp" %>
 	<h1>Playoff</h1>
-	<h2>Viertelfinale</h2>
+	<h3>Viertelfinale</h3>
 	<c:forEach var="pairing" items="${comunio.playoff.quaterFinal.pairings}" varStatus="counter">
 		<h4>Paarung ${counter.index+1 }</h4>
 		<span>${pairing.firstLeg.homeTeam.teamName } : ${pairing.firstLeg.awayTeam.teamName } </span><br />
 		<span>${pairing.secondLeg.homeTeam.teamName } : ${pairing.secondLeg.awayTeam.teamName } </span><br />
 	</c:forEach>
-	<h2>Halbfinale</h2>
+	<h3>Halbfinale</h3>
 	<c:forEach var="pairing" items="${comunio.playoff.semiFinal.pairings}" varStatus="counter">
-		<h4>Paarung ${counter.index+1 }</h4>
+		<p>Paarung ${counter.index+1 }</p>
 		<span>${pairing.firstLeg.homeTeam.teamName } : ${pairing.firstLeg.awayTeam.teamName } </span><br />
 		<span>${pairing.secondLeg.homeTeam.teamName } : ${pairing.secondLeg.awayTeam.teamName } </span><br />
 	</c:forEach>
-	<h2>Finale</h2>
-		<span>${comunio.playoff.playoffFinal.firstLeg.homeTeam.teamName} : ${comunio.playoff.playoffFinal.firstLeg.awayTeam.teamName}</span><br />
-		<span>${comunio.playoff.playoffFinal.secondLeg.homeTeam.teamName} : ${comunio.playoff.playoffFinal.secondLeg.awayTeam.teamName}</span><br />
-		<span>${comunio.playoff.playoffFinal.thirdLeg.homeTeam.teamName} : ${comunio.playoff.playoffFinal.thirdLeg.awayTeam.teamName}</span><br />
+	<h3>Finale</h3>
+	<span>${comunio.playoff.playoffFinal.firstLeg.homeTeam.teamName} : ${comunio.playoff.playoffFinal.firstLeg.awayTeam.teamName}</span><br />
+	<span>${comunio.playoff.playoffFinal.secondLeg.homeTeam.teamName} : ${comunio.playoff.playoffFinal.secondLeg.awayTeam.teamName}</span><br />
+	<span>${comunio.playoff.playoffFinal.thirdLeg.homeTeam.teamName} : ${comunio.playoff.playoffFinal.thirdLeg.awayTeam.teamName}</span>
 </body>
 </html>
