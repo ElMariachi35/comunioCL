@@ -1,7 +1,10 @@
 package com.comunio.service.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,7 +61,20 @@ public class ResultServiceImpl implements ResultService {
         for (Team team : comunioService.getAllTeams()) {
             updateTeams(team);
         }
-        playoffResultService.handlePlayoff(results);
+        Map<Integer, List<Result>> preparedResults = new HashMap<>();
+        for (int i = 10; i < 18; i++) {
+            List<Result> resultsOfMatchday = new ArrayList<>();
+            for (Result result : results) {
+                if (result.getMatchday() == i) {
+                    resultsOfMatchday.add(result);
+                }
+            }
+            if (!resultsOfMatchday.isEmpty()) {
+                preparedResults.put(i, resultsOfMatchday);
+            }
+        }
+        playoffResultService.handlePlayoff(preparedResults);
+        // playoffResultService.handlePlayoff(results);
     }
 
     private void saveResults(List<?> collectiveResult, long comunioId) {

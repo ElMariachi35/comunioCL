@@ -1,10 +1,15 @@
 package com.comunio.service;
 
-import com.comunio.model.PlayoffFinale;
-import com.comunio.model.Team;
+import java.util.List;
+
+import com.comunio.model.Result;
 
 public interface PlayoffFinalService {
 
-    PlayoffFinale createFinal(Team team1, Team team2);
+    void updateSecondLeg(List<Result> results);
+
+    void updateThirdLeg(List<Result> results);
+
+    void updateFirstLeg(List<Result> results);
 
 }

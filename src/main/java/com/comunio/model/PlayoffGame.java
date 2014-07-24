@@ -30,43 +30,43 @@ public class PlayoffGame implements Serializable {
     }
 
     public Team getHomeTeam() {
-	return homeTeam;
+        return homeTeam;
     }
 
     public void setHomeTeam(Team homeTeam) {
-	this.homeTeam = homeTeam;
+        this.homeTeam = homeTeam;
     }
 
     public Team getAwayTeam() {
-	return awayTeam;
+        return awayTeam;
     }
 
     public void setAwayTeam(Team awayTeam) {
-	this.awayTeam = awayTeam;
+        this.awayTeam = awayTeam;
     }
 
     public int getHomeGoals() {
-	return homeGoals;
+        return homeGoals;
     }
 
     public void setHomeGoals(int homeGoals) {
-	this.homeGoals = homeGoals;
+        this.homeGoals = homeGoals;
     }
 
     public int getAwayGoals() {
-	return awayGoals;
+        return awayGoals;
     }
 
     public void setAwayGoals(int awayGoals) {
-	this.awayGoals = awayGoals;
+        this.awayGoals = awayGoals;
     }
 
     public long getPlayoffGameId() {
-	return playoffGameId;
+        return playoffGameId;
     }
 
     public void setPlayoffGameId(long playoffGameId) {
-	this.playoffGameId = playoffGameId;
+        this.playoffGameId = playoffGameId;
     }
 
 }

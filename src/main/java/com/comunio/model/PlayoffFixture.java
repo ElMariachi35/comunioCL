@@ -1,16 +1,19 @@
 package com.comunio.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
@@ -24,8 +27,9 @@ public class PlayoffFixture implements Serializable {
     @OneToMany(mappedBy = "teamId", fetch = FetchType.EAGER)
     private Set<Team> teams;
     @Transient
-    private Map<Integer, Team> promotedTeams;
-    @OneToMany(mappedBy = "knockoutPairingId", fetch = FetchType.EAGER)
+    private Map<Integer, Team> promotedTeams = new HashMap<>();
+    @JoinColumn(name = "playoffFixtureId")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<KnockoutPairing> pairings;
 
     public PlayoffFixture() {

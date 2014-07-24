@@ -1,11 +1,7 @@
 package com.comunio.service;
 
-import java.util.Map;
-
-import com.comunio.model.Team;
+import com.comunio.model.Playoff;
 
 public interface PlayoffService {
-    void initializePlayoffs(Map<Integer, Team> teams);
-    void initializeSemifinal(Map<Integer, Team> teams);
-    void initializeFinal(Team team1, Team team2);
+    void savePlayoff(Playoff playoff);
 }

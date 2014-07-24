@@ -2,6 +2,7 @@ package com.comunio.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,15 +22,15 @@ public class Playoff implements Serializable {
     private long playoffId;
     @JsonIgnore
     @OneToOne
-    @JoinColumn(name="comunioId")
+    @JoinColumn(name = "comunioId")
     private Comunio comunio;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "quaterFinal", referencedColumnName = "playoffFixtureId")
     private PlayoffFixture quaterFinal;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "semiFinal", referencedColumnName = "playoffFixtureId")
     private PlayoffFixture semiFinal;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "playoffFinal", referencedColumnName = "playoffFinalId")
     private PlayoffFinale playoffFinal;
 
@@ -37,42 +38,42 @@ public class Playoff implements Serializable {
     }
 
     public long getPlayoffId() {
-	return playoffId;
+        return playoffId;
     }
 
     public void setPlayoffId(long playoffId) {
-	this.playoffId = playoffId;
+        this.playoffId = playoffId;
     }
 
     public PlayoffFixture getQuaterFinal() {
-	return quaterFinal;
+        return quaterFinal;
     }
 
     public void setQuaterFinal(PlayoffFixture quaterFinal) {
-	this.quaterFinal = quaterFinal;
+        this.quaterFinal = quaterFinal;
     }
 
     public PlayoffFixture getSemiFinal() {
-	return semiFinal;
+        return semiFinal;
     }
 
     public void setSemiFinal(PlayoffFixture semiFinal) {
-	this.semiFinal = semiFinal;
+        this.semiFinal = semiFinal;
     }
 
     public PlayoffFinale getPlayoffFinal() {
-	return playoffFinal;
+        return playoffFinal;
     }
 
     public void setPlayoffFinal(PlayoffFinale playoffFinal) {
-	this.playoffFinal = playoffFinal;
+        this.playoffFinal = playoffFinal;
     }
 
     public Comunio getComunio() {
-	return comunio;
+        return comunio;
     }
 
     public void setComunio(Comunio comunio) {
-	this.comunio = comunio;
+        this.comunio = comunio;
     }
 }

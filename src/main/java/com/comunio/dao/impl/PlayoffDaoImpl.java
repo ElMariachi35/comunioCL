@@ -16,13 +16,17 @@ public class PlayoffDaoImpl implements PlayoffDao, Serializable {
     SessionFactory sessionFactory;
 
     @Override
-    public void save(Playoff playoff) {
-	sessionFactory.getCurrentSession().save(playoff);
+    public Playoff save(Playoff playoff) {
+        Playoff playoffToUpdate = findById(playoff);
+        if (playoffToUpdate == null) {
+            sessionFactory.getCurrentSession().save(playoff);
+            return playoff;
+        }
+        sessionFactory.getCurrentSession().merge(playoff);
+        return playoff;
     }
 
-    @Override
-    public void update(Playoff playoff) {
-	sessionFactory.getCurrentSession().update(playoff);
+    public Playoff findById(Playoff playoff) {
+        return (Playoff) sessionFactory.getCurrentSession().get(Playoff.class, playoff.getPlayoffId());
     }
-
 }

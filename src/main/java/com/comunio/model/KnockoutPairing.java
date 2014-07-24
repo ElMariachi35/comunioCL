@@ -2,6 +2,7 @@ package com.comunio.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,16 +19,16 @@ public class KnockoutPairing implements Serializable {
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long knockoutPairingId;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "firstLeg", referencedColumnName = "playoffGameId")
     private PlayoffGame firstLeg;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "secondLeg", referencedColumnName = "playoffGameId")
     private PlayoffGame secondLeg;
     @OneToOne
     @JoinColumn(name = "promotedTeam", referencedColumnName = "teamId")
     private Team promotedTeam;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "playoffFixtureId")
     private PlayoffFixture playoffFixture;
 

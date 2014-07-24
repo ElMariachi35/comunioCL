@@ -19,12 +19,6 @@ public class PlayoffGameServiceImpl implements PlayoffGameService {
         game.setAwayTeam(awayTeam);
         game.setHomeGoals(0);
         game.setAwayGoals(0);
-        playoffGameDao.save(game);
         return game;
-    }
-
-    @Override
-    public void update(PlayoffGame playoffGame) {
-        playoffGameDao.update(playoffGame);
     }
 }

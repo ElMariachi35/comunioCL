@@ -7,7 +7,4 @@ import com.comunio.model.Team;
 public interface KnockoutPairingService {
 
     KnockoutPairing createPairing(Team team1, Team team2, PlayoffFixture fixture);
-
-    void update(KnockoutPairing pairing);
-
 }

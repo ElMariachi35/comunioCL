@@ -4,7 +4,7 @@ import com.comunio.model.Playoff;
 
 public interface PlayoffDao {
 
-    void save(Playoff playoff);
+    Playoff save(Playoff playoff);
 
-    void update(Playoff playoff);
+    Playoff findById(Playoff playoff);
 }

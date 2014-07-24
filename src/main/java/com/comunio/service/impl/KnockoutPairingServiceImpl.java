@@ -32,12 +32,6 @@ public class KnockoutPairingServiceImpl implements KnockoutPairingService, Seria
         pairing.setFirstLeg(firstLeg);
         pairing.setSecondLeg(secondLeg);
         pairing.setPlayoffFixture(playoffFixture);
-        knockoutPairingDao.save(pairing);
         return pairing;
-    }
-
-    @Override
-    public void update(KnockoutPairing pairing) {
-        knockoutPairingDao.update(pairing);
     }
 }

@@ -2,6 +2,7 @@ package com.comunio.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,7 +29,7 @@ public class Comunio {
     private String password;
     @OneToMany(mappedBy = "comunio", fetch = FetchType.EAGER)
     private Set<Groupe> groups;
-    @OneToOne(mappedBy="comunio")
+    @OneToOne(mappedBy = "comunio", cascade = CascadeType.ALL, orphanRemoval = true)
     private Playoff playoff;
 
     public Comunio() {

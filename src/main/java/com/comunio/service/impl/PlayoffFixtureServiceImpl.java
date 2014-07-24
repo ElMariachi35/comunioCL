@@ -27,8 +27,7 @@ public class PlayoffFixtureServiceImpl implements PlayoffFixtureService, Seriali
     @Transactional
     public PlayoffFixture createFixture(Map<Integer, Team> teams) {
         PlayoffFixture fixture = new PlayoffFixture();
-        playoffFixtureDao.save(fixture);
-
+        // playoffFixtureDao.save(fixture);
         for (int i = 1; i <= (teams.size() / 2); i++) {
             Team team1 = teams.get(i);
             Team team2 = teams.get(teams.size() - (i - 1));

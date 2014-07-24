@@ -1,34 +1,55 @@
 package com.comunio.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.comunio.dao.PlayoffFinalDao;
 import com.comunio.model.PlayoffFinale;
-import com.comunio.model.Team;
+import com.comunio.model.PlayoffGame;
+import com.comunio.model.Result;
+import com.comunio.model.SessionData;
 import com.comunio.service.PlayoffFinalService;
-import com.comunio.service.PlayoffGameService;
+import com.comunio.service.PlayoffGameUpdatingService;
 
 @Service
 public class PlayoffFinalServiceImpl implements PlayoffFinalService {
 
     @Autowired
-    PlayoffGameService playoffGameService;
+    SessionData sessionData;
     @Autowired
-    PlayoffFinalDao playoffFinalDao;
-    
+    PlayoffGameUpdatingService playoffGameUpdatingService;
+
     @Override
-    @Transactional
-    public PlayoffFinale createFinal(Team team1, Team team2) {
-	PlayoffFinale playoffFinale=new PlayoffFinale();
-	playoffFinale.setTeamOne(team1);
-	playoffFinale.setTeamTwo(team2);
-	playoffFinale.setFirstLeg(playoffGameService.createPlayoffGame(team1, team2));
-	playoffFinale.setSecondLeg(playoffGameService.createPlayoffGame(team2, team1));
-	playoffFinale.setThirdLeg(playoffGameService.createPlayoffGame(team1, team2));
-	playoffFinalDao.save(playoffFinale);
-	return playoffFinale;
+    public void updateFirstLeg(List<Result> results) {
+        PlayoffFinale playoffFinal = sessionData.getComunio().getPlayoff().getPlayoffFinal();
+        if (playoffFinal == null) {
+            return;
+        }
+        PlayoffGame firstLeg = playoffFinal.getFirstLeg();
+        playoffGameUpdatingService.updatePlayoffGame(firstLeg, results);
+        playoffFinal.setFirstLeg(firstLeg);
     }
 
+    @Override
+    public void updateSecondLeg(List<Result> results) {
+        PlayoffFinale playoffFinal = sessionData.getComunio().getPlayoff().getPlayoffFinal();
+        if (playoffFinal == null) {
+            return;
+        }
+        PlayoffGame secondLeg = playoffFinal.getSecondLeg();
+        playoffGameUpdatingService.updatePlayoffGame(secondLeg, results);
+        playoffFinal.setSecondLeg(secondLeg);
+    }
+
+    @Override
+    public void updateThirdLeg(List<Result> results) {
+        PlayoffFinale playoffFinal = sessionData.getComunio().getPlayoff().getPlayoffFinal();
+        if (playoffFinal == null) {
+            return;
+        }
+        PlayoffGame thirdLeg = playoffFinal.getThirdLeg();
+        playoffGameUpdatingService.updatePlayoffGame(thirdLeg, results);
+        playoffFinal.setThirdLeg(thirdLeg);
+    }
 }
