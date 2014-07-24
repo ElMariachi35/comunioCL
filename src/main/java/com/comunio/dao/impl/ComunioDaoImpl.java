@@ -1,8 +1,7 @@
 package com.comunio.dao.impl;
 
-import java.util.List;
-
 import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,7 +25,13 @@ public class ComunioDaoImpl implements ComunioDao {
     }
 
     @Override
-    public List<Comunio> getAllComunio() {
-        return session.getCurrentSession().createQuery("from Comunio").list();
+    public Comunio save(Comunio comunio) {
+        Session currentSession = session.getCurrentSession();
+        Comunio persistedComunio = (Comunio) currentSession.get(Comunio.class, comunio.getComunioId());
+        if (persistedComunio == null) {
+            currentSession.save(comunio);
+            return comunio;
+        }
+        return (Comunio) currentSession.merge(comunio);
     }
 }

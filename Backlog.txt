@@ -20,10 +20,15 @@ Backlog - Comunio
 
 - 20 - style frontend
 
-- 20 - implement playoffs
-	-TODO: 
-		--add PlayoffFixtureId to knockoutPairing
-		--research lazy-loading
+- DONE - implement playoffs
+
+- 13 - refactor playoffs
+
+- 5  - synchronization testen
+
+- 8  - refactor saving of results
+	TODO: - use CascadeType.ALL
+		  - change playoff teams when points change
 
 -  2 - unique constraint auf teamName
 

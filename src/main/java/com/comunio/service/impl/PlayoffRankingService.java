@@ -58,7 +58,6 @@ public class PlayoffRankingService {
     private Map<Integer, Team> createPlayoffMap(List<Team> teams) {
         Map<Integer, Team> playoffTeams = new HashMap<>();
         for (int i = 0; i < teams.size(); i++) {
-            Team team = teams.get(i);
             playoffTeams.put(i + 1, teams.get(i));
         }
         return playoffTeams;

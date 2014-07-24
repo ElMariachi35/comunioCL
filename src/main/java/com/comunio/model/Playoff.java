@@ -11,19 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 @Entity
 public class Playoff implements Serializable {
     private static final long serialVersionUID = 8354340646218407497L;
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long playoffId;
-    @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "comunioId")
-    private Comunio comunio;
+    private long id;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "quaterFinal", referencedColumnName = "playoffFixtureId")
     private PlayoffFixture quaterFinal;
@@ -35,14 +29,6 @@ public class Playoff implements Serializable {
     private PlayoffFinale playoffFinal;
 
     public Playoff() {
-    }
-
-    public long getPlayoffId() {
-        return playoffId;
-    }
-
-    public void setPlayoffId(long playoffId) {
-        this.playoffId = playoffId;
     }
 
     public PlayoffFixture getQuaterFinal() {
@@ -69,11 +55,11 @@ public class Playoff implements Serializable {
         this.playoffFinal = playoffFinal;
     }
 
-    public Comunio getComunio() {
-        return comunio;
+    public long getId() {
+        return id;
     }
 
-    public void setComunio(Comunio comunio) {
-        this.comunio = comunio;
+    public void setId(long id) {
+        this.id = id;
     }
 }

@@ -14,4 +14,6 @@ public interface ComunioService {
 
     public Comunio retrieveComunio(long parseLong);
 
+    Comunio save(Comunio comunio);
+
 }

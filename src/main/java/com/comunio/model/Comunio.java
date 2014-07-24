@@ -29,8 +29,8 @@ public class Comunio {
     private String password;
     @OneToMany(mappedBy = "comunio", fetch = FetchType.EAGER)
     private Set<Groupe> groups;
-    @OneToOne(mappedBy = "comunio", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Playoff playoff;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Playoff playoff = new Playoff();
 
     public Comunio() {
     }

@@ -7,16 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.comunio.dao.PlayoffDao;
+import com.comunio.model.Comunio;
 import com.comunio.model.Groupe;
 import com.comunio.model.Playoff;
 import com.comunio.model.PlayoffFinale;
 import com.comunio.model.SessionData;
 import com.comunio.model.Team;
+import com.comunio.service.ComunioService;
 import com.comunio.service.PlayoffFinalService;
 import com.comunio.service.PlayoffFixtureService;
 import com.comunio.service.PlayoffGameService;
 import com.comunio.service.PlayoffInitializationService;
+import com.comunio.service.PlayoffService;
 import com.comunio.service.TeamService;
 
 @Service
@@ -31,19 +33,17 @@ public class PlayoffInitializationServiceImpl implements PlayoffInitializationSe
     @Autowired
     PlayoffFixtureService playoffFixtureService;
     @Autowired
-    PlayoffDao playoffDao;
-    @Autowired
     PlayoffFinalService playoffFinalService;
     @Autowired
     PlayoffGameService playoffGameService;
+    @Autowired
+    PlayoffService playoffService;
+    @Autowired
+    ComunioService comunioService;
 
     @Override
     @Transactional
     public void initializePlayoff() {
-        Playoff playoff = sessionData.getComunio().getPlayoff();
-        if (playoff != null) {
-            return;
-        }
         Set<Groupe> groups = sessionData.getComunio().getGroups();
         int numberOfTeams = teamService.findAllTeamNames().size();
         Map<Integer, Team> playoffTeams = playoffRankingService.determinePlayoffTeam(groups, numberOfTeams);
@@ -51,16 +51,17 @@ public class PlayoffInitializationServiceImpl implements PlayoffInitializationSe
     }
 
     private void createPlayoffs(Map<Integer, Team> teams) {
-        Playoff playoff = new Playoff();
-        playoff.setComunio(sessionData.getComunio());
+        Playoff playoff = sessionData.getComunio().getPlayoff();
         if (teams.size() == 8) {
             playoff.setQuaterFinal(playoffFixtureService.createFixture(teams));
         }
         if (teams.size() == 4) {
             playoff.setSemiFinal(playoffFixtureService.createFixture(teams));
         }
-        playoffDao.save(playoff);
-        sessionData.getComunio().setPlayoff(playoff);
+        playoffService.save(playoff);
+        Comunio comunio = sessionData.getComunio();
+        comunio.setPlayoff(playoff);
+        comunioService.save(comunio);
     }
 
     @Override

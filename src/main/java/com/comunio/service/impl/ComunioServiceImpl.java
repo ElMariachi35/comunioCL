@@ -54,4 +54,10 @@ public class ComunioServiceImpl implements ComunioService {
     public Comunio retrieveComunio(long comunioId) {
         return comunioDao.getComunio(comunioId);
     }
+
+    @Transactional
+    @Override
+    public Comunio save(Comunio comunio) {
+        return comunioDao.save(comunio);
+    }
 }

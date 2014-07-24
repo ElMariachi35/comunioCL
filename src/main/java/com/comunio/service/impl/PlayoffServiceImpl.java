@@ -19,7 +19,13 @@ public class PlayoffServiceImpl implements PlayoffService, Serializable {
 
     @Override
     @Transactional
-    public void savePlayoff(Playoff playoff) {
+    public void save(Playoff playoff) {
         playoffDao.save(playoff);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Playoff playoff) {
+        playoffDao.delete(playoff);
     }
 }

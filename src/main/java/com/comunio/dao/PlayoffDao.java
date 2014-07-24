@@ -7,4 +7,6 @@ public interface PlayoffDao {
     Playoff save(Playoff playoff);
 
     Playoff findById(Playoff playoff);
+
+    void delete(Playoff playoff);
 }

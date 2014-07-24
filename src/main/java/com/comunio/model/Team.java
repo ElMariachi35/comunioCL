@@ -174,4 +174,22 @@ public class Team implements Serializable, Comparable<Team> {
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Team)) {
+            return false;
+        }
+        Team team = (Team) obj;
+        if (team.getTeamId() == teamId) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        Long id = teamId;
+        return id.hashCode();
+    }
 }

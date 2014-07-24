@@ -26,7 +26,13 @@ public class PlayoffDaoImpl implements PlayoffDao, Serializable {
         return playoff;
     }
 
+    @Override
     public Playoff findById(Playoff playoff) {
-        return (Playoff) sessionFactory.getCurrentSession().get(Playoff.class, playoff.getPlayoffId());
+        return (Playoff) sessionFactory.getCurrentSession().get(Playoff.class, playoff.getId());
+    }
+
+    @Override
+    public void delete(Playoff playoff) {
+        sessionFactory.getCurrentSession().delete(playoff);
     }
 }

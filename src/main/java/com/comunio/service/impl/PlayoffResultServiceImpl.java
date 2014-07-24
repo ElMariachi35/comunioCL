@@ -80,6 +80,6 @@ public class PlayoffResultServiceImpl implements PlayoffResultService, Serializa
                 break;
             }
         }
-        playoffService.savePlayoff(playoff);
+        playoffService.save(playoff);
     }
 }
