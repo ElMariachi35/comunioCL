@@ -10,7 +10,13 @@
 	<div id="container">
 		<%@ include file="/WEB-INF/jsp/header.jsp"%>
 		<h1>Com Champions League</h1>
-
+		<div>
+			hierbei handelt es sich um eine Erweiterung des Managerspiels <a
+				href="www.comunio.de">Comunio</a>. Im Gegensatz zum normalen Modus,
+			spielen hier die Teams in direkten Duellen gegeneinander. Wie bei der
+			"echten" Champions League gibt es eine Gruppenphase mit
+			anschlieﬂender KO-Phase.
+		</div>
 		<a href="/add">Create new Champions League for your Comunio</a> <br />
 		<br /> <label for="inputComunioId">ComunioId</label> <input
 			id="inputComunioId" type="text" name="inputComunioId" /> <input
