@@ -7,15 +7,14 @@
 <title>Comunio Champions League</title>
 </head>
 <body>
+	<div id="container">
+		<%@ include file="/WEB-INF/jsp/header.jsp"%>
+		<h1>Com Champions League</h1>
 
-	<%@ include file="/WEB-INF/jsp/header.jsp"%>
-	<h1>Welcome to Comunio Champions League</h1>
-
-	<a href="/add">Create new Champions League for your Comunio</a>
-	<br />
-	<br />
-	<label for="inputComunioId">ComunioId</label>
-	<input id="inputComunioId" type="text" name="inputComunioId" />
-	<input type="button" value="Show" onclick="sendOverviewRequest()"/>
+		<a href="/add">Create new Champions League for your Comunio</a> <br />
+		<br /> <label for="inputComunioId">ComunioId</label> <input
+			id="inputComunioId" type="text" name="inputComunioId" /> <input
+			type="button" value="Show" onclick="sendOverviewRequest()" />
+	</div>
 </body>
 </html>

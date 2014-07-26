@@ -143,3 +143,9 @@ ul#menu li:hover ul.sub-menu {
 .pointInput:focus {
 	background-color: white;
 }
+
+#container {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
