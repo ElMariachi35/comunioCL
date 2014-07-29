@@ -1,0 +1,7 @@
+.hidden {
+	display: none;
+}
+
+#tableContainer {
+	padding: 10px;
+}

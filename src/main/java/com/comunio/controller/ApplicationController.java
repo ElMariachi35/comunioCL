@@ -59,22 +59,13 @@ public class ApplicationController {
 	return "register";
     }
 
-    @RequestMapping(value = "/show/{comunioId}/{groupName}")
-    public String showComunio(@PathVariable String groupName,
-	    @PathVariable String comunioId, Map<String, Object> map)
-	    throws JsonGenerationException, JsonMappingException, IOException {
-	sessionData.setComunio(comunioService.retrieveComunio(Long
-		.parseLong(comunioId)));
+    @RequestMapping(value = "/show/{comunioId}")
+    public String showComunio(@PathVariable Long comunioId,
+	    Map<String, Object> map) throws JsonGenerationException,
+	    JsonMappingException, IOException {
+	sessionData.setComunio(comunioService.retrieveComunio(comunioId));
 	map.put("comunioJSON",
 		objectMapper.writeValueAsString(sessionData.getComunio()));
-	map.put("comunio", sessionData.getComunio());
-	Groupe group = groupService.getGroup(groupName);
-	map.put("group", group);
-	map.put("teams", group.getSortedTeams());
-	map.put("groupNames", groupService.determineGroupNames(groupService
-		.getGroups().size()));
-	map.put("matchdays",
-		matchdayService.getSortedMatchdays(group.getFixture()));
 	return "overview";
     }
 

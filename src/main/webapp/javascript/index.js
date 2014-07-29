@@ -17,7 +17,7 @@ function sendOverviewRequest() {
 		type : "POST",
 		url : url,
 		success : function(data) {
-			url = 'show/' + data + '/A';
+			url = 'show/' + data;
 			$('.load-animation-big').show();
 			window.location.href = url;
 		},
