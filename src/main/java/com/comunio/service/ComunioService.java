@@ -18,4 +18,6 @@ public interface ComunioService {
 
     long findByName(String name);
 
+    long findById(long id);
+
 }

@@ -30,6 +30,10 @@
 	margin-top: 20px;
 }
 
+#errorMessage {
+	text-align: center;	
+}
+
 .horizontal-separator {
 	width: 700px;
 	border-bottom: 1px solid white;

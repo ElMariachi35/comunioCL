@@ -66,4 +66,12 @@ public class ComunioServiceImpl implements ComunioService {
     public long findByName(String name){
 	return comunioDao.findByName(name);
     }
+    
+    @Override
+    @Transactional
+    public long findById(long id){
+	return comunioDao.findById(id);
+    }
+    
+     
 }

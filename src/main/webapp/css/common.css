@@ -24,3 +24,7 @@ a:visited {
 	text-align: center;
 }
 
+.errorText {
+	color: #ff0033;
+}
+

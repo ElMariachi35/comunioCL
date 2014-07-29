@@ -10,4 +10,6 @@ public interface ComunioDao {
     Comunio save(Comunio comunio);
 
     long findByName(String name);
+
+    long findById(long id);
 }

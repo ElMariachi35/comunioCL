@@ -14,7 +14,7 @@
 		<div class="header">Com Champions League</div>
 		<div class="login-input">
 			<div class="id-block">
-				<div class="label">ID</div>
+				<div class="label">Com-Id</div>
 				<input type="text" name="inputComId" id="inputComId" />
 			</div>
 			<div class="or">oder</div>
@@ -25,6 +25,7 @@
 		</div>
 		<input class="continue-button" type="button" value="Weiter"
 			onclick="sendOverviewRequest()">
+			<div id="errorMessage" class="errorText">&nbsp;</div>
 		<div class="horizontal-separator"></div>
 		<div class="info-text">
 			Zum ersten Mal hier?<br /> Bei Com Champions League handelt es sich

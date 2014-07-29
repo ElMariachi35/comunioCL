@@ -17,7 +17,7 @@ import org.springframework.stereotype.Controller;
 
 import com.comunio.service.ComunioService;
 
-@Path("/findByName")
+@Path("/findBy")
 @Controller
 public class LoginRestService implements Serializable{
 
@@ -26,9 +26,18 @@ public class LoginRestService implements Serializable{
     ObjectMapper objectMapper = new ObjectMapper();
     
     @POST
-    @Path("/{name}")
+    @Path("/name/{name}")
     public Response findComunioByName(@PathParam("name") String name) throws JsonGenerationException, JsonMappingException, IOException {
 	long comunioId = comunioService.findByName(name);
+	if (comunioId == 0) {
+	    return Response.status(Status.NOT_FOUND).build();
+	}
+	return Response.status(Status.OK).entity(objectMapper.writeValueAsString(comunioId)).build();
+    }
+    @POST
+    @Path("/id/{id}")
+    public Response findComunioByName(@PathParam("id") Long id) throws JsonGenerationException, JsonMappingException, IOException {
+	long comunioId = comunioService.findById(id);
 	if (comunioId == 0) {
 	    return Response.status(Status.NOT_FOUND).build();
 	}

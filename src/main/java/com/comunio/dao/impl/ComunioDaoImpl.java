@@ -42,9 +42,21 @@ public class ComunioDaoImpl implements ComunioDao {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public long findByName(String name){
 	SQLQuery query = session.getCurrentSession().createSQLQuery("SELECT comunioId FROM comunio WHERE name='"+name+"';");
-	List list = query.list();
+	List<BigInteger> list = query.list();
+	if(list.isEmpty()){
+	    return 0;
+	}
+	return ((BigInteger) list.get(0)).longValue();
+    }
+    
+    @Override
+    @SuppressWarnings("unchecked")
+    public long findById(long id){
+	SQLQuery query = session.getCurrentSession().createSQLQuery("SELECT comunioId FROM comunio WHERE comunioId='"+id+"';");
+	List<BigInteger> list = query.list();
 	if(list.isEmpty()){
 	    return 0;
 	}
