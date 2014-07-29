@@ -1,5 +1,7 @@
 package com.comunio.model;
 
+import java.io.Serializable;
+
 import javax.persistence.NoResultException;
 
 import org.springframework.context.annotation.Scope;
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class SessionData {
+public class SessionData implements Serializable {
 
     private long comunioId;
     private Comunio comunio;

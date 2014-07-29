@@ -1,10 +1,3 @@
-
-function sendOverviewRequest() {
-	var comunioId = $('#inputComunioId').val();
-	var url = 'show/' + comunioId + '/A';
-	window.location.href = url;
-}
-
 function createPointInputTable(matchdays, teams) {
 	$('#admin').append("<div id='rowHeader'></div>");
 	$('#rowHeader').append("<div class='teamHeader'>Teams</div>");

@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script>
+	var comunio = $.parseJSON('${comunioJSON}');
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/header.jsp"%>
