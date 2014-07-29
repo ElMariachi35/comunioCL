@@ -62,20 +62,35 @@ function validateRegisterComForm() {
 	for (var i = 0; i < numberOfTeams; i++) {
 		teamNames.push($('#team' + i).val());
 	}
-	isValid = validateTeamNames(teamNames);
+	 if(!validateTeamNames(teamNames)){
+		 isValid =	false;
+	}
 	return isValid;
 }
 
 function validateTeamNames(teamNames) {
-	var isValid = true;
+	var isFilled = true;
+	var isUnique = true;
+	teamNames.sort();
 	for (var i = 0; i < teamNames.length; i++) {
 		var teamName = teamNames[i];
 		if (teamName == "" || teamName == null) {
-			$('#registerValidationErrors').append(
-					'<tr><td>Es wurden nicht alle Teamnamen ausgefüllt.</td><tr>');
-			isValid = false;
-			return;
+			isFilled = false;
+		}
+		if (i == teamNames.length - 1) {
+			continue;
+		}
+		if (teamName == teamNames[i + 1]) {
+			isUnique = false;
 		}
 	}
-	return isValid;
+	if (!isFilled) {
+		$('#registerValidationErrors').append(
+				'<tr><td>Es sind nicht alle Teamnamen ausgefüllt.</td><tr>');
+	}
+	if (!isUnique) {
+		$('#registerValidationErrors').append(
+		'<tr><td>Teamnamen müssen alle unterschiedlich sein.</td><tr>');
+	}
+	return isFilled && isUnique;
 }
