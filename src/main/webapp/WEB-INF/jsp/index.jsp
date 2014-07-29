@@ -25,7 +25,8 @@
 		</div>
 		<input class="continue-button" type="button" value="Weiter"
 			onclick="sendOverviewRequest()">
-			<div id="errorMessage" class="errorText">&nbsp;</div>
+            <div class="animation-marker load-animation-big"></div>
+			<div id="errorMessage" class="error-text">&nbsp;</div>
 		<div class="horizontal-separator"></div>
 		<div class="info-text">
 			Zum ersten Mal hier?<br /> Bei Com Champions League handelt es sich

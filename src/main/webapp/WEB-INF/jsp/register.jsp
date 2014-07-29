@@ -49,7 +49,7 @@
 			</table>
 			<table id="teamNamesTable">
 			</table>
-			<table id="registerValidationErrors" class="errorText">
+			<table id="registerValidationErrors" class="error-text">
 			</table>
 		</form>
 	</div>

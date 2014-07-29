@@ -31,14 +31,15 @@
 }
 
 #errorMessage {
-	text-align: center;	
+	text-align: center;
+	margin-top: 10px;
 }
 
 .horizontal-separator {
 	width: 700px;
 	border-bottom: 1px solid white;
-	margin-top: 45px;
 	margin-left: 50px;
+	margin-top: 25px;
 }
 
 .info-text {
@@ -50,4 +51,11 @@
 .new-com-url {
 	margin-top: 10px;
 	text-align: center;
+}
+
+.load-animation-big {
+	margin-left: 384px;
+	margin-top: 10px;
+	display: none;
+	position: absolute;
 }

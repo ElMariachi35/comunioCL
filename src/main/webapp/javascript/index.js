@@ -18,6 +18,7 @@ function sendOverviewRequest() {
 		url : url,
 		success : function(data) {
 			url = 'show/' + data + '/A';
+			$('.load-animation-big').show();
 			window.location.href = url;
 		},
 		error : function(jqXHR) {

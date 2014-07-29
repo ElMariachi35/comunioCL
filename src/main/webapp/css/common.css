@@ -24,7 +24,12 @@ a:visited {
 	text-align: center;
 }
 
-.errorText {
+.error-text {
 	color: #ff0033;
 }
 
+.load-animation-big {
+	background: url(../../images/loader-big.gif);
+	width: 32px;
+	height: 32px;
+}
