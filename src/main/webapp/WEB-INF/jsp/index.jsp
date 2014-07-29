@@ -4,23 +4,39 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Comunio Champions League</title>
+<title>Com Champions League</title>
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<link rel="stylesheet" type="text/css" href="../css/index.css" />
 </head>
 <body>
-	<div id="container">
-		<%@ include file="/WEB-INF/jsp/header.jsp"%>
-		<h1>Com Champions League</h1>
-		<div>
-			hierbei handelt es sich um eine Erweiterung des Managerspiels <a
-				href="www.comunio.de">Comunio</a>. Im Gegensatz zum normalen Modus,
-			spielen hier die Teams in direkten Duellen gegeneinander. Wie bei der
-			"echten" Champions League gibt es eine Gruppenphase mit
-			anschließender KO-Phase.
+	<div class="container">
+		<div class="header">Com Champions League</div>
+		<div class="login-input">
+			<div class="id-block">
+				<div class="label">ID</div>
+				<input type="text" />
+			</div>
+			<div class="or">oder</div>
+			<div class="name-block">
+				<div class="label">Com-Name</div>
+				<input type="text" />
+			</div>
 		</div>
-		<a href="/add">Create new Champions League for your Comunio</a> <br />
-		<br /> <label for="inputComunioId">ComunioId</label> <input
-			id="inputComunioId" type="text" name="inputComunioId" /> <input
-			type="button" value="Show" onclick="sendOverviewRequest()" />
+		<input class="continue-button" type="button" value="Weiter">
+		<div class="horizontal-separator"></div>
+		<div class="info-text">
+			Zum ersten Mal hier?<br /> Bei Com Champions League handelt es sich um eine
+			Erweiterung des Managerspiels <a href="http://www.comunio.de">Comunio</a>.
+			Im Gegensatz zum normalen Modus, spielen hier die Teams in direkten
+			Duellen gegeneinander. Wie bei der "echten" Champions League gibt es
+			eine Gruppenphase mit anschließender KO-Phase.
+		</div>
+		<div class="new-com-url"><a href="/register">Neue Com Champions League registrieren</a></div>
+		<!-- <a href="/add">Create -->
+		<!-- 			new Champions League for your Comunio</a> <br /> <br /> <label -->
+		<!-- 			for="inputComunioId">ComunioId</label> <input id="inputComunioId" -->
+		<!-- 			type="text" name="inputComunioId" /> <input type="button" -->
+		<!-- 			value="Show" onclick="sendOverviewRequest()" /> -->
 	</div>
 </body>
 </html>

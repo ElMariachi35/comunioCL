@@ -23,7 +23,6 @@
 		</div>
 	</form>
 	<div id="addTeams"></div>
-	
 	<input id="createTeamFieldButton" type="button" value="Continue" onclick="generateTeamFields()" /><br />
 </div>
 </body>

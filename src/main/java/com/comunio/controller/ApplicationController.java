@@ -54,9 +54,9 @@ public class ApplicationController {
         return "index";
     }
 
-    @RequestMapping("/add")
+    @RequestMapping("/register")
     public String addComunio() {
-        return "addComunio";
+        return "register";
     }
 
     @RequestMapping(value = "/show/{comunioId}/{groupName}")
@@ -73,7 +73,7 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String addTeams(@RequestParam("teams") String teamsString, @RequestParam("comunioName") String comunioName,
+    public String addTeams(@RequestParam("teams") String teamsString, @RequestParam("comName") String comunioName,
             @RequestParam("password") String password, @RequestParam("numberOfTeams") String numberOfTeams,
             Map<String, Object> map) {
 

@@ -1,0 +1,27 @@
+.registerHeader {
+	font-size: 25px;
+	margin-bottom: 25px;
+	padding-top: 15px;
+}
+
+.registerForm {
+	margin-left: 60px;
+}
+
+#registerFormTable {
+	border-bottom: 1px solid white;
+}
+
+.labelColumn {
+	width: 183px;
+}
+
+.registerButton {
+	margin-top: 13px;
+	margin-left: 35px;
+	width: 120px;
+}
+
+#registerValidationErrors {
+	color: #ff0033;
+}

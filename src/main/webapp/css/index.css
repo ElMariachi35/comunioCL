@@ -1,0 +1,49 @@
+.header {
+	font-size: 36px;
+	text-align: center;
+	padding-top: 80px;
+}
+
+.login-input {
+	width: 428px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 75px;
+}
+
+.or {
+	margin-left: 200px;
+	margin-top: -24px;
+}
+
+.name-block {
+	margin-left: 270px;
+	margin-top: -42px;
+}
+
+.label {
+	font-size: 12px;
+}
+
+.continue-button {
+	margin-left: 373px;
+	margin-top: 20px;
+}
+
+.horizontal-separator {
+	width: 700px;
+	border-bottom: 1px solid white;
+	margin-top: 45px;
+	margin-left: 50px;
+}
+
+.info-text {
+	margin-top: 15px;
+	width: 620px;
+	margin-left: 90px;
+}
+
+.new-com-url {
+	margin-top: 10px;
+	text-align: center;
+}
