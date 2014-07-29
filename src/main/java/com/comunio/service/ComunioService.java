@@ -16,4 +16,6 @@ public interface ComunioService {
 
     Comunio save(Comunio comunio);
 
+    long findByName(String name);
+
 }

@@ -8,4 +8,6 @@ public interface ComunioDao {
     public Comunio getComunio(long comunioId);
 
     Comunio save(Comunio comunio);
+
+    long findByName(String name);
 }

@@ -60,4 +60,10 @@ public class ComunioServiceImpl implements ComunioService {
     public Comunio save(Comunio comunio) {
         return comunioDao.save(comunio);
     }
+    
+    @Override
+    @Transactional
+    public long findByName(String name){
+	return comunioDao.findByName(name);
+    }
 }
