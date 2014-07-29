@@ -8,11 +8,11 @@ function sendOverviewRequest() {
 		return;
 	}
 	var searchParam = "Id";
+	var url = "rest/findBy/id/" + comId;
 	if (comId == "") {
 		url = "rest/findBy/name/" + comName;
 		searchParam = "Name";
 	}
-	var url = "rest/findBy/id/" + comId;
 	$.ajax({
 		type : "POST",
 		url : url,
