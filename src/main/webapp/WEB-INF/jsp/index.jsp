@@ -11,15 +11,16 @@
 </head>
 <body>
 	<div class="container">
+    <img class="logo" src="../../images/com-cl-logo.png"/>
 		<div class="header">Com Champions League</div>
 		<div class="login-input">
 			<div class="id-block">
-				<div class="label">Com-Id</div>
+				<div class="label"><span class="bold">Com-Id</span></div>
 				<input type="text" name="inputComId" id="inputComId" />
 			</div>
 			<div class="or">oder</div>
 			<div class="name-block">
-				<div class="label">Com-Name</div>
+				<div class="label"><span class="bold">Com-Name</span></div>
 				<input type="text" name="inputComName" id="inputComName" />
 			</div>
 		</div>
@@ -29,14 +30,14 @@
 			<div id="errorMessage" class="error-text">&nbsp;</div>
 		<div class="horizontal-separator"></div>
 		<div class="info-text">
-			Zum ersten Mal hier?<br /> Bei Com Champions League handelt es sich
+			<span class="bold">Zum ersten Mal hier?</span><br /> Bei Com Champions League handelt es sich
 			um eine Erweiterung des Managerspiels <a href="http://www.comunio.de">Comunio</a>.
 			Im Gegensatz zum normalen Modus, spielen hier die Teams in direkten
 			Duellen gegeneinander. Wie bei der "echten" Champions League gibt es
 			eine Gruppenphase mit anschlieﬂender KO-Phase.
 		</div>
 		<div class="new-com-url">
-			<a href="/register">Neue Com Champions League registrieren</a>
+			<span class="bold"><a href="/register">Neue Com Champions League registrieren</a></span>
 		</div>
 		<!-- <a href="/add">Create -->
 		<!-- 			new Champions League for your Comunio</a> <br /> <br /> <label -->

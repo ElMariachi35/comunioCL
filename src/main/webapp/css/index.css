@@ -1,14 +1,15 @@
 .header {
 	font-size: 36px;
 	text-align: center;
-	padding-top: 80px;
+	padding-top: 300px;
+	font-weight: bold;
 }
 
 .login-input {
 	width: 428px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 75px;
+	margin-top: 50px;
 }
 
 .or {
@@ -37,7 +38,7 @@
 
 .horizontal-separator {
 	width: 700px;
-	border-bottom: 1px solid white;
+	border-bottom: 1px solid black;
 	margin-left: 50px;
 	margin-top: 25px;
 }
@@ -58,4 +59,16 @@
 	margin-top: 10px;
 	display: none;
 	position: absolute;
+}
+
+.logo {
+	position: absolute;
+	width: 172px;
+	height: 227px;
+	margin-left: 312px;
+	margin-top: 80px;
+}
+
+input {
+	background-color: #c4e4bf;
 }
