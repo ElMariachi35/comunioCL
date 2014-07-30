@@ -24,7 +24,6 @@ Backlog - Comunio
 		-style admin
 		-style playoff
 		-selenium test
-		-load animation when createing com
 		-max size schedule (check Id 70)
 		-max length team name
 
