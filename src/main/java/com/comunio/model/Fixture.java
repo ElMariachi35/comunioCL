@@ -12,8 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Sort;
+import org.hibernate.annotations.SortType;
 
 @Entity
 public class Fixture implements Serializable {
@@ -28,6 +31,8 @@ public class Fixture implements Serializable {
     @JoinColumn(name = "groupId")
     private Groupe groupe;
     @OneToMany(mappedBy = "fixture", fetch = FetchType.EAGER)
+    @OrderBy("comunioMatchdayNumber")
+    @Sort(type = SortType.NATURAL)
     private Set<Matchday> matchdays;
 
     public Groupe getGroupe() {
