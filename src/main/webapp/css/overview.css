@@ -15,6 +15,9 @@
 	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 	-moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 	box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	-webkit-border-top-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	border-top-left-radius: 10px;
 }
 
 .scheduleContainer {
@@ -26,15 +29,21 @@
 	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 	-moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 	box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	-webkit-border-top-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	border-top-left-radius: 10px;
 }
 
 #overview ul {
 	list-style-type: none;
 }
 
+.idTabs {
+	margin-left: -15px;
+}
+
 .idTabs li {
 	float: left;
-
 }
 
 .idTabs li a:active {
@@ -51,7 +60,7 @@
 	margin-right: 5px;
 	margin-top: 15px;
 	padding-left: 13px;
-	padding-top: 3px; 
+	padding-top: 3px;
 	width: 81px;
 	height: 30px;
 	background-color: #c3e3bf;
@@ -63,11 +72,6 @@
 
 .header {
 	font-weight: bold;
-}
-
-.header-separator {
-	border-bottom: 1px solid #0f340b;
-	width: 100%;
 }
 
 .position {

@@ -1,23 +1,37 @@
 .registerHeader {
-	font-size: 25px;
-	margin-bottom: 25px;
-	padding-top: 15px;
-}
-
-.registerForm {
-	margin-left: 60px;
+	font-weight: bold;
 }
 
 #registerFormTable {
-	border-bottom: 1px solid white;
+	border-bottom: 1px solid #0f340b;
 }
 
 .labelColumn {
 	width: 183px;
+	font-size: 13px;
 }
 
 .registerButton {
 	margin-top: 13px;
 	margin-left: 35px;
 	width: 120px;
+}
+
+.registerFormContainer {
+	background-color: #c4e4bf;
+	position: absolute;
+	width: 345px;
+	padding-top: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-left: 20px;
+	margin-top: 20px;
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	-moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	
+	-webkit-border-top-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	border-top-left-radius: 10px;
 }

@@ -36,3 +36,8 @@ a:visited {
 .bold {
 	font-weight: bold;
 }
+
+.header-separator {
+	border-bottom: 1px solid #0f340b;
+	width: 100%;
+}
