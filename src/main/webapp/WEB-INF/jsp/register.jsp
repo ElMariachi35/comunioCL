@@ -10,6 +10,7 @@
 </head>
 <body onload="generateTeamFields()">
     <div class="container">
+        <%@ include file="/WEB-INF/jsp/header.jsp"%>
         <div class="registerFormContainer">
             <form id="registerForm" class="registerForm" action="save" method="POST">
                 <div class="registerHeader">Neue Com Champions League anlegen</div>

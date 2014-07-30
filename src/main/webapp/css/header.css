@@ -1,0 +1,51 @@
+.page-header {
+	height: 145px;
+	width: 800px;
+	background-color: green;
+}
+
+.header-logo {
+	width: 86px;
+	height: 113px;
+	position: absolute;
+	margin-left: 14px;
+	margin-top: 10px;
+	z-index: 10;
+}
+
+.header-text {
+	font-size: 48px;
+	position: absolute;
+	margin-left: 115px;
+	font-weight: bold;
+	margin-top: 45px;
+}
+
+.header-main-bar {
+	background-color: #0f340b;
+	height: 13px;
+	width: 800px;
+	margin-top: 110px;
+	position: absolute;
+}
+
+.header-sub-bar {
+	background-color: #c4e4bf;
+	height: 2px;
+	width: 800px;
+	margin-top: 110px;
+	position: absolute;
+}
+
+.header-admin-url {
+	margin-left: 740px;
+	margin-top: 80px;
+	position: absolute;
+	font-weight: bold;
+}
+
+.header-rules-url {
+	margin-left: 740px;
+	margin-top: 58px;
+	position: absolute;
+}

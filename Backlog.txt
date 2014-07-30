@@ -21,7 +21,6 @@ Backlog - Comunio
 - 20 - style frontend
 	TODO:
 		-bye week
-		-style index + register
 		-style admin
 		-style playoff
 		-style header
