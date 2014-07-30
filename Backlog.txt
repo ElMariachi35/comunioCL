@@ -23,11 +23,12 @@ Backlog - Comunio
 		-bye week
 		-style admin
 		-style playoff
-		-style header
 		-selenium test
 		-load animation when createing com
 		-max size schedule (check Id 70)
 		-max length team name
+
+-  5 - Erklärung schreiben
 
 - DONE - implement playoffs
 

@@ -23,6 +23,8 @@ function submitRegisterComForm() {
 	for (var i = 0; i < numberOfTeams; i++) {
 		teams = teams + $('#team' + i).val() + ";";
 	}
+	$('.animation-marker').show();
+	$('.registerButton').hide();
 	$('#registerForm').append(
 			'<input type="hidden" name="teams" value="' + teams + '" />');
 	$('#registerForm').submit();

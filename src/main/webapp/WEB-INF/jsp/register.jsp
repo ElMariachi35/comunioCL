@@ -49,6 +49,7 @@
                 </table>
                 <table id="teamNamesTable">
                 </table>
+                <div class="animation-marker load-animation-big"></div>
                 <table id="registerValidationErrors" class="error-text">
                 </table>
             </form>
