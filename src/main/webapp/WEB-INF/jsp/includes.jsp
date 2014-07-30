@@ -6,7 +6,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"
 	type="text/javascript"></script>
 
-<link href="<c:url value="/css/styles.css" />" rel="stylesheet">
 <script src="<c:url value="/javascript/knockout-3.1.0.js" />"></script>
 <script src="<c:url value="/javascript/idTabs.js" />"></script>
 <script src="<c:url value="/javascript/formHandler.js" />"></script>

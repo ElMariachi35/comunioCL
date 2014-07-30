@@ -14,9 +14,9 @@
 </head>
 <body>
     <div class="container">
-        <div id="comunio">
-            <div data-bind="text: comunioId"></div>
-            <div data-bind="text: name"></div>
+        <div id="overview">
+            <!--             <div data-bind="text: comunioId"></div> -->
+            <!--             <div data-bind="text: name"></div> -->
             <ul class="idTabs">
                 <li id="headerA" class="hidden"><a href="#groupA">Gruppe A</a></li>
                 <li id="headerB" class="hidden"><a href="#groupB">Gruppe B</a></li>
@@ -24,74 +24,225 @@
                 <li id="headerD" class="hidden"><a href="#groupD">Gruppe D</a></li>
             </ul>
             <div id="groupA">
-                <div id="tableContainer">
-                    <div>Tabelle</div>
-                    <table>
+                <div class="tableContainer">
+                    <div class="header">Tabelle</div>
+                    <div class="header-separator"></div>
+                    <table class="table">
                         <thead>
-                            <td>Pos</td>
-                            <td>Name</td>
-                            <td>Sp</td>
-                            <td>S</td>
-                            <td>U</td>
-                            <td>N</td>
-                            <td>T</td>
-                            <td>GT</td>
-                            <td>+/-</td>
-                            <td>P</td>
+                            <td class="position">Pos</td>
+                            <td class="teamName">Name</td>
+                            <td class="gamesPlayed">Sp</td>
+                            <td class="gamesWon">S</td>
+                            <td class="gamesDrawn">U</td>
+                            <td class="gamesLost">N</td>
+                            <td class="goalsFor">T</td>
+                            <td class="goalsAgainst">GT</td>
+                            <td class="goalDifference">+/-</td>
+                            <td class="points">P</td>
                         </thead>
                         <tbody data-bind="foreach: groups[0].sortedTeams">
                             <tr>
-                                <td data-bind="text: presentPos($index())"></td>
-                                <td data-bind="text: teamName"></td>
-                                <td data-bind="text: gamesPlayed"></td>
-                                <td data-bind="text: gamesWon"></td>
-                                <td data-bind="text: gamesDrawn"></td>
-                                <td data-bind="text: gamesLost"></td>
-                                <td data-bind="text: goalsFor"></td>
-                                <td data-bind="text: goalsAgainst"></td>
-                                <td data-bind="text: goalDifference"></td>
-                                <td data-bind="text: points"></td>
+                                <td class="position" data-bind="text: presentPos($index())"></td>
+                                <td class="teamName" data-bind="text: teamName"></td>
+                                <td class="gamesPlayed" data-bind="text: gamesPlayed"></td>
+                                <td class="gamesWon" data-bind="text: gamesWon"></td>
+                                <td class="gamesDrawn" data-bind="text: gamesDrawn"></td>
+                                <td class="gamesLost" data-bind="text: gamesLost"></td>
+                                <td class="goalsFor" data-bind="text: goalsFor"></td>
+                                <td class="goalsAgainst" data-bind="text: goalsAgainst"></td>
+                                <td class="goalDifference" data-bind="text: goalDifference"></td>
+                                <td class="points" data-bind="text: points"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div id="scheduleContainer"></div>
+                <div class="scheduleContainer">
+                    <div class="header">Spielplan</div>
+                    <div class="header-separator"></div>
+                    <div data-bind="foreach: groups[0].fixture.matchdays">
+                        <table class="matchday">
+                            <thead>
+                                <tr>
+                                    <td data-bind="text: presentMatchdayHeader(comunioMatchdayNumber)"></td>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: matches">
+                                <tr>
+                                    <td class="home-team" data-bind="text: homeTeam.teamName"></td>
+                                    <td class="home-goals" data-bind="text: homeGoals"></td>
+                                    <td>:</td>
+                                    <td class="away-goals" data-bind="text: awayGoals"></td>
+                                    <td class="away-team" data-bind="text: awayTeam.teamName"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div id="groupB">
-                <div id="tableContainer">
-                    <div>Tabelle</div>
-                    <table>
+                <div class="tableContainer">
+                    <div class="header">Tabelle</div>
+                    <div class="header-separator"></div>
+                    <table class="table">
                         <thead>
-                            <td>Pos</td>
-                            <td>Name</td>
-                            <td>Sp</td>
-                            <td>S</td>
-                            <td>U</td>
-                            <td>N</td>
-                            <td>T</td>
-                            <td>GT</td>
-                            <td>+/-</td>
-                            <td>P</td>
+                            <td class="position">Pos</td>
+                            <td class="teamName">Name</td>
+                            <td class="gamesPlayed">Sp</td>
+                            <td class="gamesWon">S</td>
+                            <td class="gamesDrawn">U</td>
+                            <td class="gamesLost">N</td>
+                            <td class="goalsFor">T</td>
+                            <td class="goalsAgainst">GT</td>
+                            <td class="goalDifference">+/-</td>
+                            <td class="points">P</td>
                         </thead>
                         <tbody data-bind="foreach: groups[1].sortedTeams">
                             <tr>
-                                <td data-bind="text: presentPos($index())"></td>
-                                <td data-bind="text: teamName"></td>
-                                <td data-bind="text: gamesPlayed"></td>
-                                <td data-bind="text: gamesWon"></td>
-                                <td data-bind="text: gamesDrawn"></td>
-                                <td data-bind="text: gamesLost"></td>
-                                <td data-bind="text: goalsFor"></td>
-                                <td data-bind="text: goalsAgainst"></td>
-                                <td data-bind="text: goalDifference"></td>
-                                <td data-bind="text: points"></td>
+                                <td class="position" data-bind="text: presentPos($index())"></td>
+                                <td class="teamName" data-bind="text: teamName"></td>
+                                <td class="gamesPlayed" data-bind="text: gamesPlayed"></td>
+                                <td class="gamesWon" data-bind="text: gamesWon"></td>
+                                <td class="gamesDrawn" data-bind="text: gamesDrawn"></td>
+                                <td class="gamesLost" data-bind="text: gamesLost"></td>
+                                <td class="goalsFor" data-bind="text: goalsFor"></td>
+                                <td class="goalsAgainst" data-bind="text: goalsAgainst"></td>
+                                <td class="goalDifference" data-bind="text: goalDifference"></td>
+                                <td class="points" data-bind="text: points"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <div class="scheduleContainer">
+                    <div class="header">Spielplan</div>
+                    <div class="header-separator"></div>
+                    <div data-bind="foreach: groups[1].fixture.matchdays">
+                        <table class="matchday">
+                            <thead>
+                                <tr>
+                                    <td data-bind="text: presentMatchdayHeader(comunioMatchdayNumber)"></td>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: matches">
+                                <tr>
+                                    <td class="home-team" data-bind="text: homeTeam.teamName"></td>
+                                    <td class="home-goals" data-bind="text: homeGoals"></td>
+                                    <td>:</td>
+                                    <td class="away-goals" data-bind="text: awayGoals"></td>
+                                    <td class="away-team" data-bind="text: awayTeam.teamName"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div id="groupC">Groupe C</div>
-            <div id="groupD">Groupe D</div>
+            <div id="groupC"><div class="tableContainer">
+                    <div class="header">Tabelle</div>
+                    <div class="header-separator"></div>
+                    <table class="table">
+                        <thead>
+                            <td class="position">Pos</td>
+                            <td class="teamName">Name</td>
+                            <td class="gamesPlayed">Sp</td>
+                            <td class="gamesWon">S</td>
+                            <td class="gamesDrawn">U</td>
+                            <td class="gamesLost">N</td>
+                            <td class="goalsFor">T</td>
+                            <td class="goalsAgainst">GT</td>
+                            <td class="goalDifference">+/-</td>
+                            <td class="points">P</td>
+                        </thead>
+                        <tbody data-bind="foreach: groups[2]==undefined ? new Array() : groups[2].sortedTeams">
+                            <tr>
+                                <td class="position" data-bind="text: presentPos($index())"></td>
+                                <td class="teamName" data-bind="text: teamName"></td>
+                                <td class="gamesPlayed" data-bind="text: gamesPlayed"></td>
+                                <td class="gamesWon" data-bind="text: gamesWon"></td>
+                                <td class="gamesDrawn" data-bind="text: gamesDrawn"></td>
+                                <td class="gamesLost" data-bind="text: gamesLost"></td>
+                                <td class="goalsFor" data-bind="text: goalsFor"></td>
+                                <td class="goalsAgainst" data-bind="text: goalsAgainst"></td>
+                                <td class="goalDifference" data-bind="text: goalDifference"></td>
+                                <td class="points" data-bind="text: points"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="scheduleContainer">
+                    <div class="header">Spielplan</div>
+                    <div class="header-separator"></div>
+                    <div data-bind="foreach: groups[2]==undefined ? new Array() : groups[2].fixture.matchdays">
+                        <table class="matchday">
+                            <thead>
+                                <tr>
+                                    <td data-bind="text: presentMatchdayHeader(comunioMatchdayNumber)"></td>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: matches">
+                                <tr>
+                                    <td class="home-team" data-bind="text: homeTeam.teamName"></td>
+                                    <td class="home-goals" data-bind="text: homeGoals"></td>
+                                    <td>:</td>
+                                    <td class="away-goals" data-bind="text: awayGoals"></td>
+                                    <td class="away-team" data-bind="text: awayTeam.teamName"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div></div>
+            <div id="groupD"><div class="tableContainer">
+                    <div class="header">Tabelle</div>
+                    <div class="header-separator"></div>
+                    <table class="table">
+                        <thead>
+                            <td class="position">Pos</td>
+                            <td class="teamName">Name</td>
+                            <td class="gamesPlayed">Sp</td>
+                            <td class="gamesWon">S</td>
+                            <td class="gamesDrawn">U</td>
+                            <td class="gamesLost">N</td>
+                            <td class="goalsFor">T</td>
+                            <td class="goalsAgainst">GT</td>
+                            <td class="goalDifference">+/-</td>
+                            <td class="points">P</td>
+                        </thead>
+                        <tbody data-bind="foreach: groups[3]==undefined ? new Array() : groups[3].sortedTeams">
+                            <tr>
+                                <td class="position" data-bind="text: presentPos($index())"></td>
+                                <td class="teamName" data-bind="text: teamName"></td>
+                                <td class="gamesPlayed" data-bind="text: gamesPlayed"></td>
+                                <td class="gamesWon" data-bind="text: gamesWon"></td>
+                                <td class="gamesDrawn" data-bind="text: gamesDrawn"></td>
+                                <td class="gamesLost" data-bind="text: gamesLost"></td>
+                                <td class="goalsFor" data-bind="text: goalsFor"></td>
+                                <td class="goalsAgainst" data-bind="text: goalsAgainst"></td>
+                                <td class="goalDifference" data-bind="text: goalDifference"></td>
+                                <td class="points" data-bind="text: points"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="scheduleContainer">
+                    <div class="header">Spielplan</div>
+                    <div class="header-separator"></div>
+                    <div data-bind="foreach: groups[3]==undefined ? new Array() : groups[3].fixture.matchdays">
+                        <table class="matchday">
+                            <thead>
+                                <tr>
+                                    <td data-bind="text: presentMatchdayHeader(comunioMatchdayNumber)"></td>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: matches">
+                                <tr>
+                                    <td class="home-team" data-bind="text: homeTeam.teamName"></td>
+                                    <td class="home-goals" data-bind="text: homeGoals"></td>
+                                    <td>:</td>
+                                    <td class="away-goals" data-bind="text: awayGoals"></td>
+                                    <td class="away-team" data-bind="text: awayTeam.teamName"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div></div>
         </div>
     </div>
 </body>

@@ -18,3 +18,7 @@ function initializeGroupHeader() {
 function presentPos(index){
 	return (index+1)+".";
 }
+
+function presentMatchdayHeader(matchdayNumber){
+	return "Spieltag "+matchdayNumber;
+}

@@ -4,9 +4,9 @@ Backlog - Comunio
 - 13 - Integration testing
 
 
--  5 - REST einbauen
+-  DONE - REST einbauen
 -  5 - Validation of Point input
--  2 - globale comunio variable in javascript
+-  DONE - globale comunio variable in javascript
 
 -  1 - rename jsp to <name>View
 
@@ -19,6 +19,18 @@ Backlog - Comunio
 -  DONE - implement table sorting
 
 - 20 - style frontend
+	TODO:
+		-bye week
+		-sort matchdays
+		-relink on save comunio
+		-style index + register
+		-style admin
+		-style playoff
+		-style header
+		-selenium test
+		-load animation when createing com
+		-max size schedule (check Id 70)
+		-max length team name
 
 - DONE - implement playoffs
 
