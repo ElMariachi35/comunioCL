@@ -1,12 +1,22 @@
 function loadMatchday() {
+	$('.load-loader').show();
 	var selectedMatchday = $('#numberOfTeams').val();
-
 	$.ajax({
 		type : "POST",
 		url : "rest/admin/findPoints/" + COMUNIO.comunioId+"/"+selectedMatchday,
 		success : function(data) {
 			var results =$.parseJSON(data);
-			console.log(results);
+			if(results.length==0){
+				for (var i = 0; i < teams.length; i++) {
+					var team = teams[i];
+					$("#" + team.teamId).val("");
+				}
+			}
+			for(var i=0;i<results.length;i++){
+				var result = results[i];
+				$("#"+result.team.teamId).val(result.points);
+			}
+			$('.load-loader').hide();
 		},
 		error : function(jqXHR) {
 			// if (jqXHR.status == 404) {
@@ -26,7 +36,7 @@ function loadMatchday() {
 
 function saveMatchday() {
 	$(".save-button").val("");
-	$(".small-loader").show();
+	$(".save-loader").show();
 	var results = new Array();
 	var matchday = $("#numberOfTeams").val();
 	for (var i = 0; i < teams.length; i++) {
@@ -48,7 +58,7 @@ function saveMatchday() {
 		data : jsonResult,
 		success : function(data) {
 			$(".save-button").val("Speichern");
-			$(".small-loader").hide();
+			$(".save-loader").hide();
 			$('#message').html(data);
 		},
 		error : function(jqXHR) {

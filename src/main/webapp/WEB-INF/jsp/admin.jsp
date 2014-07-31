@@ -23,6 +23,7 @@
         <div class="admin-container">
             <div class="admin-header">Punkteeingabe</div>
             <div class="header-separator"></div>
+            <div class="load-loader"></div>
             <table>
                 <tr>
                     <td class="labelColumn">Spieltag auswählen:</td>
@@ -60,7 +61,7 @@
                 <td colspan="2"><div id="message"></div></td>
                 </tr>
             </table>
-            <div class="small-loader"></div>
+            <div class="save-loader"></div>
         </div>
 
     </div>
