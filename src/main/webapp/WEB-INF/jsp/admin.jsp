@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="../css/common.css" />
 <link rel="stylesheet" type="text/css" href="../css/admin.css" />
 </head>
-<body>
+<body onload="loadMatchday()">
     <script>
 					var teams = $.parseJSON('${teams}');
 					var matchdays = "${numberOfMatchdays}";

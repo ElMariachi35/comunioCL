@@ -35,13 +35,19 @@ function loadMatchday() {
 }
 
 function saveMatchday() {
-	$(".save-button").val("");
-	$(".save-loader").show();
+	$('#message').html('');
 	var results = new Array();
 	var matchday = $("#numberOfTeams").val();
 	for (var i = 0; i < teams.length; i++) {
 		var team = teams[i];
 		var points = $("#" + team.teamId).val();
+		if(isNaN(points)){
+			$('#message').html('<span class="error-text">Es sind nur Zahlen als Eingabe erlaubt!</span>');
+			return;
+		}
+		if(points==""){
+			points=0;
+		}
 		var result = {
 			teamId : team.teamId,
 			matchdayNumber : matchday,
@@ -49,6 +55,9 @@ function saveMatchday() {
 		};
 		results.push(result);
 	}
+	$(".save-button").val("");
+	$(".save-loader").show();
+
 	var jsonResult = JSON.stringify(results);
 
 	$.ajax({
