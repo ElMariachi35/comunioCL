@@ -1,4 +1,5 @@
 function loadMatchday() {
+	$('#message').html('');
 	$('.load-loader').show();
 	var selectedMatchday = $('#numberOfTeams').val();
 	$.ajax({
@@ -45,7 +46,7 @@ function saveMatchday() {
 		};
 		results.push(result);
 	}
-	$(".save-button").val("");
+	$(".save-button").prop("disabled", true);
 	$(".save-loader").show();
 
 	var jsonResult = JSON.stringify(results);
@@ -56,7 +57,7 @@ function saveMatchday() {
 		dataType : "json",
 		data : jsonResult,
 		success : function(data) {
-			$(".save-button").val("Speichern");
+			$(".save-button").prop("disabled", false);
 			$(".save-loader").hide();
 			$('#message').html(data);
 		}

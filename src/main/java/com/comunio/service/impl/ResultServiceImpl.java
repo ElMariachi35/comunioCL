@@ -54,196 +54,192 @@ public class ResultServiceImpl implements ResultService {
     @Override
     @Transactional
     public List<Result> findResultsBy(long comunioId, int matchdayNumber) {
-	return resultDao.findResultsBy(comunioId, matchdayNumber);
+        return resultDao.findResultsBy(comunioId, matchdayNumber);
     }
 
     @Override
     @Transactional
     public void updateResult(List<JsonResult> jsonResults, long comunioId) {
-	List<Result> results = saveResults(jsonResults);
-
-	List<Game> games = gameService.getGames(comunioId);
-	updateGames(games, results);
-	for (Team team : comunioService.getAllTeams(comunioId)) {
-	    updateTeams(team, comunioId);
-	}
-	Map<Integer, List<Result>> preparedResults = new HashMap<>();
-	for (int i = 10; i < 18; i++) {
-	    List<Result> resultsOfMatchday = new ArrayList<>();
-	    for (Result result : results) {
-		if (result.getMatchday() == i) {
-		    resultsOfMatchday.add(result);
-		}
-	    }
-	    if (!resultsOfMatchday.isEmpty()) {
-		preparedResults.put(i, resultsOfMatchday);
-	    }
-	}
-	playoffResultService.handlePlayoff(preparedResults);
+        saveResults(jsonResults);
+        List<Result> results = resultDao.getResults(comunioId);
+        List<Game> games = gameService.getGames(comunioId);
+        updateGames(games, results);
+        for (Team team : comunioService.getAllTeams(comunioId)) {
+            updateTeams(team, comunioId);
+        }
+        Map<Integer, List<Result>> preparedResults = new HashMap<>();
+        for (int i = 10; i < 18; i++) {
+            List<Result> resultsOfMatchday = new ArrayList<>();
+            for (Result result : results) {
+                if (result.getMatchday() == i) {
+                    resultsOfMatchday.add(result);
+                }
+            }
+            if (!resultsOfMatchday.isEmpty()) {
+                preparedResults.put(i, resultsOfMatchday);
+            }
+        }
+        playoffResultService.handlePlayoff(preparedResults);
     }
 
     private List<Result> saveResults(List<JsonResult> results) {
-	List<Result> storedResults = new ArrayList<>();
-	for (JsonResult jsonResult : results) {
-	    Team team = findTeam(jsonResult.getTeamId());
-	    Result result = new Result();
-	    result.setTeam(team);
-	    result.setMatchday(jsonResult.getMatchdayNumber());
-	    result.setPoints(jsonResult.getPoints());
-	    result.setGoals(calculateGoals(jsonResult.getPoints()));
-	    storedResults.add(resultDao.saveOrUpdate(result));
-	}
-	return storedResults;
+        List<Result> storedResults = new ArrayList<>();
+        for (JsonResult jsonResult : results) {
+            Team team = findTeam(jsonResult.getTeamId());
+            Result result = new Result();
+            result.setTeam(team);
+            result.setMatchday(jsonResult.getMatchdayNumber());
+            result.setPoints(jsonResult.getPoints());
+            result.setGoals(calculateGoals(jsonResult.getPoints()));
+            storedResults.add(resultDao.saveOrUpdate(result));
+        }
+        return storedResults;
     }
 
     private Team findTeam(long teamId) {
-	return teamService.findBy(teamId);
+        return teamService.findBy(teamId);
     }
 
     private void updateGames(List<Game> games, List<Result> results) {
-	for (Game game : games) {
-	    Team homeTeam = game.getHomeTeam();
-	    Team awayTeam = game.getAwayTeam();
-	    int matchdayNumber = game.getMatchday().getComunioMatchdayNumber();
-	    game.setHomeGoals(resultGoalFinder.findGoalsFromResult(homeTeam,
-		    matchdayNumber, results));
-	    game.setAwayGoals(resultGoalFinder.findGoalsFromResult(awayTeam,
-		    matchdayNumber, results));
-	    gameService.updateGame(game);
-	}
+        for (Game game : games) {
+            Team homeTeam = game.getHomeTeam();
+            Team awayTeam = game.getAwayTeam();
+            int matchdayNumber = game.getMatchday().getComunioMatchdayNumber();
+            game.setHomeGoals(resultGoalFinder.findGoalsFromResult(homeTeam, matchdayNumber, results));
+            game.setAwayGoals(resultGoalFinder.findGoalsFromResult(awayTeam, matchdayNumber, results));
+            gameService.updateGame(game);
+        }
     }
 
     private void updateTeams(Team team, long comunioId) {
-	List<Game> games = gameService.getGamesByTeam(team, comunioId);
-	List<Result> results = getResultsByTeam(team);
-	Team teamResult = results.get(0).getTeam();
-	if (teamResult != null) {
-	    teamResult.resetAttributes();
-	}
-	for (Result result : results) {
-	    for (Game game : games) {
-		if (result.getMatchday() == game.getMatchday()
-			.getComunioMatchdayNumber()) {
-		    updateTeamResult(teamResult, game);
-		}
-	    }
-	}
+        List<Game> games = gameService.getGamesByTeam(team, comunioId);
+        List<Result> results = getResultsByTeam(team);
+        Team teamResult = results.get(0).getTeam();
+        if (teamResult != null) {
+            teamResult.resetAttributes();
+        }
+        for (Result result : results) {
+            for (Game game : games) {
+                if (result.getMatchday() == game.getMatchday().getComunioMatchdayNumber()) {
+                    updateTeamResult(teamResult, game);
+                }
+            }
+        }
     }
 
     public List<Result> getResultsByTeam(Team team) {
-	return resultDao.getResultsByTeam(team);
+        return resultDao.getResultsByTeam(team);
     }
 
     private void updateTeamResult(Team team, Game game) {
-	if (hasWon(team, game)) {
-	    updateTeamAttributes(GameResult.WON, team, game);
-	    return;
-	}
-	if (hasLost(team, game)) {
-	    updateTeamAttributes(GameResult.LOST, team, game);
-	    return;
-	}
-	if (hasDrawn(team, game)) {
-	    updateTeamAttributes(GameResult.DRAW, team, game);
-	}
+        if (hasWon(team, game)) {
+            updateTeamAttributes(GameResult.WON, team, game);
+            return;
+        }
+        if (hasLost(team, game)) {
+            updateTeamAttributes(GameResult.LOST, team, game);
+            return;
+        }
+        if (hasDrawn(team, game)) {
+            updateTeamAttributes(GameResult.DRAW, team, game);
+        }
     }
 
     private void updateTeamAttributes(GameResult result, Team team, Game game) {
-	team.setGamesPlayed(team.getGamesPlayed() + 1);
-	team.setGoalsFor(team.getGoalsFor() + getGoalsFor(team, game));
-	team.setGoalsAgainst(team.getGoalsAgainst()
-		+ getGoalsAgainst(team, game));
-	team.setGoalDifference(determineGoalDifference(team));
+        team.setGamesPlayed(team.getGamesPlayed() + 1);
+        team.setGoalsFor(team.getGoalsFor() + getGoalsFor(team, game));
+        team.setGoalsAgainst(team.getGoalsAgainst() + getGoalsAgainst(team, game));
+        team.setGoalDifference(determineGoalDifference(team));
 
-	if (result == GameResult.WON) {
-	    team.setGamesWon(team.getGamesWon() + 1);
-	    team.setPoints(team.getPoints() + 3);
-	} else if (result == GameResult.LOST) {
-	    team.setGamesLost(team.getGamesLost() + 1);
-	} else {
-	    team.setGamesDrawn(team.getGamesDrawn() + 1);
-	    team.setPoints(team.getPoints() + 1);
-	}
-	teamService.updateTeam(team);
+        if (result == GameResult.WON) {
+            team.setGamesWon(team.getGamesWon() + 1);
+            team.setPoints(team.getPoints() + 3);
+        } else if (result == GameResult.LOST) {
+            team.setGamesLost(team.getGamesLost() + 1);
+        } else {
+            team.setGamesDrawn(team.getGamesDrawn() + 1);
+            team.setPoints(team.getPoints() + 1);
+        }
+        teamService.updateTeam(team);
     }
 
     private int determineGoalDifference(Team team) {
-	return team.getGoalsFor() - team.getGoalsAgainst();
+        return team.getGoalsFor() - team.getGoalsAgainst();
     }
 
     private int getGoalsAgainst(Team team, Game game) {
-	if (isHomeTeam(team, game)) {
-	    return game.getAwayGoals();
-	} else {
-	    return game.getHomeGoals();
-	}
+        if (isHomeTeam(team, game)) {
+            return game.getAwayGoals();
+        } else {
+            return game.getHomeGoals();
+        }
     }
 
     private int getGoalsFor(Team team, Game game) {
-	if (isHomeTeam(team, game)) {
-	    return game.getHomeGoals();
-	} else {
-	    return game.getAwayGoals();
-	}
+        if (isHomeTeam(team, game)) {
+            return game.getHomeGoals();
+        } else {
+            return game.getAwayGoals();
+        }
     }
 
     private boolean hasDrawn(Team team, Game game) {
-	if ((isHomeTeam(team, game) || isAwayTeam(team, game)) && isDraw(game)) {
-	    return true;
-	}
-	return false;
+        if ((isHomeTeam(team, game) || isAwayTeam(team, game)) && isDraw(game)) {
+            return true;
+        }
+        return false;
     }
 
     private boolean isDraw(Game game) {
-	return game.getHomeGoals() == game.getAwayGoals();
+        return game.getHomeGoals() == game.getAwayGoals();
     }
 
     private boolean hasLost(Team team, Game game) {
-	if (isHomeTeam(team, game) && homeTeamLost(game)) {
-	    return true;
-	}
-	if (isAwayTeam(team, game) && awayTeamLost(game)) {
-	    return true;
-	}
-	return false;
+        if (isHomeTeam(team, game) && homeTeamLost(game)) {
+            return true;
+        }
+        if (isAwayTeam(team, game) && awayTeamLost(game)) {
+            return true;
+        }
+        return false;
     }
 
     private boolean awayTeamLost(Game game) {
-	return game.getAwayGoals() < game.getHomeGoals();
+        return game.getAwayGoals() < game.getHomeGoals();
     }
 
     private boolean homeTeamLost(Game game) {
-	return game.getHomeGoals() < game.getAwayGoals();
+        return game.getHomeGoals() < game.getAwayGoals();
     }
 
     private boolean hasWon(Team team, Game game) {
-	if (isHomeTeam(team, game) && homeTeamWon(game)) {
-	    return true;
-	}
-	if (isAwayTeam(team, game) && awayTeamWon(game)) {
-	    return true;
-	}
-	return false;
+        if (isHomeTeam(team, game) && homeTeamWon(game)) {
+            return true;
+        }
+        if (isAwayTeam(team, game) && awayTeamWon(game)) {
+            return true;
+        }
+        return false;
     }
 
     private boolean awayTeamWon(Game game) {
-	return game.getAwayGoals() > game.getHomeGoals();
+        return game.getAwayGoals() > game.getHomeGoals();
     }
 
     private boolean homeTeamWon(Game game) {
-	return game.getHomeGoals() > game.getAwayGoals();
+        return game.getHomeGoals() > game.getAwayGoals();
     }
 
     private boolean isAwayTeam(Team team, Game game) {
-	return team.getTeamId() == game.getAwayTeam().getTeamId();
+        return team.getTeamId() == game.getAwayTeam().getTeamId();
     }
 
     private boolean isHomeTeam(Team team, Game game) {
-	return team.getTeamId() == game.getHomeTeam().getTeamId();
+        return team.getTeamId() == game.getHomeTeam().getTeamId();
     }
 
     private int calculateGoals(int points) {
-	return goalCalculator.calculateGoalsFromPoints(points);
+        return goalCalculator.calculateGoalsFromPoints(points);
     }
 
 }
