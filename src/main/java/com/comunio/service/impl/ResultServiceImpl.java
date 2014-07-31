@@ -52,6 +52,7 @@ public class ResultServiceImpl implements ResultService {
     GoalCalculator goalCalculator = new GoalCalculator();
 
     @Override
+    @Transactional
     public List<Result> findResultsBy(long comunioId, int matchdayNumber) {
 	return resultDao.findResultsBy(comunioId, matchdayNumber);
     }

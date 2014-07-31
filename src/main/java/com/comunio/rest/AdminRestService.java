@@ -7,6 +7,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -41,15 +42,14 @@ public class AdminRestService {
 	    throws JsonGenerationException, JsonMappingException, IOException {
 	List<Result> results = resultService.findResultsBy(
 		comunioId, matchdayNumber);
-	return Response.status(Status.OK).build();
+	return Response.status(Status.OK).entity(objectMapper.writeValueAsString(results)).build();
     }
 
     @POST
     @Path("/save/{comunioId}")
-    @Consumes(MediaType.APPLICATION_JSON)
     public Response saveMatchday(@PathParam("comunioId") long comunioId, String json) throws JsonParseException, JsonMappingException, IOException {
 	List<JsonResult> jsonResults = objectMapper.readValue(json, new TypeReference<List<JsonResult>>(){});
 	resultService.updateResult(jsonResults, comunioId);
-	return Response.status(Status.OK).build();
+	return Response.status(Status.OK).entity(objectMapper.writeValueAsString("Spieltag wurde gespeichert!")).build();
     }
 }

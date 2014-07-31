@@ -48,6 +48,7 @@ public class Team implements Serializable, Comparable<Team> {
     @Column
     private int points;
     @Column
+    @JsonIgnore
     @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
     private List<Result> result;
 

@@ -61,14 +61,17 @@ public class ResultDaoImpl implements ResultDao {
 	return query.list();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Result> findResultsBy(long comunioId, int matchdayNumber) {
 	Query query = sessionFactory
 		.getCurrentSession()
 		.createSQLQuery(
-			"SELECT DISTINCT r.resultId, r.teamId, r.matchday, r.points, r.goals FROM groupe g JOIN team t ON g.groupId=t.groupId JOIN result r ON t.teamId=r.teamId WHERE g.comunioId=:comunioId AND r.matchday=:matchdayNumber")
-		.addEntity(Result.class).setParameter("comunioId", comunioId)
-		.setParameter("matchdayNumber", matchdayNumber);
+			"SELECT result.resultId, result.teamId, result.matchday, result.points, result.goals FROM result JOIN team ON result.teamId=team.teamId JOIN groupe ON team.groupId=groupe.groupId WHERE comunioId="
+				+ comunioId
+				+ " AND matchday="
+				+ matchdayNumber
+				+ ";").addEntity(Result.class);
 	return query.list();
     }
 }

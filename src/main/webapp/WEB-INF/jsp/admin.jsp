@@ -26,7 +26,7 @@
             <table>
                 <tr>
                     <td class="labelColumn">Spieltag auswählen:</td>
-                    <td><select id="numberOfTeams" name="numberOfTeams" onchange="">
+                    <td><select id="numberOfTeams" name="numberOfTeams" onchange="loadMatchday()">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -56,7 +56,11 @@
                     <td colspan="2"><input class="save-button" type="button" value="Speichern"
                         onclick="saveMatchday()"></td>
                 </tr>
+                <tr>
+                <td colspan="2"><div id="message"></div></td>
+                </tr>
             </table>
+            <div class="small-loader"></div>
         </div>
 
     </div>

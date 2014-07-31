@@ -20,7 +20,6 @@ public class Result implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long resultId;
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "teamId")
     private Team team;
     @Column
