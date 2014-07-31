@@ -3,33 +3,21 @@ function loadMatchday() {
 	var selectedMatchday = $('#numberOfTeams').val();
 	$.ajax({
 		type : "POST",
-		url : "rest/admin/findPoints/" + COMUNIO.comunioId+"/"+selectedMatchday,
+		url : "rest/admin/findPoints/" + COMUNIO.comunioId + "/"
+				+ selectedMatchday,
 		success : function(data) {
-			var results =$.parseJSON(data);
-			if(results.length==0){
+			var results = $.parseJSON(data);
+			if (results.length == 0) {
 				for (var i = 0; i < teams.length; i++) {
 					var team = teams[i];
 					$("#" + team.teamId).val("");
 				}
 			}
-			for(var i=0;i<results.length;i++){
+			for (var i = 0; i < results.length; i++) {
 				var result = results[i];
-				$("#"+result.team.teamId).val(result.points);
+				$("#" + result.team.teamId).val(result.points);
 			}
 			$('.load-loader').hide();
-		},
-		error : function(jqXHR) {
-			// if (jqXHR.status == 404) {
-			// var errorMessage = "";
-			// if (searchParam == "Id") {
-			// errorMessage = "Die Com-CL mit der Id '" + comId
-			// + "' konnte leider nicht gefunden werden.";
-			// } else {
-			// errorMessage = "Die Com-CL mit dem Namen '" + comName
-			// + "' konnte leider nicht gefunden werden.";
-			// }
-			// $('#errorMessage').html(errorMessage);
-			// }
 		}
 	});
 }
@@ -41,12 +29,14 @@ function saveMatchday() {
 	for (var i = 0; i < teams.length; i++) {
 		var team = teams[i];
 		var points = $("#" + team.teamId).val();
-		if(isNaN(points)){
-			$('#message').html('<span class="error-text">Es sind nur Zahlen als Eingabe erlaubt!</span>');
+		if (isNaN(points)) {
+			$('#message')
+					.html(
+							'<span class="error-text">Es sind nur Zahlen als Eingabe erlaubt!</span>');
 			return;
 		}
-		if(points==""){
-			points=0;
+		if (points == "") {
+			points = 0;
 		}
 		var result = {
 			teamId : team.teamId,
@@ -62,26 +52,13 @@ function saveMatchday() {
 
 	$.ajax({
 		type : "POST",
-		url : "rest/admin/save"+"/"+COMUNIO.comunioId,
+		url : "rest/admin/save" + "/" + COMUNIO.comunioId,
 		dataType : "json",
 		data : jsonResult,
 		success : function(data) {
 			$(".save-button").val("Speichern");
 			$(".save-loader").hide();
 			$('#message').html(data);
-		},
-		error : function(jqXHR) {
-			// if (jqXHR.status == 404) {
-			// var errorMessage = "";
-			// if (searchParam == "Id") {
-			// errorMessage = "Die Com-CL mit der Id '" + comId
-			// + "' konnte leider nicht gefunden werden.";
-			// } else {
-			// errorMessage = "Die Com-CL mit dem Namen '" + comName
-			// + "' konnte leider nicht gefunden werden.";
-			// }
-			// $('#errorMessage').html(errorMessage);
-			// }
 		}
 	});
 }

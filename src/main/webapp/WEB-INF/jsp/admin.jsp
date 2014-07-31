@@ -12,9 +12,6 @@
 					var teams = $.parseJSON('${teams}');
 					var matchdays = "${numberOfMatchdays}";
 					var COMUNIO = $.parseJSON('${comunioJSON}');
-					console.log(teams);
-					console.log(matchdays);
-					console.log(COMUNIO);
 					//    		 createPointInputTable(matchdays, teams);
 				</script>
     <div class="container">
