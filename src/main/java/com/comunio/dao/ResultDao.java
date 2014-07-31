@@ -6,9 +6,11 @@ import com.comunio.model.Result;
 import com.comunio.model.Team;
 
 public interface ResultDao {
-    public void saveOrUpdate(Result result);
+    public Result saveOrUpdate(Result result);
 
     public List<Result> getResultsByTeam(Team team);
 
     public List<Result> getResults(long comunioId);
+
+    public List<Result> findResultsBy(long comunioId, int matchdayNumber);
 }

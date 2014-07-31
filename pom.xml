@@ -134,7 +134,7 @@
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.13</version>
+			<version>1.9.2</version>
 		</dependency>
 
 		<!-- Guava -->
@@ -150,7 +150,6 @@
 			<artifactId>jersey-server</artifactId>
 			<version>1.8</version>
 		</dependency>
-
 		<!-- Jersey + Spring -->
 		<dependency>
 			<groupId>com.sun.jersey.contribs</groupId>

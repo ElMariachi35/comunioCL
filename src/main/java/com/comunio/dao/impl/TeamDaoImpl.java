@@ -30,4 +30,9 @@ public class TeamDaoImpl implements TeamDao {
         Query query = sessionFactory.getCurrentSession().createSQLQuery(queryString);
         query.executeUpdate();
     }
+
+    @Override
+    public Team findBy(long teamId) {
+	return (Team) sessionFactory.getCurrentSession().get(Team.class, teamId);
+    }
 }

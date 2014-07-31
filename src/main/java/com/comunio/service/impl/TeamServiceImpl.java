@@ -26,46 +26,51 @@ public class TeamServiceImpl implements TeamService {
 
     @Transactional
     public void saveTeam(Team team, Groupe group) {
-        team.setGroupe(group);
-        teamDao.saveTeam(team);
+	teamDao.saveTeam(team);
     }
 
     public List<Team> createTeamsFromString(String teamsString) {
-        String[] teamsStringArr = teamsString.split(";");
-        List<Team> teams = new ArrayList<>();
-        for (int i = 0; i < teamsStringArr.length; i++) {
-            Team team = new Team();
-            team.setTeamName(teamsStringArr[i]);
-            teams.add(team);
-        }
-        return teams;
+	String[] teamsStringArr = teamsString.split(";");
+	List<Team> teams = new ArrayList<>();
+	for (int i = 0; i < teamsStringArr.length; i++) {
+	    Team team = new Team();
+	    team.setTeamName(teamsStringArr[i]);
+	    teams.add(team);
+	}
+	return teams;
     }
 
     @Transactional
     public List<String> findAllTeamNames() {
-        List<String> teamNames = new ArrayList<>();
-        for (Groupe group : groupService.getGroups()) {
-            for (Team team : group.getSortedTeams()) {
-                teamNames.add(team.getTeamName());
-            }
-        }
-        return teamNames;
+	List<String> teamNames = new ArrayList<>();
+	for (Groupe group : groupService.getGroups()) {
+	    for (Team team : group.getSortedTeams()) {
+		teamNames.add(team.getTeamName());
+	    }
+	}
+	return teamNames;
     }
 
     @Override
     public void updateTeam(Team team) {
-        teamDao.updateTeam(team);
+	teamDao.updateTeam(team);
     }
 
     @Override
     public Team findTeamByTeamNameAndComunioId(String teamName, long comunioId) {
-        for (Groupe groupe : groupService.getGroups()) {
-            for (Team team : groupe.getTeams()) {
-                if (team.getTeamName().equals(teamName)) {
-                    return team;
-                }
-            }
-        }
-        return null;
+	for (Groupe groupe : groupService.getGroups()) {
+	    for (Team team : groupe.getTeams()) {
+		if (team.getTeamName().equals(teamName)) {
+		    return team;
+		}
+	    }
+	}
+	return null;
+    }
+
+    @Override
+    @Transactional
+    public Team findBy(long teamId) {
+	return teamDao.findBy(teamId);
     }
 }

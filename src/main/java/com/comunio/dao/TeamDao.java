@@ -6,4 +6,6 @@ public interface TeamDao {
     void saveTeam(Team team);
 
     void updateTeam(Team team);
+
+    Team findBy(long teamId);
 }

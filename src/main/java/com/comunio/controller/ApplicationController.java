@@ -89,23 +89,17 @@ public class ApplicationController {
     }
 
     @RequestMapping("/admin")
-    public String admin(Map<String, Object> map) {
-	List<Team> teams = comunioService.getAllTeams();
-	try {
-	    map.put("teams", objectMapper.writeValueAsString(teams));
-	} catch (Exception e) {
-	    e.printStackTrace();
+    public String admin(Map<String, Object> map) throws JsonGenerationException, JsonMappingException, IOException {
+	Comunio comunio = sessionData.getComunio();
+	if(comunio==null) {
+	    return "error";
 	}
+	map.put("comunioJSON",
+		objectMapper.writeValueAsString(comunio));
+	List<Team> teams = comunioService.getAllTeams();
+	map.put("teams", objectMapper.writeValueAsString(teams));
 	map.put("numberOfMatchdays", NUMBER_OF_MATCHDAYS);
-	map.put("comunio", sessionData.getComunio());
 	return "admin";
-    }
-
-    @RequestMapping("/updateComunio/{comunioId}")
-    public void updateComunio(@RequestBody String jsonString,
-	    @PathVariable String comunioId) {
-	List<?> resultList = parseResultListFromJSON(jsonString);
-	resultService.updateResult(resultList, Long.parseLong(comunioId));
     }
 
     @RequestMapping("/showPlayoff")
@@ -113,15 +107,5 @@ public class ApplicationController {
 	map.put("comunio", sessionData.getComunio());
 	return "playoff";
 
-    }
-
-    private List<?> parseResultListFromJSON(String jsonString) {
-	List<?> jsonObject = null;
-	try {
-	    jsonObject = objectMapper.readValue(jsonString, ArrayList.class);
-	} catch (final Exception e) {
-	    e.printStackTrace();
-	}
-	return jsonObject;
     }
 }

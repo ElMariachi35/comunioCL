@@ -26,6 +26,7 @@ Backlog - Comunio
 		-selenium test
 		-max size schedule (check Id 70)
 		-max length team name
+		-save page with id and name
 
 -  5 - Erklärung schreiben
 

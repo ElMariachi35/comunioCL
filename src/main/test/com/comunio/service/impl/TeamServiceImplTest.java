@@ -42,7 +42,6 @@ public class TeamServiceImplTest {
         Groupe group = mock(Groupe.class);
         Team team = mock(Team.class);
         teamService.saveTeam(team, group);
-        verify(team).setGroupe(group);
         verify(teamDao).saveTeam(team);
     }
 

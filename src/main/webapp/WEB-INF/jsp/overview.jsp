@@ -94,7 +94,7 @@
                         <td class="goalDifference">+/-</td>
                         <td class="points">P</td>
                     </thead>
-                    <tbody data-bind="foreach: groups[1].sortedTeams">
+                    <tbody data-bind="foreach: groups[1]==undefined ? new Array() : groups[1].sortedTeams">
                         <tr>
                             <td class="position" data-bind="text: presentPos($index())"></td>
                             <td class="teamName" data-bind="text: teamName"></td>
@@ -113,7 +113,7 @@
             <div class="scheduleContainer">
                 <div class="header">Spielplan</div>
                 <div class="header-separator"></div>
-                <div data-bind="foreach: groups[1].fixture.matchdays">
+                <div data-bind="foreach: groups[1]==undefined ? new Array() : groups[1].fixture.matchdays">
                     <table class="matchday">
                         <thead>
                             <tr>

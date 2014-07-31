@@ -38,7 +38,6 @@ public class ComunioServiceImpl implements ComunioService {
         return comunioDao.add(comunio);
     }
 
-    @Transactional
     public List<Team> getAllTeams() {
         List<Team> teams = new ArrayList<>();
         for (Groupe group : groupService.getGroups()) {
@@ -48,6 +47,18 @@ public class ComunioServiceImpl implements ComunioService {
         }
         Collections.sort(teams);
         return teams;
+    }
+    
+    @Override
+    public List<Team> getAllTeams(long comunioId) {
+	List<Team> teams = new ArrayList<>();
+	for (Groupe group : groupService.findGroupsByComunioId(comunioId)) {
+	    for (Team team : group.getTeams()) {
+		teams.add(team);
+	    }
+	}
+	Collections.sort(teams);
+	return teams;
     }
 
     @Transactional

@@ -12,5 +12,6 @@
 <script src="<c:url value="/javascript/register.js" />"></script>
 <script src="<c:url value="/javascript/index.js" />"></script>
 <script src="<c:url value="/javascript/overview.js" />"></script>
+<script src="<c:url value="/javascript/admin.js" />"></script>
 
 <!-- This contains the most used tag libraries -->
