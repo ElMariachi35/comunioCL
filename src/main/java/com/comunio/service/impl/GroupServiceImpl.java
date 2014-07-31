@@ -92,6 +92,7 @@ public class GroupServiceImpl implements GroupService {
         for (int i = 0; i < numberOfGroups; i++) {
             Groupe group = new Groupe();
             group.setGroupName(groupNames.charAt(i) + "");
+            group.setComunio(sessionData.getComunio());
             groupDao.add(group);
             groups.add(group);
         }

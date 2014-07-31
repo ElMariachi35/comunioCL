@@ -2,9 +2,7 @@ package com.comunio.dao;
 
 import java.util.List;
 
-import com.comunio.model.Comunio;
 import com.comunio.model.Groupe;
-import com.comunio.model.Team;
 
 public interface GroupDao {
 	public void add(Groupe group);

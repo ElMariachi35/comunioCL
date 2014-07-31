@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.comunio.dao.ResultDao;
-import com.comunio.model.Comunio;
 import com.comunio.model.Result;
 import com.comunio.model.Team;
 

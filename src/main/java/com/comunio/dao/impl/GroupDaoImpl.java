@@ -1,9 +1,7 @@
 package com.comunio.dao.impl;
 
-import java.security.acl.Group;
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.comunio.dao.GroupDao;
 import com.comunio.model.Groupe;
-import com.comunio.model.Team;
 
 @Repository
 public class GroupDaoImpl implements GroupDao {

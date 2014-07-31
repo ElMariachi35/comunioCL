@@ -1,7 +1,6 @@
 package com.comunio.service.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,7 +79,6 @@ public class ResultServiceImpl implements ResultService {
 	    }
 	}
 	playoffResultService.handlePlayoff(preparedResults);
-	// playoffResultService.handlePlayoff(results);
     }
 
     private List<Result> saveResults(List<JsonResult> results) {
@@ -100,27 +98,6 @@ public class ResultServiceImpl implements ResultService {
     private Team findTeam(long teamId) {
 	return teamService.findBy(teamId);
     }
-
-//    private void saveResults(List<?> collectiveResult, long comunioId) {
-//	for (Object singleResultObject : collectiveResult) {
-//	    saveTeamResult(comunioId, singleResultObject);
-//	}
-//    }
-
-//    private void saveTeamResult(long comunioId, Object singleResultObject) {
-//	List<String> singleTeamResult = prepareTeamResult(singleResultObject);
-//	Team team = findTeam(comunioId, singleTeamResult);
-//	for (int matchday = 1; matchday < 18; matchday++) {
-//	    if (isValidResult(singleTeamResult, matchday)) {
-//		Result result = new Result();
-//		result.setTeam(team);
-//		result.setMatchday(matchday);
-//		result.setPoints(getPointsFromString(singleTeamResult, matchday));
-//		result.setGoals(calculateGoals(result.getPoints()));
-//		resultDao.saveOrUpdate(result);
-//	    }
-//	}
-//    }
 
     private void updateGames(List<Game> games, List<Result> results) {
 	for (Game game : games) {
@@ -262,26 +239,6 @@ public class ResultServiceImpl implements ResultService {
 
     private boolean isHomeTeam(Team team, Game game) {
 	return team.getTeamId() == game.getHomeTeam().getTeamId();
-    }
-
-    private boolean isValidResult(List<String> resultStringList, int matchday) {
-	return !resultStringList.get(matchday).equals("-");
-    }
-
-    private int getPointsFromString(List<String> resultStringList, int matchday) {
-	return Integer.parseInt(resultStringList.get(matchday));
-    }
-
-    private Team findTeam(long comunioId, List<String> resultStringList) {
-	return teamService.findTeamByTeamNameAndComunioId(
-		resultStringList.get(0), comunioId);
-
-    }
-
-    private List<String> prepareTeamResult(Object singleTeamResult) {
-	String resultString = singleTeamResult.toString();
-	List<String> resultStringList = Arrays.asList(resultString.split(";"));
-	return resultStringList;
     }
 
     private int calculateGoals(int points) {

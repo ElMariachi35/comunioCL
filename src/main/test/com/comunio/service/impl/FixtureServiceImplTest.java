@@ -1,7 +1,5 @@
 package com.comunio.service.impl;
 
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
