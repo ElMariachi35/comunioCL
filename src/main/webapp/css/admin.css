@@ -1,6 +1,5 @@
 .admin-container {
 	background-color: #c4e4bf;
-	position: absolute;
 	width: 345px;
 	padding-top: 10px;
 	padding-left: 15px;
@@ -50,4 +49,11 @@
 	margin-left: 200px;
 	margin-top: 6px;
 	display: none;
+}
+
+.admin-password-input{
+	margin-top: 20px;
+}
+.admin-password-label{
+	padding-top: 20px;
 }

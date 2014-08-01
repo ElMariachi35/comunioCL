@@ -19,47 +19,53 @@ public class ComunioDaoImpl implements ComunioDao {
 
     @Override
     public Comunio add(Comunio comunio) {
-	session.getCurrentSession().save(comunio);
-	return comunio;
+        session.getCurrentSession().save(comunio);
+        return comunio;
     }
 
     @Override
     public Comunio getComunio(long comunioId) {
-	return (Comunio) session.getCurrentSession().get(Comunio.class,
-		comunioId);
+        return (Comunio) session.getCurrentSession().get(Comunio.class, comunioId);
     }
 
     @Override
     public Comunio save(Comunio comunio) {
-	Session currentSession = session.getCurrentSession();
-	Comunio persistedComunio = (Comunio) currentSession.get(Comunio.class,
-		comunio.getComunioId());
-	if (persistedComunio == null) {
-	    currentSession.save(comunio);
-	    return comunio;
-	}
-	return (Comunio) currentSession.merge(comunio);
+        Session currentSession = session.getCurrentSession();
+        Comunio persistedComunio = (Comunio) currentSession.get(Comunio.class, comunio.getComunioId());
+        if (persistedComunio == null) {
+            currentSession.save(comunio);
+            return comunio;
+        }
+        return (Comunio) currentSession.merge(comunio);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public long findByName(String name){
-	SQLQuery query = session.getCurrentSession().createSQLQuery("SELECT comunioId FROM comunio WHERE name='"+name+"';");
-	List<BigInteger> list = query.list();
-	if(list.isEmpty()){
-	    return 0;
-	}
-	return ((BigInteger) list.get(0)).longValue();
+    public long findByName(String name) {
+        SQLQuery query = session.getCurrentSession().createSQLQuery(
+                "SELECT comunioId FROM comunio WHERE name='" + name + "';");
+        List<BigInteger> list = query.list();
+        if (list.isEmpty()) {
+            return 0;
+        }
+        return ((BigInteger) list.get(0)).longValue();
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
-    public long findById(long id){
-	SQLQuery query = session.getCurrentSession().createSQLQuery("SELECT comunioId FROM comunio WHERE comunioId='"+id+"';");
-	List<BigInteger> list = query.list();
-	if(list.isEmpty()){
-	    return 0;
-	}
-	return ((BigInteger) list.get(0)).longValue();
+    public long findById(long id) {
+        SQLQuery query = session.getCurrentSession().createSQLQuery(
+                "SELECT comunioId FROM comunio WHERE comunioId='" + id + "';");
+        List<BigInteger> list = query.list();
+        if (list.isEmpty()) {
+            return 0;
+        }
+        return ((BigInteger) list.get(0)).longValue();
+    }
+
+    @Override
+    public String findPassword(long comunioId) {
+        return (String) session.getCurrentSession()
+                .createSQLQuery("SELECT password FROM comunio WHERE comunioId='" + comunioId + "';").uniqueResult();
     }
 }

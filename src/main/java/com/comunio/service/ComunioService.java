@@ -11,6 +11,7 @@ public interface ComunioService {
     Comunio createComunio(String name, String password);
 
     public List<Team> getAllTeams();
+
     List<Team> getAllTeams(long comunioId);
 
     public Comunio retrieveComunio(long parseLong);
@@ -21,5 +22,6 @@ public interface ComunioService {
 
     long findById(long id);
 
+    public boolean checkPassword(long comunioId, String password);
 
 }

@@ -26,7 +26,7 @@
                     </tr>
                     <tr>
                         <td class="labelColumn">Passwort wiederholen:</td>
-                        <td><input type="password" name="password" id="registerPasswordRepeated" /></td>
+                        <td><input type="password" name="passwordRepeated" id="registerPasswordRepeated" /></td>
                     </tr>
                     <tr>
                         <td class="labelColumn">Anzahl an Mannschaften:</td>

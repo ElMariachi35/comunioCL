@@ -21,12 +21,12 @@ Backlog - Comunio
 - 20 - style frontend
 	TODO:
 		-bye week
-		-style admin
 		-style playoff
 		-selenium test
 		-max size schedule (check Id 70)
 		-max length team name
-		-save page with id and name
+		-loader animation when register
+		-style rules page
 
 -  5 - Erklärung schreiben
 

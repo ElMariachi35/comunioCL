@@ -25,6 +25,12 @@ function loadMatchday() {
 
 function saveMatchday() {
 	$('#message').html('');
+	if (!isPasswordCorrect()) {
+		$('#message')
+				.html(
+						'<span class="error-text">Das eingegebene Passwort ist falsch!</span>');
+		return;
+	}
 	var results = new Array();
 	var matchday = $("#numberOfTeams").val();
 	for (var i = 0; i < teams.length; i++) {
@@ -62,4 +68,18 @@ function saveMatchday() {
 			$('#message').html(data);
 		}
 	});
+}
+
+function isPasswordCorrect() {
+	var password = $('#adminPassword').val();
+	var isCorrect=false;
+	$.ajax({
+		type : "POST",
+		url : "rest/admin/password" + "/" + COMUNIO.comunioId+"/"+password,
+		success : function(data) {
+			isCorrect= true;
+		},
+		async: false
+	});
+	return isCorrect;
 }

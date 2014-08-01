@@ -48,17 +48,17 @@ public class ComunioServiceImpl implements ComunioService {
         Collections.sort(teams);
         return teams;
     }
-    
+
     @Override
     public List<Team> getAllTeams(long comunioId) {
-	List<Team> teams = new ArrayList<>();
-	for (Groupe group : groupService.findGroupsByComunioId(comunioId)) {
-	    for (Team team : group.getTeams()) {
-		teams.add(team);
-	    }
-	}
-	Collections.sort(teams);
-	return teams;
+        List<Team> teams = new ArrayList<>();
+        for (Groupe group : groupService.findGroupsByComunioId(comunioId)) {
+            for (Team team : group.getTeams()) {
+                teams.add(team);
+            }
+        }
+        Collections.sort(teams);
+        return teams;
     }
 
     @Transactional
@@ -71,18 +71,26 @@ public class ComunioServiceImpl implements ComunioService {
     public Comunio save(Comunio comunio) {
         return comunioDao.save(comunio);
     }
-    
+
     @Override
     @Transactional
-    public long findByName(String name){
-	return comunioDao.findByName(name);
+    public long findByName(String name) {
+        return comunioDao.findByName(name);
     }
-    
+
     @Override
     @Transactional
-    public long findById(long id){
-	return comunioDao.findById(id);
+    public long findById(long id) {
+        return comunioDao.findById(id);
     }
-    
-     
+
+    @Override
+    @Transactional
+    public boolean checkPassword(long comunioId, String password) {
+        String storedPassword = comunioDao.findPassword(comunioId);
+        if (storedPassword.equals(password)) {
+            return true;
+        }
+        return false;
+    }
 }

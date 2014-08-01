@@ -73,6 +73,7 @@ public class ApplicationController {
         sessionData.setComunio(comunio);
         groupService.initializeGroups(Integer.parseInt(numberOfTeams), teamsString);
         sessionData.setComunio(comunioService.retrieveComunio(comunio.getComunioId()));
+        map.put("showInfoMessage", true);
         map.put("comunioJSON", objectMapper.writeValueAsString(sessionData.getComunio()));
         return "overview";
     }

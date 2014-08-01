@@ -11,7 +11,7 @@
 	width: 400px;
 	padding: 10px;
 	background-color: #c4e4bf !important;
-	margin-top: 70px;
+	margin-top: 80px;
 	margin-left: 25px;
 	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 	-moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
@@ -19,7 +19,6 @@
 	-webkit-border-top-left-radius: 10px;
 	-moz-border-radius-topleft: 10px;
 	border-top-left-radius: 10px;
-	width: 400px;
 }
 
 .scheduleContainer {
@@ -148,4 +147,64 @@
 .scheduleContainer .matchday {
 	margin-bottom: 6px;
 	font-size: 13px;
+}
+
+.info-message {
+	position: absolute;
+	width: 670px;
+	padding: 10px;
+	background-color: #c4e4bf !important;
+	top: 207px;
+	margin-left: 55px;
+	border: 2px solid #0f340b;
+	display: none;
+}
+
+.info-message table {
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+.info-message .closer {
+	color: white;
+	float: right;
+	margin-top: -25px;
+	background: #0f340b;
+	width: 20px;
+	text-align: center;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.info-message .label {
+	width: 125px;
+}
+
+.info-message .com,.info-message .id {
+	font-weight: bold;
+}
+
+.overview-name-id {
+	float: right;
+	margin-top: -16px;
+	background-color: #c4e4bf;
+	-webkit-border-top-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	border-top-left-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-bottom-leftt-radius: 10px;
+	padding-right: 10px;
+	padding-left: 5px;
+	-webkit-box-shadow: -1px 2px 3px 0px rgba(0, 0, 0, 0.68);
+	-moz-box-shadow: -1px 2px 3px 0px rgba(0, 0, 0, 0.68);
+	box-shadow: -1px 2px 3px 0px rgba(0, 0, 0, 0.68);
+}
+
+.overview-name-id .label {
+	width: 125px;
+}
+
+.overview-name-id .com,.overview-name-id .id {
+	font-weight: bold;
 }

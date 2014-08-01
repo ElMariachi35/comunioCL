@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	initializeGroupHeader();
 	bindOverview();
+	showInfoMessage();
 });
 
 function bindOverview() {
@@ -21,4 +22,14 @@ function presentPos(index){
 
 function presentMatchdayHeader(matchdayNumber){
 	return "Spieltag "+matchdayNumber;
+}
+
+function closeInfoMessage(){
+	$('.info-message').hide();
+}
+
+function showInfoMessage(){
+	if(infoMessage){
+		$('.info-message').show();
+	}
 }

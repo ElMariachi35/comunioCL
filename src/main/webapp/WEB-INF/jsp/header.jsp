@@ -4,8 +4,8 @@
 <link rel="stylesheet" type="text/css" href="../css/common.css" />
 <link rel="stylesheet" type="text/css" href="../css/header.css" />
 <div class="page-header">
-    <img class="header-logo" src="../../images/com-cl-logo.png" />
-    <div class="header-text">Com Champions League</div>
+    <a href="http://localhost:8080/index"><img class="header-logo" src="../../images/com-cl-logo.png" /></a>
+    <a href="http://localhost:8080/index"><div class="header-text">Com Champions League</div></a>
     <div class="header-main-bar"></div>
     <div class="header-sub-bar"></div>
     <div class="header-admin-url"><a href="/admin">Admin</a></div>

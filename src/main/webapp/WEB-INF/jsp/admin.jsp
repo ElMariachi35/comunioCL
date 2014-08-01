@@ -54,6 +54,11 @@
 					</tr>
 				</tbody>
 				<tr>
+					<td class="admin-password-label">Passwort</td>
+					<td><input type="password" name="password"
+						class="admin-password-input" id="adminPassword" /></td>
+				</tr>
+				<tr>
 					<td colspan="2"><input class="save-button" type="button"
 						value="Speichern" onclick="saveMatchday()"></td>
 					<td><div class="save-loader"></div></td>

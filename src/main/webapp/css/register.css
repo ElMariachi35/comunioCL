@@ -15,11 +15,11 @@
 	margin-top: 13px;
 	margin-left: 35px;
 	width: 120px;
+	margin-bottom: 10px;
 }
 
 .registerFormContainer {
 	background-color: #c4e4bf;
-	position: absolute;
 	width: 345px;
 	padding-top: 10px;
 	padding-left: 15px;
