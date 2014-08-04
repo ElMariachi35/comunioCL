@@ -22,7 +22,7 @@
 			<div class="admin-header">Punkteeingabe</div>
 			<div class="header-separator"></div>
 			<div class="load-loader"></div>
-			<table>
+			<table class="table">
 				<tr>
 					<td class="labelColumn">Spieltag auswählen:</td>
 					<td><select id="numberOfTeams" name="numberOfTeams"
@@ -59,9 +59,9 @@
 						class="admin-password-input" id="adminPassword" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input class="save-button" type="button"
+					<td colspan="2" class="save-button-cell"><input class="save-button" type="button"
 						value="Speichern" onclick="saveMatchday()"></td>
-					<td><div class="save-loader"></div></td>
+					<td class="save-loader-cell"><div class="save-loader"></div></td>
 
 				</tr>
 				<tr>

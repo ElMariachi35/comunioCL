@@ -1,6 +1,6 @@
 .admin-container {
 	background-color: #c4e4bf;
-	width: 345px;
+	max-width: 361px;
 	padding-top: 10px;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -19,10 +19,13 @@
 }
 
 .save-button {
-	margin-left: 226px;
 	margin-bottom: 10px;
 	min-width: 74px;
 	min-height: 22px;
+}
+
+.save-button-cell {
+	text-align: right;
 }
 
 #message {
@@ -41,6 +44,10 @@
 	border: none;
 }
 
+.save-loader-cell {
+	width: 16px;
+}
+
 .load-loader {
 	background: url(../../images/loader-small.gif);
 	width: 16px;
@@ -56,4 +63,12 @@
 }
 .admin-password-label{
 	padding-top: 20px;
+}
+
+input {
+	width: 70px;
+}
+
+.table, .table td {
+	border: 1px solid black;
 }
