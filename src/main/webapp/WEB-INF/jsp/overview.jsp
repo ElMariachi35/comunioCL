@@ -10,8 +10,8 @@
 <link rel="stylesheet" type="text/css" href="../css/overview.css" />
 <script>
 	var COMUNIO = $.parseJSON('${comunioJSON}');
-	var infoMessage = $.parseJSON('${showInfoMessage}');
 	console.log(COMUNIO);
+	var infoMessage = $.parseJSON('${showInfoMessage}');
 </script>
 </head>
 <body>
