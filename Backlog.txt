@@ -1,45 +1,40 @@
 Backlog - Comunio
--  5 - unit testing
--  3 - Dao testing
-- 13 - Integration testing
 
 
 -  DONE - REST einbauen
--  5 - Validation of Point input
+-  DONE - Validation of Point input
 -  DONE - globale comunio variable in javascript
-
--  1 - rename jsp to <name>View
-
 -  DONE - Loading of previous results when in admin view
-
 -  DONE - update data model when point input
-
 -  DONE - show result in overView
-
 -  DONE - implement table sorting
+-  DONE - implement playoffs
+-  DONE - style frontend
 
-- 20 - style frontend
-	TODO:
-		-bye week
-		-style playoff
-		-selenium test
-		-max size schedule (check Id 70)
-		-max length team name
-		-loader animation when register
-		-style rules page
+### IN PROGRESS ###
 
--  5 - Erklärung schreiben
+-   1   - Admin - Teamname Column verlängern
 
-- DONE - implement playoffs
+###################
 
-- 13 - refactor playoffs
 
-- 5  - synchronization testen
-
-- 8  - refactor saving of results
-	TODO: - use CascadeType.ALL
-		  - change playoff teams when points change
-
--  2 - unique constraint auf teamName
-
--  8 - Error handling
+-   2   - Admin - sort teamnames
+-   2   - Overview - sort groups (Group A is not always Group A)
+-   3   - Schedule is random
+-   3   - Admin - deactivate dropdown when loading points, automatically show first empty matchday
+-   5   - Button for starting playoffs
+-   8   - Style playoff
+-   3   - Generate 5 figure random unique id's
+-   2   - Color for load-animation
+-   2   - Show bye week team
+-   5   - Create Explanation page
+-   8   - Error handling
+-   2   - Max length for team name
+-   2   - style overview page -->when 5 teams per group schedule is 30px down
+-   5   - synchronization testen
+-   5   - unit testing
+-   3   - Dao testing
+-  13   - Integration testing
+-   8   - refactor playoffs
+-   3   - refactor saving of results
+-   2   - unique constraint auf teamName
