@@ -43,11 +43,18 @@ public class RoundRobinServiceImpl {
 	team1 = teams.subList(0, teams.size() / 2);
 	team2 = teams.subList(teams.size() / 2, teams.size());
 
+	int comunioMatchdayNumber = 1;
+
 	for (int i = 0; i < numberOfRounds; i++) {
-	    for (int comunioMatchdayNumber = 1; comunioMatchdayNumber < teams
-		    .size(); comunioMatchdayNumber++) {
-		matchdays.add(createMatches(team1, team2, fixture,
-			numberOfRounds));
+	    for (int j = 1; j < teams.size(); j++) {
+		if (comunioMatchdayNumber % 2 == 0) {
+		    matchdays.add(createMatches(team1, team2, fixture,
+			    numberOfRounds, comunioMatchdayNumber));
+
+		} else {
+		    matchdays.add(createMatches(team2, team1, fixture,
+			    numberOfRounds, comunioMatchdayNumber));
+		}
 		Collections.rotate(team1, 1);
 		Collections.rotate(team2, -1);
 		team3 = new ArrayList<>(team1);
@@ -59,16 +66,18 @@ public class RoundRobinServiceImpl {
 
 		team1 = new ArrayList<>(team3);
 		team2 = new ArrayList<>(team4);
+		comunioMatchdayNumber++;
 	    }
 	}
-	matchdays = new TreeSet<Matchday>(setMatchdayNumbers(new ArrayList<Matchday>(matchdays)));
+	matchdays = new TreeSet<Matchday>(new ArrayList<Matchday>(matchdays));
 	return matchdays;
     }
 
     private Matchday createMatches(List<Team> team1, List<Team> team2,
-	    Fixture fixture, int numberOfRounds) {
+	    Fixture fixture, int numberOfRounds, int comunioMatchdayNumber) {
 	Matchday matchday = new Matchday();
 	matchday.setFixture(fixture);
+	matchday.setComunioMatchdayNumber(comunioMatchdayNumber);
 	List<Game> games = new ArrayList<>();
 
 	for (int j = 0; j < team1.size(); j++) {
@@ -90,15 +99,6 @@ public class RoundRobinServiceImpl {
 
 	matchday.setMatches(new LinkedHashSet<>(games));
 	return matchday;
-    }
-
-    private List<Matchday> setMatchdayNumbers(List<Matchday> matchdays) {
-	int i = 1;
-	for (Matchday matchday : matchdays) {
-	    matchday.setComunioMatchdayNumber(i);
-	    i++;
-	}
-	return matchdays;
     }
 
     private boolean awayTeamIsDummy(Game game) {
