@@ -1,6 +1,7 @@
 package com.comunio.controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.comunio.comparator.TeamByTeamnameComparator;
 import com.comunio.model.Comunio;
 import com.comunio.model.SessionData;
 import com.comunio.model.Team;
@@ -86,6 +88,7 @@ public class ApplicationController {
         }
         map.put("comunioJSON", objectMapper.writeValueAsString(comunio));
         List<Team> teams = comunioService.getAllTeams();
+        Collections.sort(teams, new TeamByTeamnameComparator());
         map.put("teams", objectMapper.writeValueAsString(teams));
         map.put("numberOfMatchdays", NUMBER_OF_MATCHDAYS);
         return "admin";

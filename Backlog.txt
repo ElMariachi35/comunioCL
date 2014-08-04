@@ -10,22 +10,22 @@ Backlog - Comunio
 -  DONE - implement table sorting
 -  DONE - implement playoffs
 -  DONE - style frontend
+-  DONE - Admin - Teamname Column verlängern
+-  DONE - Color for load-animation
+-  DONE - Admin - sort teamnames
 
 ### IN PROGRESS ###
 
--   1   - Admin - Teamname Column verlängern
+-   2   - Overview - sort groups (Group A is not always Group A)
 
 ###################
 
 
--   2   - Admin - sort teamnames
--   2   - Overview - sort groups (Group A is not always Group A)
 -   3   - Schedule is random
 -   3   - Admin - deactivate dropdown when loading points, automatically show first empty matchday
 -   5   - Button for starting playoffs
 -   8   - Style playoff
 -   3   - Generate 5 figure random unique id's
--   2   - Color for load-animation
 -   2   - Show bye week team
 -   5   - Create Explanation page
 -   8   - Error handling
