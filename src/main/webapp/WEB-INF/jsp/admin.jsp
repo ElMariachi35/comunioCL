@@ -21,7 +21,6 @@
 		<div class="admin-container">
 			<div class="admin-header">Punkteeingabe</div>
 			<div class="header-separator"></div>
-			<div class="load-loader"></div>
 			<table class="table">
 				<tr>
 					<td class="labelColumn">Spieltag auswählen:</td>
@@ -44,7 +43,7 @@
 							<option value="15">15</option>
 							<option value="16">16</option>
 							<option value="17">17</option>
-					</select></td>
+					</select><div class="load-loader"></div></td>
 				</tr>
 				<tbody data-bind="foreach: teams">
 					<tr>
