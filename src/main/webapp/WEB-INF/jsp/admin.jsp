@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="../css/common.css" />
 <link rel="stylesheet" type="text/css" href="../css/admin.css" />
 </head>
-<body onload="loadMatchday()">
+<body onload="loadNextMatchday()">
 	<script>
 		var teams = $.parseJSON('${teams}');
 		var matchdays = "${numberOfMatchdays}";
@@ -24,7 +24,7 @@
 			<table class="table">
 				<tr>
 					<td class="labelColumn">Spieltag auswählen:</td>
-					<td><select id="numberOfTeams" name="numberOfTeams"
+					<td><select id="numberOfMatchday" name="numberOfMatchday"
 						onchange="loadMatchday()">
 							<option value="1">1</option>
 							<option value="2">2</option>

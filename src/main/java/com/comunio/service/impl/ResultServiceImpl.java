@@ -28,6 +28,7 @@ import com.comunio.service.TeamService;
 @Service
 public class ResultServiceImpl implements ResultService {
 
+    private static final int LAST_MATCHDAY = 17;
     @Autowired
     ResultDao resultDao;
     @Autowired
@@ -55,6 +56,16 @@ public class ResultServiceImpl implements ResultService {
     @Transactional
     public List<Result> findResultsBy(long comunioId, int matchdayNumber) {
         return resultDao.findResultsBy(comunioId, matchdayNumber);
+    }
+
+    @Override
+    @Transactional
+    public int findNextMatchday(long comunioId) {
+        int latestMatchday = resultDao.findLatestMatchday(comunioId);
+        if (latestMatchday < LAST_MATCHDAY) {
+            return ++latestMatchday;
+        }
+        return LAST_MATCHDAY;
     }
 
     @Override

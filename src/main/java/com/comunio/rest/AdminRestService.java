@@ -45,6 +45,14 @@ public class AdminRestService {
     }
 
     @POST
+    @Path("/findNextMatchday/{comunioId}")
+    public Response findNextMatchday(@PathParam("comunioId") long comunioId) throws JsonGenerationException,
+            JsonMappingException, IOException {
+        int nextMatchday = resultService.findNextMatchday(comunioId);
+        return Response.status(Status.OK).entity(objectMapper.writeValueAsString(nextMatchday)).build();
+    }
+
+    @POST
     @Path("/save/{comunioId}")
     public Response saveMatchday(@PathParam("comunioId") long comunioId, String json) throws JsonParseException,
             JsonMappingException, IOException {

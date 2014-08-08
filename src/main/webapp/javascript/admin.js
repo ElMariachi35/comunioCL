@@ -1,7 +1,8 @@
 function loadMatchday() {
 	$('#message').html('');
 	$('.load-loader').show();
-	var selectedMatchday = $('#numberOfTeams').val();
+	var selectedMatchday = $('#numberOfMatchday').val();
+	$('#numberOfMatchday').prop('disabled', 'disabled');
 	$.ajax({
 		type : "POST",
 		url : "rest/admin/findPoints/" + COMUNIO.comunioId + "/"
@@ -19,6 +20,20 @@ function loadMatchday() {
 				$("#" + result.team.teamId).val(result.points);
 			}
 			$('.load-loader').hide();
+			$('#numberOfMatchday').prop('disabled', false);
+		}
+	});
+}
+
+
+function loadNextMatchday() {
+	$.ajax({
+		type : "POST",
+		url : "rest/admin/findNextMatchday/" + COMUNIO.comunioId,
+		success : function(data) {
+			var nextMatchday = $.parseJSON(data);
+			$('#numberOfMatchday').val(nextMatchday);
+			loadMatchday();
 		}
 	});
 }
