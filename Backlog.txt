@@ -1,4 +1,4 @@
-Backlog - Comunio
++Backlog - Comunio
 
 
 -  DONE - REST einbauen
@@ -22,7 +22,7 @@ Backlog - Comunio
 
 ###################
 
-
+-   2   - Update result does not work
 -   5   - Button for starting playoffs
 -   8   - Style playoff
 -   3   - Generate 5 figure random unique id's

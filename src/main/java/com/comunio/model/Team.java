@@ -27,7 +27,7 @@ public class Team implements Serializable, Comparable<Team> {
     private long teamId;
     @Column
     private String teamName;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinColumn(name = "groupId")
     private Groupe groupe;
