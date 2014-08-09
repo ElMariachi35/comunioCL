@@ -16,13 +16,14 @@
 -  DONE - Overview - sort groups (Group A is not always Group A)
 -  DONE - Schedule is random
 -  DONE - Admin - deactivate dropdown when loading points, automatically show first empty matchday
+-  DONE - Update result does not work
+-  DONE - Style index
 
 ### IN PROGRESS ###
 
 
 ###################
 
--   2   - Update result does not work
 -   5   - Button for starting playoffs
 -   8   - Style playoff
 -   3   - Generate 5 figure random unique id's

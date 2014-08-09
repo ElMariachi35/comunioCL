@@ -6,29 +6,20 @@
 }
 
 .login-input {
-	width: 428px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 50px;
+	width: 428px;
 }
 
 .or {
-	margin-left: 200px;
-	margin-top: -24px;
+	width: 100px;
 }
 
-.name-block {
-	margin-left: 270px;
-	margin-top: -42px;
-}
 
 .label {
 	font-size: 12px;
-}
-
-.continue-button {
-	margin-left: 373px;
-	margin-top: 20px;
+	font-weight: bold;
 }
 
 #errorMessage {
@@ -55,10 +46,8 @@
 }
 
 .load-animation-big {
-	margin-left: 384px;
-	margin-top: 10px;
 	display: none;
-	position: absolute;
+	margin: auto;
 }
 
 .logo {

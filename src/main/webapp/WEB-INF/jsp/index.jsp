@@ -11,39 +11,46 @@
 </head>
 <body>
 	<div class="container">
-    <img class="logo" src="../../images/com-cl-logo.png"/>
+		<img class="logo" src="../../images/com-cl-logo.png" />
 		<div class="header">Com Champions League</div>
-		<div class="login-input">
-			<div class="id-block">
-				<div class="label"><span class="bold">Com-Id</span></div>
-				<input type="text" name="inputComId" id="inputComId" />
-			</div>
-			<div class="or">oder</div>
-			<div class="name-block">
-				<div class="label"><span class="bold">Com-Name</span></div>
-				<input type="text" name="inputComName" id="inputComName" />
-			</div>
-		</div>
-		<input class="continue-button" type="button" value="Weiter"
-			onclick="sendOverviewRequest()">
-            <div class="animation-marker load-animation-big"></div>
-			<div id="errorMessage" class="error-text">&nbsp;</div>
+		<table class="login-input">
+			<tr>
+				<td class="label">Com-Id</td>
+				<td></td>
+				<td class="label">Com-Name</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="inputComId" id="inputComId" /></td>
+				<td class="center or">oder</td>
+				<td><input type="text" name="inputComName" id="inputComName" /></td>
+			</tr>
+			<tr>
+				<td class="center" colspan="3"><input type="button"
+					value="Weiter" onclick="sendOverviewRequest()"></td>
+			</tr>
+			<tr>
+				<td class="center" colspan="3"><div
+						class="animation-marker load-animation-big"></div></td>
+			</tr>
+			<tr>
+				<td class="center" colspan="3"><div id="errorMessage"
+						class="error-text">&nbsp;</div></td>
+			</tr>
+		</table>
+
 		<div class="horizontal-separator"></div>
 		<div class="info-text">
-			<span class="bold">Zum ersten Mal hier?</span><br /> Bei Com Champions League handelt es sich
-			um eine Erweiterung des Managerspiels <a href="http://www.comunio.de">Comunio</a>.
-			Im Gegensatz zum normalen Modus, spielen hier die Teams in direkten
+			<span class="bold">Zum ersten Mal hier?</span><br /> Bei Com
+			Champions League handelt es sich um eine Erweiterung des
+			Managerspiels <a href="http://www.comunio.de">Comunio</a>. Im
+			Gegensatz zum normalen Modus, spielen hier die Teams in direkten
 			Duellen gegeneinander. Wie bei der "echten" Champions League gibt es
 			eine Gruppenphase mit anschlieﬂender KO-Phase.
 		</div>
 		<div class="new-com-url">
-			<span class="bold"><a href="/register">Neue Com Champions League registrieren</a></span>
+			<span class="bold"><a href="/register">Neue Com Champions
+					League registrieren</a></span>
 		</div>
-		<!-- <a href="/add">Create -->
-		<!-- 			new Champions League for your Comunio</a> <br /> <br /> <label -->
-		<!-- 			for="inputComunioId">ComunioId</label> <input id="inputComunioId" -->
-		<!-- 			type="text" name="inputComunioId" /> <input type="button" -->
-		<!-- 			value="Show" onclick="sendOverviewRequest()" /> -->
 	</div>
 </body>
 </html>
