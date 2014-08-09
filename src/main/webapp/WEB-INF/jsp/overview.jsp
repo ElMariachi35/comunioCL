@@ -17,12 +17,6 @@
 <body>
 	<div class="container">
 		<%@ include file="/WEB-INF/jsp/header.jsp"%>
-		<ul class="idTabs">
-			<li id="headerA" class="hidden"><a href="#groupA">Gruppe A</a></li>
-			<li id="headerB" class="hidden"><a href="#groupB">Gruppe B</a></li>
-			<li id="headerC" class="hidden"><a href="#groupC">Gruppe C</a></li>
-			<li id="headerD" class="hidden"><a href="#groupD">Gruppe D</a></li>
-		</ul>
 		<table class="overview-name-id">
 			<tr>
 				<td class="label">Com CL Name:</td>
@@ -33,6 +27,13 @@
 				<td class="id" data-bind="text: comunioId"></td>
 			</tr>
 		</table>
+		<ul class="idTabs">
+			<li id="headerA" class="hidden"><a href="#groupA">Gruppe A</a></li>
+			<li id="headerB" class="hidden"><a href="#groupB">Gruppe B</a></li>
+			<li id="headerC" class="hidden"><a href="#groupC">Gruppe C</a></li>
+			<li id="headerD" class="hidden"><a href="#groupD">Gruppe D</a></li>
+		</ul>
+		
 		<div id="groupA">
 			<div class="tableContainer">
 				<div class="header">Tabelle</div>

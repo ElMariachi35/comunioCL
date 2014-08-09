@@ -18,20 +18,20 @@
 -  DONE - Admin - deactivate dropdown when loading points, automatically show first empty matchday
 -  DONE - Update result does not work
 -  DONE - Style index
+-  DONE - style overview page -->when 5 teams per group schedule is 30px down
 
 ### IN PROGRESS ###
 
+-   5   - Button for starting playoffs
 
 ###################
 
--   5   - Button for starting playoffs
 -   8   - Style playoff
 -   3   - Generate 5 figure random unique id's
 -   2   - Show bye week team
 -   5   - Create Explanation page
 -   8   - Error handling
 -   2   - Max length for team name
--   2   - style overview page -->when 5 teams per group schedule is 30px down
 -   5   - synchronization testen
 -   5   - unit testing
 -   3   - Dao testing

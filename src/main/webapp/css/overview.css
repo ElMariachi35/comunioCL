@@ -8,26 +8,29 @@
 
 .tableContainer {
 	position: relative;
-	width: 400px;
+	width: 440px;
 	padding: 10px;
 	background-color: #c4e4bf !important;
-	margin-top: 80px;
-	margin-left: 25px;
-	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 75px; -webkit-box-shadow : 2px 2px 5px 0px rgba( 0, 0, 0,
+	0.68);
 	-moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 	box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 	-webkit-border-top-left-radius: 10px;
 	-moz-border-radius-topleft: 10px;
 	border-top-left-radius: 10px;
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 }
 
 .scheduleContainer {
 	position: relative;
 	background-color: #c3e3bf;
 	padding: 10px;
-	width: 289px;
-	margin-top: -170px;
-	margin-left: 467px;
+	width: 440px;
+	margin-top: 40px;
+	margin-left: auto;
+	margin-right: auto;
 	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 	-moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 	box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
@@ -41,12 +44,13 @@
 }
 
 .idTabs {
-	margin-left: -15px;
-	margin-top: -10px;
+	margin-left: 0px;
+	margin-top: 60px;
+	position: absolute;
 }
 
 .idTabs li {
-	float: left;
+	list-style-type: none;
 }
 
 .idTabs li a:active {
@@ -82,31 +86,12 @@
 }
 
 .teamName {
-	width: 175px;
+	width: 213px;
 	padding-left: 5px;
 }
 
-.gamesPlayed {
-	width: 20px;
-	text-align: center;
-}
 
-.gamesWon,.gamesDrawn,.gamesLost {
-	width: 20px;
-	text-align: center;
-}
-
-.goalsFor,.goalsAgainst {
-	width: 20px;
-	text-align: center;
-}
-
-.goalDifference {
-	width: 20px;
-	text-align: center;
-}
-
-.points {
+.gamesWon,.gamesDrawn,.gamesLost, .gamesPlayed,.goalsFor,.goalsAgainst,.goalDifference,.points  {
 	width: 20px;
 	text-align: center;
 }
@@ -124,7 +109,7 @@
 }
 
 .home-team,.away-team {
-	width: 110px;
+	width: 196px;
 }
 
 .away-team {
@@ -132,7 +117,7 @@
 }
 
 .home-goals,.away-goals {
-	width: 21px;
+	width: 24px;
 	text-align: center;
 }
 
@@ -185,20 +170,20 @@
 }
 
 .overview-name-id {
-	float: right;
-	margin-top: -16px;
+	float: left;
+	margin-top: -10px;
 	background-color: #c4e4bf;
-	-webkit-border-top-left-radius: 10px;
-	-moz-border-radius-topleft: 10px;
-	border-top-left-radius: 10px;
-	-webkit-border-bottom-left-radius: 10px;
-	-moz-border-radius-bottomleft: 10px;
-	border-bottom-leftt-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-right-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	border-bottom-right-radius: 10px;
 	padding-right: 10px;
 	padding-left: 5px;
-	-webkit-box-shadow: -1px 2px 3px 0px rgba(0, 0, 0, 0.68);
-	-moz-box-shadow: -1px 2px 3px 0px rgba(0, 0, 0, 0.68);
-	box-shadow: -1px 2px 3px 0px rgba(0, 0, 0, 0.68);
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	-moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 }
 
 .overview-name-id .label {
