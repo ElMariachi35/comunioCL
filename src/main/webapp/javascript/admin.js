@@ -47,7 +47,7 @@ function saveMatchday() {
 		return;
 	}
 	var results = new Array();
-	var matchday = $("#numberOfTeams").val();
+	var matchday = $("#numberOfMatchday").val();
 	for (var i = 0; i < teams.length; i++) {
 		var team = teams[i];
 		var points = $("#" + team.teamId).val();
