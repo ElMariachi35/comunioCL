@@ -24,6 +24,7 @@
 -  DONE - Margin bottom on load animation when saving com
 -  DONE - Back to comunio button when in admin
 -  DONE - Create Explanation page
+-  DONE - Add Google Analytics
 
 ### IN PROGRESS ###
 
