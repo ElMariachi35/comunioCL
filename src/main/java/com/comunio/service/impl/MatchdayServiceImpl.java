@@ -40,7 +40,7 @@ public class MatchdayServiceImpl implements MatchdayService {
     }
 
     public List<Matchday> getSortedMatchdays(Fixture fixture) {
-        List<Matchday> matchdays = new ArrayList<>(fixture.getMatchdays());
+        List<Matchday> matchdays = new ArrayList<Matchday>(fixture.getMatchdays());
         Collections.sort(matchdays);
         return matchdays;
     }

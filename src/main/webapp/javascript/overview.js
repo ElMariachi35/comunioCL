@@ -28,6 +28,7 @@ function initializeGroupHeader() {
 	for (var i = 0; i < groups.length; i++) {
 		$('#header' + groups[i].groupName).removeClass("hidden");
 	}
+	$('#playoff').removeClass("hidden");
 }
 
 function presentPos(index) {

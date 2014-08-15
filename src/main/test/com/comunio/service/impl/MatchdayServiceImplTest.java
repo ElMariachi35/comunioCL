@@ -88,14 +88,14 @@ public class MatchdayServiceImplTest {
     }
 
     private Set<Game> mockGames() {
-        Set<Game> games = new HashSet<>();
+        Set<Game> games = new HashSet<Game>();
         games.add(new Game());
         games.add(new Game());
         return games;
     }
 
     private Set<Matchday> mockMatchdays() {
-        Set<Matchday> matchdays = new HashSet<>();
+        Set<Matchday> matchdays = new HashSet<Matchday>();
         matchdays.add(matchday);
         return matchdays;
     }

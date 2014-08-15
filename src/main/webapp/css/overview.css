@@ -13,8 +13,8 @@
 	background-color: #c4e4bf !important;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 75px; -webkit-box-shadow : 2px 2px 5px 0px rgba( 0, 0, 0,
-	0.68);
+	margin-top: 75px;
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 	-moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 	box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 	-webkit-border-top-left-radius: 10px;
@@ -90,8 +90,8 @@
 	padding-left: 5px;
 }
 
-
-.gamesWon,.gamesDrawn,.gamesLost, .gamesPlayed,.goalsFor,.goalsAgainst,.goalDifference,.points  {
+.gamesWon,.gamesDrawn,.gamesLost,.gamesPlayed,.goalsFor,.goalsAgainst,.goalDifference,.points
+	{
 	width: 20px;
 	text-align: center;
 }
@@ -192,4 +192,21 @@
 
 .overview-name-id .com,.overview-name-id .id {
 	font-weight: bold;
+}
+
+.playoffContainer {
+	position: relative;
+	width: 440px;
+	padding: 10px;
+	background-color: #c4e4bf !important;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 75px;
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	-moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	-webkit-border-top-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	border-top-left-radius: 10px;
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 }

@@ -39,7 +39,7 @@ public class ComunioServiceImpl implements ComunioService {
     }
 
     public List<Team> getAllTeams() {
-        List<Team> teams = new ArrayList<>();
+        List<Team> teams = new ArrayList<Team>();
         for (Groupe group : groupService.getGroups()) {
             for (Team team : group.getTeams()) {
                 teams.add(team);
@@ -51,7 +51,7 @@ public class ComunioServiceImpl implements ComunioService {
 
     @Override
     public List<Team> getAllTeams(long comunioId) {
-        List<Team> teams = new ArrayList<>();
+        List<Team> teams = new ArrayList<Team>();
         for (Groupe group : groupService.findGroupsByComunioId(comunioId)) {
             for (Team team : group.getTeams()) {
                 teams.add(team);

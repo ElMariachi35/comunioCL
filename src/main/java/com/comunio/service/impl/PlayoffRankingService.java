@@ -23,7 +23,7 @@ public class PlayoffRankingService {
     }
 
     private List<Team> getPreselectedTeams(Set<Groupe> groups, int numberOfTeams) {
-        List<Team> playoffTeams = new ArrayList<>();
+        List<Team> playoffTeams = new ArrayList<Team>();
         if (numberOfTeams < 7) {
             playoffTeams = getPlayoffTeam(groups.iterator().next(), 4);
         } else if (numberOfTeams < 11) {
@@ -56,7 +56,7 @@ public class PlayoffRankingService {
     }
 
     private Map<Integer, Team> createPlayoffMap(List<Team> teams) {
-        Map<Integer, Team> playoffTeams = new HashMap<>();
+        Map<Integer, Team> playoffTeams = new HashMap<Integer, Team>();
         for (int i = 0; i < teams.size(); i++) {
             playoffTeams.put(i + 1, teams.get(i));
         }
@@ -64,7 +64,7 @@ public class PlayoffRankingService {
     }
 
     private List<Team> getPlayoffTeam(Groupe group, int numberOfTeams) {
-        List<Team> playoffTeams = new ArrayList<>();
+        List<Team> playoffTeams = new ArrayList<Team>();
         List<Team> sortedTeams = group.getSortedTeams();
         for (int i = 0; i < numberOfTeams; i++) {
             playoffTeams.add(sortedTeams.get(i));

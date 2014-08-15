@@ -22,7 +22,7 @@ public class RoundRobinServiceImplTest {
     public void createFixtureWithFourTeamsReturnsACorrectFixture() {
         List<Team> teams = mockTeams(4);
         Fixture fixture = roundRobinService.roundRobinCreateFixture(teams);
-        
+
         assertEquals(9, getNumberOfMatchesForTeam(teams.get(0), fixture));
         assertEquals(9, getNumberOfMatchesForTeam(teams.get(1), fixture));
         assertEquals(9, getNumberOfMatchesForTeam(teams.get(2), fixture));
@@ -44,15 +44,15 @@ public class RoundRobinServiceImplTest {
     @Test
     public void createFixtureWithFiveTeamsReturnsACorrectFixture() {
         List<Team> teams = mockTeams(5);
-        
+
         Fixture fixture = roundRobinService.roundRobinCreateFixture(teams);
-        
+
         assertEquals(8, getNumberOfMatchesForTeam(teams.get(0), fixture));
         assertEquals(8, getNumberOfMatchesForTeam(teams.get(1), fixture));
         assertEquals(8, getNumberOfMatchesForTeam(teams.get(2), fixture));
         assertEquals(8, getNumberOfMatchesForTeam(teams.get(3), fixture));
         assertEquals(8, getNumberOfMatchesForTeam(teams.get(4), fixture));
-        
+
         assertEquals(2, getNumberOfMatchesAgainstEachOther(teams.get(0), teams.get(1), fixture));
         assertEquals(2, getNumberOfMatchesAgainstEachOther(teams.get(0), teams.get(2), fixture));
         assertEquals(2, getNumberOfMatchesAgainstEachOther(teams.get(0), teams.get(3), fixture));
@@ -63,7 +63,7 @@ public class RoundRobinServiceImplTest {
         assertEquals(2, getNumberOfMatchesAgainstEachOther(teams.get(2), teams.get(3), fixture));
         assertEquals(2, getNumberOfMatchesAgainstEachOther(teams.get(2), teams.get(4), fixture));
         assertEquals(2, getNumberOfMatchesAgainstEachOther(teams.get(3), teams.get(4), fixture));
-        
+
         assertEquals(0, getNumberOfMatchesAgainstEachOther(teams.get(0), teams.get(0), fixture));
         assertEquals(0, getNumberOfMatchesAgainstEachOther(teams.get(1), teams.get(1), fixture));
         assertEquals(0, getNumberOfMatchesAgainstEachOther(teams.get(2), teams.get(2), fixture));
@@ -74,16 +74,16 @@ public class RoundRobinServiceImplTest {
     @Test
     public void createFixtureWithSixTeamsReturnsACorrectFixture() {
         List<Team> teams = mockTeams(6);
-        
+
         Fixture fixture = roundRobinService.roundRobinCreateFixture(teams);
-        
+
         assertEquals(10, getNumberOfMatchesForTeam(teams.get(0), fixture));
         assertEquals(10, getNumberOfMatchesForTeam(teams.get(1), fixture));
         assertEquals(10, getNumberOfMatchesForTeam(teams.get(2), fixture));
         assertEquals(10, getNumberOfMatchesForTeam(teams.get(3), fixture));
         assertEquals(10, getNumberOfMatchesForTeam(teams.get(4), fixture));
         assertEquals(10, getNumberOfMatchesForTeam(teams.get(5), fixture));
-        
+
         assertEquals(2, getNumberOfMatchesAgainstEachOther(teams.get(0), teams.get(1), fixture));
         assertEquals(2, getNumberOfMatchesAgainstEachOther(teams.get(0), teams.get(2), fixture));
         assertEquals(2, getNumberOfMatchesAgainstEachOther(teams.get(0), teams.get(3), fixture));
@@ -99,7 +99,7 @@ public class RoundRobinServiceImplTest {
         assertEquals(2, getNumberOfMatchesAgainstEachOther(teams.get(3), teams.get(4), fixture));
         assertEquals(2, getNumberOfMatchesAgainstEachOther(teams.get(3), teams.get(5), fixture));
         assertEquals(2, getNumberOfMatchesAgainstEachOther(teams.get(4), teams.get(5), fixture));
-        
+
         assertEquals(0, getNumberOfMatchesAgainstEachOther(teams.get(0), teams.get(0), fixture));
         assertEquals(0, getNumberOfMatchesAgainstEachOther(teams.get(1), teams.get(1), fixture));
         assertEquals(0, getNumberOfMatchesAgainstEachOther(teams.get(2), teams.get(2), fixture));
@@ -111,9 +111,9 @@ public class RoundRobinServiceImplTest {
     @Test
     public void createFixtureWithSevenTeamsReturnsACorrectFixture() {
         List<Team> teams = mockTeams(7);
-        
+
         Fixture fixture = roundRobinService.roundRobinCreateFixture(teams);
-        
+
         assertEquals(6, getNumberOfMatchesForTeam(teams.get(0), fixture));
         assertEquals(6, getNumberOfMatchesForTeam(teams.get(1), fixture));
         assertEquals(6, getNumberOfMatchesForTeam(teams.get(2), fixture));
@@ -121,7 +121,7 @@ public class RoundRobinServiceImplTest {
         assertEquals(6, getNumberOfMatchesForTeam(teams.get(4), fixture));
         assertEquals(6, getNumberOfMatchesForTeam(teams.get(5), fixture));
         assertEquals(6, getNumberOfMatchesForTeam(teams.get(6), fixture));
-        
+
         assertEquals(1, getNumberOfMatchesAgainstEachOther(teams.get(0), teams.get(1), fixture));
         assertEquals(1, getNumberOfMatchesAgainstEachOther(teams.get(0), teams.get(2), fixture));
         assertEquals(1, getNumberOfMatchesAgainstEachOther(teams.get(0), teams.get(3), fixture));
@@ -143,7 +143,7 @@ public class RoundRobinServiceImplTest {
         assertEquals(1, getNumberOfMatchesAgainstEachOther(teams.get(4), teams.get(5), fixture));
         assertEquals(1, getNumberOfMatchesAgainstEachOther(teams.get(4), teams.get(6), fixture));
         assertEquals(1, getNumberOfMatchesAgainstEachOther(teams.get(5), teams.get(6), fixture));
-        
+
         assertEquals(0, getNumberOfMatchesAgainstEachOther(teams.get(0), teams.get(0), fixture));
         assertEquals(0, getNumberOfMatchesAgainstEachOther(teams.get(1), teams.get(1), fixture));
         assertEquals(0, getNumberOfMatchesAgainstEachOther(teams.get(2), teams.get(2), fixture));
@@ -183,7 +183,7 @@ public class RoundRobinServiceImplTest {
     }
 
     private List<Team> mockTeams(int numberOfTeams) {
-        List<Team> teams = new ArrayList<>();
+        List<Team> teams = new ArrayList<Team>();
         for (long i = 0; i < numberOfTeams; i++) {
             Team team = new Team();
             team.setTeamId(i);

@@ -94,7 +94,7 @@ public class Groupe implements Serializable, Comparable<Groupe> {
     }
 
     public List<Team> getSortedTeams() {
-        List<Team> teams = new ArrayList<>(this.teams);
+        List<Team> teams = new ArrayList<Team>(this.teams);
         Collections.sort(teams);
         return teams;
     }

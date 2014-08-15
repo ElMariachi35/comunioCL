@@ -66,7 +66,7 @@ public class ResultServiceImplTest {
     }
 
     private List<?> mockCollectiveResult() {
-        List<String> collectiveResult = new ArrayList<>();
+        List<String> collectiveResult = new ArrayList<String>();
         collectiveResult.add("team1;12;23;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;");
         collectiveResult.add("team2;12;23;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;");
 

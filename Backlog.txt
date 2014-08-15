@@ -1,6 +1,5 @@
 +Backlog - Comunio
 
-
 -  DONE - REST einbauen
 -  DONE - Validation of Point input
 -  DONE - globale comunio variable in javascript
@@ -22,14 +21,14 @@
 
 ### IN PROGRESS ###
 
--   5   - Button for starting playoffs
 
 ###################
 
--   8   - Style playoff
 -   3   - Generate 5 figure random unique id's
 -   2   - Show bye week team
 -   5   - Create Explanation page
+-   8   - Style playoff
+-   5   - Button for starting playoffs
 -   8   - Error handling
 -   2   - Max length for team name
 -   5   - synchronization testen

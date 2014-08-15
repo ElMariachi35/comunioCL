@@ -39,7 +39,7 @@ public class GameServiceImpl implements GameService, Serializable {
     }
 
     public List<Game> getGamesByTeam(Team team, long comunioId) {
-        List<Game> games = new ArrayList<>();
+        List<Game> games = new ArrayList<Game>();
         for (Game game : getGames(comunioId)) {
             if (isTeamMemberOfGame(team, game)) {
                 games.add(game);
@@ -54,7 +54,7 @@ public class GameServiceImpl implements GameService, Serializable {
 
     @Override
     public List<Game> getGames(long comunioId) {
-        List<Game> games = new ArrayList<>();
+        List<Game> games = new ArrayList<Game>();
         for (Groupe group : groupService.findGroupsByComunioId(comunioId)) {
             for (Matchday matchday : group.getFixture().getMatchdays()) {
                 for (Game game : matchday.getMatches()) {
@@ -64,17 +64,17 @@ public class GameServiceImpl implements GameService, Serializable {
         }
         return games;
     }
-    
+
     @Override
     public List<Game> getGames() {
-	List<Game> games = new ArrayList<>();
-	for (Groupe group : sessionData.getComunio().getGroups()) {
-	    for (Matchday matchday : group.getFixture().getMatchdays()) {
-		for (Game game : matchday.getMatches()) {
-		    games.add(game);
-		}
-	    }
-	}
-	return games;
+        List<Game> games = new ArrayList<Game>();
+        for (Groupe group : sessionData.getComunio().getGroups()) {
+            for (Matchday matchday : group.getFixture().getMatchdays()) {
+                for (Game game : matchday.getMatches()) {
+                    games.add(game);
+                }
+            }
+        }
+        return games;
     }
 }

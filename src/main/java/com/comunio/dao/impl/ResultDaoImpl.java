@@ -75,7 +75,7 @@ public class ResultDaoImpl implements ResultDao {
                 .createSQLQuery(
                         "SELECT MAX(matchday) FROM result JOIN team ON result.teamId=team.teamId JOIN groupe ON team.groupId=groupe.groupId WHERE comunioId="
                                 + comunioId + ";");
-        int latestMatchday = (int) query.uniqueResult();
+        int latestMatchday = (Integer) query.uniqueResult();
         return latestMatchday;
     }
 }

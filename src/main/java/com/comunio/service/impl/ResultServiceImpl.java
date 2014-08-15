@@ -78,9 +78,9 @@ public class ResultServiceImpl implements ResultService {
         for (Team team : comunioService.getAllTeams(comunioId)) {
             updateTeams(team, comunioId);
         }
-        Map<Integer, List<Result>> preparedResults = new HashMap<>();
+        Map<Integer, List<Result>> preparedResults = new HashMap<Integer, List<Result>>();
         for (int i = 10; i < 18; i++) {
-            List<Result> resultsOfMatchday = new ArrayList<>();
+            List<Result> resultsOfMatchday = new ArrayList<Result>();
             for (Result result : results) {
                 if (result.getMatchday() == i) {
                     resultsOfMatchday.add(result);
@@ -94,7 +94,7 @@ public class ResultServiceImpl implements ResultService {
     }
 
     private List<Result> saveResults(List<JsonResult> results) {
-        List<Result> storedResults = new ArrayList<>();
+        List<Result> storedResults = new ArrayList<Result>();
         for (JsonResult jsonResult : results) {
             Team team = findTeam(jsonResult.getTeamId());
             Result result = new Result();

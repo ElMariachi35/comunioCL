@@ -129,7 +129,7 @@ public class GroupServiceImplTest {
     }
 
     private List<Team> mockTeams(int numberOfTeams) {
-        List<Team> teams = new ArrayList<>();
+        List<Team> teams = new ArrayList<Team>();
         for (int i = 0; i < numberOfTeams; i++) {
             teams.add(new Team());
         }

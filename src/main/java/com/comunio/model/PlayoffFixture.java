@@ -27,7 +27,7 @@ public class PlayoffFixture implements Serializable {
     @OneToMany(mappedBy = "teamId", fetch = FetchType.EAGER)
     private Set<Team> teams;
     @Transient
-    private Map<Integer, Team> promotedTeams = new HashMap<>();
+    private Map<Integer, Team> promotedTeams = new HashMap<Integer, Team>();
     @JoinColumn(name = "playoffFixtureId")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<KnockoutPairing> pairings;

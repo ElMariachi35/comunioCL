@@ -32,8 +32,9 @@
 			<li id="headerB" class="hidden"><a href="#groupB">Gruppe B</a></li>
 			<li id="headerC" class="hidden"><a href="#groupC">Gruppe C</a></li>
 			<li id="headerD" class="hidden"><a href="#groupD">Gruppe D</a></li>
+			<li id="headerPlayoff"><a href="#playoff">Playoff</a></li>
 		</ul>
-		
+
 		<div id="groupA">
 			<div class="tableContainer">
 				<div class="header">Tabelle</div>
@@ -265,6 +266,15 @@
 							</tr>
 						</tbody>
 					</table>
+				</div>
+			</div>
+		</div>
+		<div id="playoff">
+			<div class="playoffContainer">
+				<div class="header">KO-Phase</div>
+				<div class="header-separator"></div>
+				<div>
+					Die KO-Phase beginnt erst am 11. Spieltag.
 				</div>
 			</div>
 		</div>

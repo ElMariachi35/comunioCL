@@ -46,18 +46,18 @@ public class GroupServiceImpl implements GroupService {
         for (Groupe group : groups) {
             setUpGroup(teams, groupSizes.get(group), group);
         }
-        sessionData.getComunio().setGroups(new HashSet<>(groups));
+        sessionData.getComunio().setGroups(new HashSet<Groupe>(groups));
     }
 
     private List<Team> createShuffledTeams(String teamsString) {
-        List<Team> teams = new ArrayList<>();
+        List<Team> teams = new ArrayList<Team>();
         teams = teamService.createTeamsFromString(teamsString);
         Collections.shuffle(teams);
         return teams;
     }
 
     private void setUpGroup(List<Team> teams, int groupSize, Groupe group) {
-        Set<Team> teamsInGroup = new HashSet<>();
+        Set<Team> teamsInGroup = new HashSet<Team>();
         for (int i = 0; i < groupSize; i++) {
             Team team = teams.remove(0);
             teamsInGroup.add(team);
@@ -79,7 +79,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Transactional
     public List<String> determineGroupNames(int numberOfGroups) {
-        List<String> groupNames = new ArrayList<>();
+        List<String> groupNames = new ArrayList<String>();
         for (int i = 0; i < numberOfGroups; i++) {
             groupNames.add(GROUP_NAME_STRING.charAt(i) + "");
         }
@@ -87,7 +87,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     private List<Groupe> createGroups(long comunioId, int numberOfGroups) {
-        List<Groupe> groups = new ArrayList<>();
+        List<Groupe> groups = new ArrayList<Groupe>();
         String groupNames = GROUP_NAME_STRING;
         for (int i = 0; i < numberOfGroups; i++) {
             Groupe group = new Groupe();
@@ -100,7 +100,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     private Map<Groupe, Integer> determineGroupSizes(int numberOfTeams, List<Groupe> groups) {
-        Map<Groupe, Integer> groupSizes = new HashMap<>();
+        Map<Groupe, Integer> groupSizes = new HashMap<Groupe, Integer>();
         int remainder = getRemainder(numberOfTeams, groups);
         int groupSize = getGroupSize(numberOfTeams, groups);
         int counter = 0;
