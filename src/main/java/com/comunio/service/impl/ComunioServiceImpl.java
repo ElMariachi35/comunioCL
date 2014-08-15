@@ -23,6 +23,8 @@ public class ComunioServiceImpl implements ComunioService {
     @Autowired
     GroupService groupService;
     @Autowired
+    PasswordHashingService passwordHashingService;
+    @Autowired
     SessionData sessionData;
 
     @Transactional
@@ -34,7 +36,7 @@ public class ComunioServiceImpl implements ComunioService {
     public Comunio createComunio(String comunioName, String password) {
         Comunio comunio = new Comunio();
         comunio.setName(comunioName);
-        comunio.setPassword(password);
+        comunio.setPassword(passwordHashingService.hashPassword(password));
         return comunioDao.add(comunio);
     }
 
@@ -88,7 +90,7 @@ public class ComunioServiceImpl implements ComunioService {
     @Transactional
     public boolean checkPassword(long comunioId, String password) {
         String storedPassword = comunioDao.findPassword(comunioId);
-        if (storedPassword.equals(password)) {
+        if (storedPassword.equals(passwordHashingService.hashPassword(password))) {
             return true;
         }
         return false;
