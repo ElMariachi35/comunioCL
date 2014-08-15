@@ -10,6 +10,6 @@
     <div class="header-sub-bar"></div>
     <div class="header-admin-url"><a href="/admin">Admin</a></div>
     <div class="header-rules-url">
-        <a href="rules">Regeln</a>
+        <a href="/rules">Regeln</a>
     </div>
 </div>

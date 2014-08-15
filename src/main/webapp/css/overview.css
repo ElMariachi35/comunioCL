@@ -66,11 +66,12 @@
 	box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 	margin-right: 5px;
 	margin-top: 15px;
-	padding-left: 13px;
 	padding-top: 3px;
 	width: 81px;
 	height: 30px;
 	background-color: #c3e3bf;
+	text-align: center;
+	width: 92px;
 }
 
 .idTabs .selected {

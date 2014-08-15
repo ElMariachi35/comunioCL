@@ -32,7 +32,7 @@
 			<li id="headerB" class="hidden"><a href="#groupB">Gruppe B</a></li>
 			<li id="headerC" class="hidden"><a href="#groupC">Gruppe C</a></li>
 			<li id="headerD" class="hidden"><a href="#groupD">Gruppe D</a></li>
-			<li id="headerPlayoff"><a href="#playoff">Playoff</a></li>
+			<li id="headerPlayoff"><a href="#playoff">KO-Phase</a></li>
 		</ul>
 
 		<div id="groupA">

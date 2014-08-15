@@ -22,14 +22,16 @@
 -  DONE - Password hashen
 -  DONE - unique constraint for comunioName
 -  DONE - Margin bottom on load animation when saving com
+-  DONE - Back to comunio button when in admin
+-  DONE - Create Explanation page
 
 ### IN PROGRESS ###
 
--   3   - Back to comunio button when in admin
 
 ###################
 
--   5   - Create Explanation page
+-   2   - Impressum
+-   2   - Rules - explain Playoff
 -   8   - Error handling
 -   2   - Show bye week team
 -   8   - Style playoff

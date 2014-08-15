@@ -100,4 +100,9 @@ public class ApplicationController {
         return "playoff";
 
     }
+
+    @RequestMapping("/rules")
+    public String rules() {
+        return "rules";
+    }
 }

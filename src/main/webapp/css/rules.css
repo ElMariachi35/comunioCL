@@ -1,0 +1,37 @@
+.rulesContainer {
+	position: relative;
+	width: 600px;
+	padding: 10px;
+	background-color: #c4e4bf !important;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0px;
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	-moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+	-webkit-border-top-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	border-top-left-radius: 10px;
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
+}
+
+th {
+	font-size: 12px;
+}
+
+.promoted {
+	text-align: left;
+	padding-left: 15px;
+}
+
+tr:nth-child(even) {
+	background-color: #b4d4bf;
+}
+
+.header {
+	font-weight: bold;
+}
+
+.rules-header {
+	font-size: 18px;
+}

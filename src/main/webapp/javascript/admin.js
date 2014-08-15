@@ -80,9 +80,13 @@ function saveMatchday() {
 		success : function(data) {
 			$(".save-button").prop("disabled", false);
 			$(".save-loader").hide();
-			$('#message').html(data);
+			$('#message').html(data + "<br /><span class='back-to-overview' onclick='toOverview()'>Zur Übersicht</span>");
 		}
 	});
+}
+
+function toOverview(){
+	window.location.replace("/show/"+COMUNIO.comunioId);
 }
 
 function isPasswordCorrect() {

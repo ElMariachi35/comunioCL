@@ -10,7 +10,8 @@
 </head>
 <body>
 	<div class="container">
-	
+		<%@ include file="/WEB-INF/jsp/header.jsp"%>
+
 	</div>
 </body>
 </html>

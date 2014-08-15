@@ -67,6 +67,11 @@
 	padding-top: 20px;
 }
 
+.back-to-overview {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 input {
 	width: 70px;
 }
