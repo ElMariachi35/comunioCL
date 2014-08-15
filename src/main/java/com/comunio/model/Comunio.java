@@ -6,8 +6,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -20,7 +18,6 @@ import org.springframework.context.annotation.Scope;
 public class Comunio {
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long comunioId;
     @Column
     private String name;

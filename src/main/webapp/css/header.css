@@ -4,6 +4,10 @@
 	background-color: green;
 }
 
+a {
+	text-decoration: none !important;
+}
+
 .header-logo {
 	width: 86px;
 	height: 113px;
@@ -42,7 +46,7 @@
 	margin-top: 80px;
 	position: absolute;
 	font-weight: bold;
-	text-decoration: underline;
+	text-decoration: underline !important;
 	cursor: pointer;
 }
 

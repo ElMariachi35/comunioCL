@@ -2,7 +2,9 @@ package com.comunio.dao.impl;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Random;
 
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
@@ -19,8 +21,30 @@ public class ComunioDaoImpl implements ComunioDao {
 
     @Override
     public Comunio add(Comunio comunio) {
+        comunio.setComunioId(generateComunioId());
         session.getCurrentSession().save(comunio);
         return comunio;
+    }
+
+    private long generateComunioId() {
+        int min = 10000;
+        int max = 99999;
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+        if (comunioExists(randomNum)) {
+            return generateComunioId();
+        }
+        return Long.valueOf(randomNum);
+    }
+
+    private boolean comunioExists(long comunioId) {
+        Query query = session.getCurrentSession().createSQLQuery(
+                "SELECT COUNT(*) FROM comunio WHERE comunioId=" + comunioId);
+        BigInteger numberOfComunios = (BigInteger) query.uniqueResult();
+        if (numberOfComunios.intValue() == 0) {
+            return false;
+        }
+        return true;
     }
 
     @Override

@@ -18,13 +18,15 @@
 -  DONE - Update result does not work
 -  DONE - Style index
 -  DONE - style overview page -->when 5 teams per group schedule is 30px down
+-  DONE - Generate 5 figure random unique id's
 
 ### IN PROGRESS ###
 
 
 ###################
 
--   3   - Generate 5 figure random unique id's
+-   2   - Password hashen
+-   1   - unique constraint for comunioName, comunio+teamName
 -   2   - Show bye week team
 -   5   - Create Explanation page
 -   8   - Style playoff
