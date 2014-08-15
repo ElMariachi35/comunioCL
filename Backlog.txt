@@ -20,18 +20,20 @@
 -  DONE - style overview page -->when 5 teams per group schedule is 30px down
 -  DONE - Generate 5 figure random unique id's
 -  DONE - Password hashen
+-  DONE - unique constraint for comunioName
+-  DONE - Margin bottom on load animation when saving com
 
 ### IN PROGRESS ###
 
+-   3   - Back to comunio button when in admin
 
 ###################
 
--   1   - unique constraint for comunioName, comunio+teamName
--   2   - Show bye week team
 -   5   - Create Explanation page
+-   8   - Error handling
+-   2   - Show bye week team
 -   8   - Style playoff
 -   5   - Button for starting playoffs
--   8   - Error handling
 -   2   - Max length for team name
 -   5   - synchronization testen
 -   5   - unit testing
