@@ -6,10 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="../css/common.css" />
+<link rel="stylesheet" type="text/css" href="../css/error.css" />
 <title>Com Champions League</title>
 </head>
 <body>
-	<h1>ERROR</h1>
+	<div class="container">
+		<div class="errorContainer">
+			<div class="header bold">Fehler</div>
+			<div class="header-separator"></div>
+			<div>
+				<p>Leider ist ein unerwarteter Fehler aufgetreten. Wir bitten um
+					Verständnis!</p>
+
+				<a href="/index">Zur Startseite</a>
+			</div>
+		</div>
+	</div>
 	<script>
 		(function(i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r;

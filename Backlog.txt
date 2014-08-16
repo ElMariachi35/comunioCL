@@ -28,12 +28,12 @@
 
 ### IN PROGRESS ###
 
+-   8   - Error handling
 
 ###################
 
 -   2   - Impressum
 -   2   - Rules - explain Playoff
--   8   - Error handling
 -   2   - Show bye week team
 -   8   - Style playoff
 -   5   - Button for starting playoffs
