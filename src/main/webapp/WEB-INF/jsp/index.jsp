@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ include file="/WEB-INF/jsp/includes.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,57 +9,59 @@
 <link rel="stylesheet" type="text/css" href="../css/index.css" />
 </head>
 <body>
-	<div class="container">
-		<img class="logo" src="../../images/com-cl-logo.png" />
-		<div class="header">Com Champions League</div>
-		<table class="login-input">
-			<tr>
-				<td class="label">Com-Id</td>
-				<td></td>
-				<td class="label">Com-Name</td>
-			</tr>
-			<tr>
-				<td><input type="text" name="inputComId" id="inputComId" /></td>
-				<td class="center or">oder</td>
-				<td><input type="text" name="inputComName" id="inputComName" /></td>
-			</tr>
-			<tr>
-				<td class="center" colspan="3"><input type="button"
-					value="Weiter" onclick="sendOverviewRequest()"></td>
-			</tr>
-			<tr>
-				<td class="center" colspan="3"><div
-						class="animation-marker load-animation-big"></div></td>
-			</tr>
-			<tr>
-				<td class="center" colspan="3"><div id="errorMessage"
-						class="error-text">&nbsp;</div></td>
-			</tr>
-		</table>
+    <div class="container">
+        <img class="logo" src="../../images/com-cl-logo.png" />
+        <div class="header">Com Champions League</div>
+        <table class="login-input">
+            <tr>
+                <td class="label">Com-Id</td>
+                <td></td>
+                <td class="label">Com-Name</td>
+            </tr>
+            <tr>
+                <td><input type="text" name="inputComId" id="inputComId" /></td>
+                <td class="center or">oder</td>
+                <td><input type="text" name="inputComName" id="inputComName" /></td>
+            </tr>
+            <tr>
+                <td class="center" colspan="3"><input type="button" value="Weiter" onclick="sendOverviewRequest()"></td>
+            </tr>
+            <tr>
+                <td class="center" colspan="3"><div class="animation-marker load-animation-big"></div></td>
+            </tr>
+            <tr>
+                <td class="center" colspan="3"><div id="errorMessage" class="error-text">&nbsp;</div></td>
+            </tr>
+        </table>
 
-		<div class="horizontal-separator"></div>
-		<div class="info-text">
-			<span class="bold">Zum ersten Mal hier?</span><br /> Bei Com
-			Champions League handelt es sich um eine Erweiterung des
-			Managerspiels <a href="http://www.comunio.de">Comunio</a>. Im
-			Gegensatz zum normalen Modus, spielen hier die Teams in direkten
-			Duellen gegeneinander. Wie bei der "echten" Champions League gibt es
-			eine Gruppenphase mit anschlieﬂender KO-Phase.
-		</div>
-		<div class="new-com-url">
-			<span class="bold"><a href="/register">Neue Com Champions
-					League registrieren</a></span>
-		</div>
-	</div>
-	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <div class="horizontal-separator"></div>
+        <div class="info-text">
+            <span class="bold">Zum ersten Mal hier?</span><br /> Bei Com Champions League handelt es sich um eine
+            Erweiterung des Managerspiels <a href="http://www.comunio.de">Comunio</a>. Im Gegensatz zum normalen Modus,
+            spielen hier die Teams in direkten Duellen gegeneinander. Wie bei der "echten" Champions League gibt es eine
+            Gruppenphase mit anschlieﬂender KO-Phase.
+        </div>
+        <div class="new-com-url">
+            <span class="bold"><a href="/register">Neue Com Champions League registrieren</a></span>
+        </div>
+    </div>
+    <%@ include file="/WEB-INF/jsp/footer.jsp"%>
+    <script>
+					(function(i, s, o, g, r, a, m) {
+						i['GoogleAnalyticsObject'] = r;
+						i[r] = i[r] || function() {
+							(i[r].q = i[r].q || []).push(arguments)
+						}, i[r].l = 1 * new Date();
+						a = s.createElement(o),
+								m = s.getElementsByTagName(o)[0];
+						a.async = 1;
+						a.src = g;
+						m.parentNode.insertBefore(a, m)
+					})(window, document, 'script',
+							'//www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-53882327-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
+					ga('create', 'UA-53882327-1', 'auto');
+					ga('send', 'pageview');
+				</script>
 </body>
 </html>
