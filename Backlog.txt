@@ -27,13 +27,13 @@
 -  DONE - Add Google Analytics
 -  DONE - Error handling
 -  DONE - Impressum
+-  DONE - Error Message when creating a comunio with already existing name
 
 ### IN PROGRESS ###
 
 
 ###################
 
--   3   - Error Message when creating a comunio with already existing name
 -   2   - Rules - explain Playoff
 -   2   - Show bye week team
 -   8   - Style playoff

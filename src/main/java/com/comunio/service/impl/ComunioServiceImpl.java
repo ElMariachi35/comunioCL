@@ -95,4 +95,14 @@ public class ComunioServiceImpl implements ComunioService {
         }
         return false;
     }
+
+    @Override
+    @Transactional
+    public boolean isComNameUnique(String comName) {
+        int numberOfComunios = comunioDao.countByName(comName);
+        if (numberOfComunios == 0) {
+            return true;
+        }
+        return false;
+    }
 }

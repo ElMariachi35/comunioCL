@@ -284,7 +284,7 @@
                 Die Com CL wurde erfolgreich erstellt. Um die Com CL Übersichtsseite zu erreichen, müssen auf der
                 Startseite entweder Com-Id oder Com-Name eingegeben werden. Diese sollten daher den anderen Teilnehmern
                 mitgeteilt werden. <br /> <br />Der Admin hat die Aufgabe die erreichten Comunio-Punkte eines
-                Spieltages im Admin-Bereich (Link rechts oben) einzutragen, dazu wird auch dass Passwort benötigt.
+                Spieltages im Admin-Bereich (Link rechts oben) einzutragen, dazu wird auch das Passwort benötigt.
                 Anhand dieser Punkte werden die erzielten Tore in den Begegnungen errechnet. Weitere Informationen zum
                 Spiel sind in den Regeln zu finden. <br /> <br />Viel Spaß in der kommenden Saison!
             </div>

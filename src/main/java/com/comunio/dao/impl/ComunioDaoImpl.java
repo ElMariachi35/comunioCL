@@ -92,4 +92,10 @@ public class ComunioDaoImpl implements ComunioDao {
         return (String) session.getCurrentSession()
                 .createSQLQuery("SELECT password FROM comunio WHERE comunioId='" + comunioId + "';").uniqueResult();
     }
+
+    @Override
+    public int countByName(String comName) {
+        return ((BigInteger) session.getCurrentSession()
+                .createSQLQuery("SELECT COUNT(*) FROM comunio WHERE name='" + comName + "'").uniqueResult()).intValue();
+    }
 }

@@ -39,7 +39,7 @@
             <span class="bold">Zum ersten Mal hier?</span><br /> Bei Com Champions League handelt es sich um eine
             Erweiterung des Managerspiels <a href="http://www.comunio.de">Comunio</a>. Im Gegensatz zum normalen Modus,
             spielen hier die Teams in direkten Duellen gegeneinander. Wie bei der "echten" Champions League gibt es eine
-            Gruppenphase mit anschlieﬂender KO-Phase.
+            Gruppenphase mit anschlieﬂender KO-Phase. Weitere Informationen gibt es <a href="/rules">hier...</a>
         </div>
         <div class="new-com-url">
             <span class="bold"><a href="/register">Neue Com Champions League registrieren</a></span>

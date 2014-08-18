@@ -14,4 +14,6 @@ public interface ComunioDao {
     long findById(long id);
 
     public String findPassword(long comunioId);
+
+    public int countByName(String comName);
 }

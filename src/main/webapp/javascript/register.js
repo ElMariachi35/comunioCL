@@ -41,6 +41,11 @@ function validateRegisterComForm() {
 				'<tr><td>Feld "Com CL Name" darf nicht leer sein.</td><tr>');
 		isValid = false;
 	}
+	if(!isComNameUnique(comName)){
+		$('#registerValidationErrors').append(
+		'<tr><td>Der Com CL Name "'+comName+'" ist bereits vergeben.</td><tr>');
+		isValid = false;
+	}
 	var password = $('#registerPassword').val();
 	var passwordRepeated = $('#registerPasswordRepeated').val();
 	if (password == "" || password == null) {
@@ -68,6 +73,19 @@ function validateRegisterComForm() {
 		 isValid =	false;
 	}
 	return isValid;
+}
+
+function isComNameUnique(comName){
+	var isUnique = false;
+	$.ajax({
+		type : "POST",
+		url : "rest/register/unique/" + comName,
+		success : function(data) {
+			isUnique=true;
+		},
+		async: false
+	});	
+	return isUnique;
 }
 
 function validateTeamNames(teamNames) {

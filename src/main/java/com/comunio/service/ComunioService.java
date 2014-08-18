@@ -24,4 +24,6 @@ public interface ComunioService {
 
     public boolean checkPassword(long comunioId, String password);
 
+    public boolean isComNameUnique(String comName);
+
 }

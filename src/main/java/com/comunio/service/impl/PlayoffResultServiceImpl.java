@@ -49,7 +49,6 @@ public class PlayoffResultServiceImpl implements PlayoffResultService, Serializa
 
         playoffInitializationService.initializePlayoff();
         Playoff playoff = sessionData.getComunio().getPlayoff();
-        // for (Integer matchdayNumber : preparedResults.keySet().) {
         for (int matchdayNumber = 10; matchdayNumber < 18; matchdayNumber++) {
             System.out.println("#################################   " + matchdayNumber);
             List<Result> results = preparedResults.get(matchdayNumber);
