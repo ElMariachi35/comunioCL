@@ -24,8 +24,12 @@ CREATE TABLE `comunio` (
   `comunioId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  PRIMARY KEY (`comunioId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `playoff_id` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`comunioId`),
+  UNIQUE KEY `UNQ_name` (`name`),
+  KEY `IDX_playoff` (`playoff_id`),
+  CONSTRAINT `FK_comunio_playoff` FOREIGN KEY (`playoff_id`) REFERENCES `playoff` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=414353 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `fixture` */
 
@@ -38,7 +42,7 @@ CREATE TABLE `fixture` (
   KEY `IDX_fixture` (`fixtureId`),
   KEY `FK_fixture_group` (`groupId`),
   CONSTRAINT `FK_fixture_group` FOREIGN KEY (`groupId`) REFERENCES `groupe` (`groupId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `game` */
 
@@ -58,7 +62,7 @@ CREATE TABLE `game` (
   CONSTRAINT `FK_game_awayTeam` FOREIGN KEY (`awayTeam`) REFERENCES `team` (`teamId`),
   CONSTRAINT `FK_game_homeTeam` FOREIGN KEY (`homeTeam`) REFERENCES `team` (`teamId`),
   CONSTRAINT `FK_game_matchday` FOREIGN KEY (`matchdayId`) REFERENCES `matchday` (`matchdayId`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3566 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `groupe` */
 
@@ -71,7 +75,7 @@ CREATE TABLE `groupe` (
   PRIMARY KEY (`groupId`),
   KEY `IDX_comunio` (`comunioId`),
   CONSTRAINT `FK_groupe_comunio` FOREIGN KEY (`comunioId`) REFERENCES `comunio` (`comunioId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `knockoutpairing` */
 
@@ -92,7 +96,7 @@ CREATE TABLE `knockoutpairing` (
   CONSTRAINT `FK_knockoutpairing_playoffFixture` FOREIGN KEY (`playoffFixtureId`) REFERENCES `playofffixture` (`playoffFixtureId`),
   CONSTRAINT `FK_knockoutpairing_secondLeg` FOREIGN KEY (`secondLeg`) REFERENCES `playoffgame` (`playoffGameId`),
   CONSTRAINT `FK_knockoutpairing_team` FOREIGN KEY (`promotedTeam`) REFERENCES `team` (`teamId`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=403 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `matchday` */
 
@@ -109,27 +113,24 @@ CREATE TABLE `matchday` (
   KEY `IDX_byeTeam` (`byeTeam`),
   CONSTRAINT `FK_matchday_fixture` FOREIGN KEY (`fixtureId`) REFERENCES `fixture` (`fixtureId`),
   CONSTRAINT `FK_matchday_team` FOREIGN KEY (`byeTeam`) REFERENCES `team` (`teamId`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1775 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `playoff` */
 
 DROP TABLE IF EXISTS `playoff`;
 
 CREATE TABLE `playoff` (
-  `playoffId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `comunioId` bigint(20) unsigned NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `quaterFinal` bigint(20) unsigned DEFAULT NULL,
   `semiFinal` bigint(20) unsigned DEFAULT NULL,
   `playoffFinal` bigint(20) unsigned DEFAULT NULL,
-  PRIMARY KEY (`playoffId`),
-  KEY `IDX_comunio` (`comunioId`),
+  PRIMARY KEY (`id`),
   KEY `IDX_quaterFinal` (`quaterFinal`),
   KEY `IDX_semiFinal` (`semiFinal`),
   KEY `IDX_playoffFinal` (`playoffFinal`),
-  CONSTRAINT `FK_playoff_comunio` FOREIGN KEY (`comunioId`) REFERENCES `comunio` (`comunioId`),
   CONSTRAINT `FK_playoff_quaterFinal` FOREIGN KEY (`quaterFinal`) REFERENCES `playofffixture` (`playoffFixtureId`),
   CONSTRAINT `FK_playoff_semiFinal` FOREIGN KEY (`semiFinal`) REFERENCES `playofffixture` (`playoffFixtureId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `playofffinale` */
 
@@ -153,7 +154,7 @@ CREATE TABLE `playofffinale` (
   CONSTRAINT `FK_playofffinale_secondLeg` FOREIGN KEY (`secondLeg`) REFERENCES `playoffgame` (`playoffGameId`),
   CONSTRAINT `FK_playofffinale_teamOne` FOREIGN KEY (`teamOne`) REFERENCES `team` (`teamId`),
   CONSTRAINT `FK_playofffinale_teamTwo` FOREIGN KEY (`teamTwo`) REFERENCES `team` (`teamId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `playofffixture` */
 
@@ -162,7 +163,7 @@ DROP TABLE IF EXISTS `playofffixture`;
 CREATE TABLE `playofffixture` (
   `playoffFixtureId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`playoffFixtureId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `playoffgame` */
 
@@ -175,7 +176,7 @@ CREATE TABLE `playoffgame` (
   `homeGoals` int(11) NOT NULL,
   `awayGoals` int(11) NOT NULL,
   PRIMARY KEY (`playoffGameId`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1265 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `result` */
 
@@ -190,7 +191,7 @@ CREATE TABLE `result` (
   PRIMARY KEY (`resultId`),
   KEY `IDX_team` (`teamId`),
   CONSTRAINT `FK_result_team` FOREIGN KEY (`teamId`) REFERENCES `team` (`teamId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6953 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `team` */
 
@@ -212,7 +213,7 @@ CREATE TABLE `team` (
   PRIMARY KEY (`teamId`),
   KEY `IDX_groupId` (`groupId`),
   CONSTRAINT `FK_team_group` FOREIGN KEY (`groupId`) REFERENCES `groupe` (`groupId`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=845 DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
