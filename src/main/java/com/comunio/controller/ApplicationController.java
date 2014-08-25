@@ -51,78 +51,70 @@ public class ApplicationController {
 
     @RequestMapping(value = { "/index", "", "/" })
     public String setupForm(Map<String, Object> map) {
-	return "index";
+        return "index";
     }
 
     @RequestMapping("/register")
     public String addComunio() {
-	return "register";
+        return "register";
     }
 
     @RequestMapping(value = "/show/{comunioId}")
-    public String showComunio(@PathVariable Long comunioId,
-	    Map<String, Object> map) throws JsonGenerationException,
-	    JsonMappingException, IOException {
-	sessionData.setComunio(comunioService.retrieveComunio(comunioId));
-	map.put("comunioJSON",
-		objectMapper.writeValueAsString(sessionData.getComunio()));
-	return "overview";
+    public String showComunio(@PathVariable Long comunioId, Map<String, Object> map) throws JsonGenerationException,
+            JsonMappingException, IOException {
+        sessionData.setComunio(comunioService.retrieveComunio(comunioId));
+        map.put("comunioJSON", objectMapper.writeValueAsString(sessionData.getComunio()));
+        System.out.println(objectMapper.writeValueAsString(sessionData.getComunio()));
+        return "overview";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String addTeams(@RequestParam("teams") String teamsString,
-	    @RequestParam("comName") String comunioName,
-	    @RequestParam("password") String password,
-	    @RequestParam("numberOfTeams") String numberOfTeams,
-	    Map<String, Object> map) throws JsonGenerationException,
-	    JsonMappingException, IOException {
+    public String addTeams(@RequestParam("teams") String teamsString, @RequestParam("comName") String comunioName,
+            @RequestParam("password") String password, @RequestParam("numberOfTeams") String numberOfTeams,
+            Map<String, Object> map) throws JsonGenerationException, JsonMappingException, IOException {
 
-	Comunio comunio = comunioService.createComunio(comunioName, password);
-	sessionData.setComunio(comunio);
-	groupService.initializeGroups(Integer.parseInt(numberOfTeams),
-		teamsString);
-	sessionData.setComunio(comunioService.retrieveComunio(comunio
-		.getComunioId()));
-	map.put("showInfoMessage", true);
-	map.put("comunioJSON",
-		objectMapper.writeValueAsString(sessionData.getComunio()));
-	return "overview";
+        Comunio comunio = comunioService.createComunio(comunioName, password);
+        sessionData.setComunio(comunio);
+        groupService.initializeGroups(Integer.parseInt(numberOfTeams), teamsString);
+        sessionData.setComunio(comunioService.retrieveComunio(comunio.getComunioId()));
+        map.put("showInfoMessage", true);
+        map.put("comunioJSON", objectMapper.writeValueAsString(sessionData.getComunio()));
+        return "overview";
     }
 
     @RequestMapping("/admin")
-    public String admin(Map<String, Object> map)
-	    throws JsonGenerationException, JsonMappingException, IOException {
-	Comunio comunio = sessionData.getComunio();
-	if (comunio == null) {
-	    return "error";
-	}
-	map.put("comunioJSON", objectMapper.writeValueAsString(comunio));
-	List<Team> teams = comunioService.getAllTeams();
-	Collections.sort(teams, new TeamByTeamnameComparator());
-	map.put("teams", objectMapper.writeValueAsString(teams));
-	map.put("numberOfMatchdays", NUMBER_OF_MATCHDAYS);
-	return "admin";
+    public String admin(Map<String, Object> map) throws JsonGenerationException, JsonMappingException, IOException {
+        Comunio comunio = sessionData.getComunio();
+        if (comunio == null) {
+            return "error";
+        }
+        map.put("comunioJSON", objectMapper.writeValueAsString(comunio));
+        List<Team> teams = comunioService.getAllTeams();
+        Collections.sort(teams, new TeamByTeamnameComparator());
+        map.put("teams", objectMapper.writeValueAsString(teams));
+        map.put("numberOfMatchdays", NUMBER_OF_MATCHDAYS);
+        return "admin";
     }
 
     @RequestMapping("/showPlayoff")
     public String showPlayoff(Map<String, Object> map) {
-	map.put("comunio", sessionData.getComunio());
-	return "playoff";
+        map.put("comunio", sessionData.getComunio());
+        return "playoff";
 
     }
 
     @RequestMapping("/rules")
     public String rules() {
-	return "rules";
+        return "rules";
     }
 
     @RequestMapping("/impressum")
     public String impressum() {
-	return "impressum";
+        return "impressum";
     }
 
     @ExceptionHandler(Exception.class)
     public String handleException() {
-	return "error";
+        return "error";
     }
 }

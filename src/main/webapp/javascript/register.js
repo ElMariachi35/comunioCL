@@ -26,6 +26,7 @@ function submitRegisterComForm() {
 	$('.animation-marker').show();
 	$('.registerButton').hide();
 	$('#registerForm').append(
+
 			'<input type="hidden" name="teams" value="' + teams + '" />');
 	$('#registerForm').submit();
 
@@ -91,6 +92,7 @@ function isComNameUnique(comName){
 function validateTeamNames(teamNames) {
 	var isFilled = true;
 	var isUnique = true;
+	var isValid = true;
 	teamNames.sort();
 	for (var i = 0; i < teamNames.length; i++) {
 		var teamName = teamNames[i];
@@ -103,6 +105,9 @@ function validateTeamNames(teamNames) {
 		if (teamName == teamNames[i + 1]) {
 			isUnique = false;
 		}
+		if(teamNames[i].indexOf("'")!=-1){
+			isValid = false;
+		}
 	}
 	if (!isFilled) {
 		$('#registerValidationErrors').append(
@@ -112,5 +117,9 @@ function validateTeamNames(teamNames) {
 		$('#registerValidationErrors').append(
 		'<tr><td>Teamnamen müssen alle unterschiedlich sein.</td><tr>');
 	}
-	return isFilled && isUnique;
+	if (!isValid) {
+		$('#registerValidationErrors').append(
+		"<tr><td>In den Teamnamen darf kein ' (Appostroph) vorkommen.</td><tr>");
+	}
+	return isFilled && isUnique && isValid;
 }

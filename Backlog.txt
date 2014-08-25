@@ -28,15 +28,16 @@
 -  DONE - Error handling
 -  DONE - Impressum
 -  DONE - Error Message when creating a comunio with already existing name
+-  DONE - ' is not allowed in teamName
 
 ### IN PROGRESS ###
 
+-   8   - Style playoff
 
 ###################
 
 -   2   - Rules - explain Playoff
 -   2   - Show bye week team
--   8   - Style playoff
 -   5   - Button for starting playoffs
 -   2   - Max length for team name
 -   5   - synchronization testen
