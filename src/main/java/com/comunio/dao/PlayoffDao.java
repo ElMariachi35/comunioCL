@@ -9,4 +9,6 @@ public interface PlayoffDao {
     Playoff findById(Playoff playoff);
 
     void delete(Playoff playoff);
+
+    Playoff findBy(long comunioId);
 }

@@ -13,7 +13,7 @@ import com.comunio.service.PlayoffGameUpdatingService;
 public class PlayoffGameUpdatingServiceImpl implements PlayoffGameUpdatingService {
 
     @Override
-    public void updatePlayoffGame(PlayoffGame playoffGame, List<Result> results) {
+    public PlayoffGame updatePlayoffGame(PlayoffGame playoffGame, List<Result> results) {
         Team homeTeam = playoffGame.getHomeTeam();
         Team awayTeam = playoffGame.getAwayTeam();
         for (Result result : results) {
@@ -24,5 +24,6 @@ public class PlayoffGameUpdatingServiceImpl implements PlayoffGameUpdatingServic
                 playoffGame.setAwayGoals(result.getGoals());
             }
         }
+        return playoffGame;
     }
 }

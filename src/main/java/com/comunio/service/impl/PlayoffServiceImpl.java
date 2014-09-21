@@ -28,4 +28,10 @@ public class PlayoffServiceImpl implements PlayoffService, Serializable {
     public void delete(Playoff playoff) {
         playoffDao.delete(playoff);
     }
+
+    @Override
+    @Transactional
+    public Playoff findBy(long comunioId) {
+        return playoffDao.findBy(comunioId);
+    }
 }

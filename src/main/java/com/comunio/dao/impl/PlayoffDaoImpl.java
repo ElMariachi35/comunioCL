@@ -35,4 +35,13 @@ public class PlayoffDaoImpl implements PlayoffDao, Serializable {
     public void delete(Playoff playoff) {
         sessionFactory.getCurrentSession().delete(playoff);
     }
+
+    @Override
+    public Playoff findBy(long comunioId) {
+        return (Playoff) sessionFactory
+                .getCurrentSession()
+                .createSQLQuery(
+                        "SELECT * FROM Playoff where id=(SELECT playoff_id FROM Comunio WHERE comunioId=" + comunioId
+                                + ");").addEntity(Playoff.class).uniqueResult();
+    }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.comunio.model.Playoff;
 import com.comunio.model.PlayoffFinale;
 import com.comunio.model.PlayoffGame;
 import com.comunio.model.Result;
@@ -21,8 +22,8 @@ public class PlayoffFinalServiceImpl implements PlayoffFinalService {
     PlayoffGameUpdatingService playoffGameUpdatingService;
 
     @Override
-    public void updateFirstLeg(List<Result> results) {
-        PlayoffFinale playoffFinal = sessionData.getComunio().getPlayoff().getPlayoffFinal();
+    public void updateFirstLeg(List<Result> results, Playoff playoff) {
+        PlayoffFinale playoffFinal = playoff.getPlayoffFinal();
         if (playoffFinal == null) {
             return;
         }
@@ -32,8 +33,8 @@ public class PlayoffFinalServiceImpl implements PlayoffFinalService {
     }
 
     @Override
-    public void updateSecondLeg(List<Result> results) {
-        PlayoffFinale playoffFinal = sessionData.getComunio().getPlayoff().getPlayoffFinal();
+    public void updateSecondLeg(List<Result> results, Playoff playoff) {
+        PlayoffFinale playoffFinal = playoff.getPlayoffFinal();
         if (playoffFinal == null) {
             return;
         }
@@ -43,8 +44,8 @@ public class PlayoffFinalServiceImpl implements PlayoffFinalService {
     }
 
     @Override
-    public void updateThirdLeg(List<Result> results) {
-        PlayoffFinale playoffFinal = sessionData.getComunio().getPlayoff().getPlayoffFinal();
+    public void updateThirdLeg(List<Result> results, Playoff playoff) {
+        PlayoffFinale playoffFinal = playoff.getPlayoffFinal();
         if (playoffFinal == null) {
             return;
         }

@@ -1,19 +1,19 @@
 package com.comunio.service.impl;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.comunio.model.Comunio;
 import com.comunio.model.Groupe;
 import com.comunio.model.Playoff;
 import com.comunio.model.PlayoffFinale;
 import com.comunio.model.SessionData;
 import com.comunio.model.Team;
 import com.comunio.service.ComunioService;
+import com.comunio.service.GroupService;
 import com.comunio.service.PlayoffFinalService;
 import com.comunio.service.PlayoffFixtureService;
 import com.comunio.service.PlayoffGameService;
@@ -40,41 +40,54 @@ public class PlayoffInitializationServiceImpl implements PlayoffInitializationSe
     PlayoffService playoffService;
     @Autowired
     ComunioService comunioService;
+    @Autowired
+    GroupService groupService;
 
     @Override
     @Transactional
-    public void initializePlayoff() {
-        Set<Groupe> groups = sessionData.getComunio().getGroups();
-        int numberOfTeams = teamService.findAllTeamNames().size();
+    public Playoff initializePlayoff(Playoff playoff, long comunioId) {
+        if (isAreadyInitialized(playoff)) {
+            return playoff;
+        }
+        // check if all results are entered
+        List<Groupe> groups = groupService.findGroupsByComunioId(comunioId);
+        int numberOfTeams = determineNumberOfTeams(groups);
         Map<Integer, Team> playoffTeams = playoffRankingService.determinePlayoffTeam(groups, numberOfTeams);
-        createPlayoffs(playoffTeams);
+        return createPlayoffs(playoffTeams, playoff);
     }
 
-    private void createPlayoffs(Map<Integer, Team> teams) {
-        Playoff playoff = sessionData.getComunio().getPlayoff();
+    private boolean isAreadyInitialized(Playoff playoff) {
+        return playoff.getQuaterFinal() != null || playoff.getSemiFinal() != null;
+    }
+
+    private int determineNumberOfTeams(List<Groupe> groups) {
+        int numberOfTeams = 0;
+        for (Groupe groupe : groups) {
+            numberOfTeams += groupe.getTeams().size();
+        }
+        return numberOfTeams;
+    }
+
+    private Playoff createPlayoffs(Map<Integer, Team> teams, Playoff playoff) {
         if (teams.size() == 8) {
             playoff.setQuaterFinal(playoffFixtureService.createFixture(teams));
         }
         if (teams.size() == 4) {
             playoff.setSemiFinal(playoffFixtureService.createFixture(teams));
         }
-        playoffService.save(playoff);
-        Comunio comunio = sessionData.getComunio();
-        comunio.setPlayoff(playoff);
-        comunioService.save(comunio);
+        return playoff;
     }
 
     @Override
-    public void initializeSemiFinal(Map<Integer, Team> semiFinalTeams) {
-        Playoff playoff = sessionData.getComunio().getPlayoff();
+    public Playoff initializeSemiFinal(Map<Integer, Team> semiFinalTeams, Playoff playoff) {
         playoff.setSemiFinal(playoffFixtureService.createFixture(semiFinalTeams));
+        return playoff;
     }
 
     @Override
-    public void initializeFinal(Map<Integer, Team> promotedTeams) {
-        Playoff playoff = sessionData.getComunio().getPlayoff();
+    public Playoff initializeFinal(Map<Integer, Team> promotedTeams, Playoff playoff) {
         if (playoff == null) {
-            return;
+            return null;
         }
         PlayoffFinale playoffFinal = playoff.getPlayoffFinal();
         if (playoffFinal == null) {
@@ -85,6 +98,7 @@ public class PlayoffInitializationServiceImpl implements PlayoffInitializationSe
             playoffFinal = createFinal(promotedTeams.get(1), promotedTeams.get(2));
         }
         playoff.setPlayoffFinal(playoffFinal);
+        return playoff;
     }
 
     @Override

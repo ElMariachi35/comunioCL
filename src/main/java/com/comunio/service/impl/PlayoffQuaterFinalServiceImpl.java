@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.comunio.model.KnockoutPairing;
+import com.comunio.model.Playoff;
 import com.comunio.model.PlayoffFixture;
 import com.comunio.model.PlayoffGame;
 import com.comunio.model.Result;
@@ -29,31 +30,35 @@ public class PlayoffQuaterFinalServiceImpl implements PlayoffQuaterFinalService 
     PlayoffPromotedTeamsService playoffPromotedTeamsService;
 
     @Override
-    public void updateFirstLeg(List<Result> results) {
-        PlayoffFixture quaterFinal = sessionData.getComunio().getPlayoff().getQuaterFinal();
+    public Playoff updateFirstLeg(List<Result> results, Playoff playoff) {
+        PlayoffFixture quaterFinal = playoff.getQuaterFinal();
         if (quaterFinal == null) {
-            return;
+            return null;
         }
         for (KnockoutPairing pairing : quaterFinal.getPairings()) {
             PlayoffGame firstLeg = pairing.getFirstLeg();
-            playoffGameUpdatingService.updatePlayoffGame(firstLeg, results);
+            firstLeg = playoffGameUpdatingService.updatePlayoffGame(firstLeg, results);
+            pairing.setFirstLeg(firstLeg);
         }
+        return playoff;
     }
 
-    public void updateSecondLeg(List<Result> results) {
-        PlayoffFixture quaterFinal = sessionData.getComunio().getPlayoff().getQuaterFinal();
+    @Override
+    public Playoff updateSecondLeg(List<Result> results, Playoff playoff) {
+        PlayoffFixture quaterFinal = playoff.getQuaterFinal();
         if (quaterFinal == null) {
-            return;
+            return null;
         }
         int index = 1;
         for (KnockoutPairing pairing : quaterFinal.getPairings()) {
             PlayoffGame secondLeg = pairing.getSecondLeg();
-            playoffGameUpdatingService.updatePlayoffGame(secondLeg, results);
+            secondLeg = playoffGameUpdatingService.updatePlayoffGame(secondLeg, results);
             Team promotedTeam = playoffPromotedTeamsService.determinePromotedTeam(pairing);
+            pairing.setSecondLeg(secondLeg);
             pairing.setPromotedTeam(promotedTeam);
             quaterFinal.getPromotedTeams().put(index, promotedTeam);
             index++;
         }
-        playoffInitializationService.initializeSemiFinal(quaterFinal.getPromotedTeams());
+        return playoffInitializationService.initializeSemiFinal(quaterFinal.getPromotedTeams(), playoff);
     }
 }

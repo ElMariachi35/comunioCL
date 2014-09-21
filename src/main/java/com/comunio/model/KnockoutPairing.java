@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 public class KnockoutPairing implements Serializable {
     private static final long serialVersionUID = 4392931109345422072L;
@@ -30,6 +32,7 @@ public class KnockoutPairing implements Serializable {
     private Team promotedTeam;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "playoffFixtureId")
+    @JsonIgnore
     private PlayoffFixture playoffFixture;
 
     public KnockoutPairing() {

@@ -69,10 +69,10 @@ public class ResultServiceImpl implements ResultService {
     @Override
     @Transactional
     public void updateResult(List<JsonResult> jsonResults, long comunioId) {
-        saveResults(jsonResults);
-        List<Result> results = resultDao.getResults(comunioId);
+        List<Result> results = saveResults(jsonResults);
+        List<Result> allResults = resultDao.getResults(comunioId);
         List<Game> games = gameService.getGames(comunioId);
-        updateGames(games, results);
+        updateGames(games, allResults);
         for (Team team : comunioService.getAllTeams(comunioId)) {
             updateTeams(team, comunioId);
         }
@@ -89,7 +89,8 @@ public class ResultServiceImpl implements ResultService {
         // preparedResults.put(i, resultsOfMatchday);
         // }
         // }
-        // playoffResultService.handlePlayoff(preparedResults);
+
+        playoffResultService.handlePlayoff(results, comunioId);
     }
 
     private List<Result> saveResults(List<JsonResult> results) {

@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -16,13 +15,13 @@ import com.comunio.model.Team;
 @Service
 public class PlayoffRankingService {
 
-    public Map<Integer, Team> determinePlayoffTeam(Set<Groupe> groups, int numberOfTeams) {
+    public Map<Integer, Team> determinePlayoffTeam(List<Groupe> groups, int numberOfTeams) {
         List<Team> preselectedTeams = getPreselectedTeams(groups, numberOfTeams);
         List<Team> sortedPlayoffTeams = sortPreselectedTeams(preselectedTeams);
         return createPlayoffMap(sortedPlayoffTeams);
     }
 
-    private List<Team> getPreselectedTeams(Set<Groupe> groups, int numberOfTeams) {
+    private List<Team> getPreselectedTeams(List<Groupe> groups, int numberOfTeams) {
         List<Team> playoffTeams = new ArrayList<Team>();
         if (numberOfTeams < 7) {
             playoffTeams = getPlayoffTeam(groups.iterator().next(), 4);

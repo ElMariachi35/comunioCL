@@ -8,6 +8,6 @@ import com.comunio.model.Result;
 
 public interface PlayoffGameUpdatingService extends Serializable {
 
-    void updatePlayoffGame(PlayoffGame playoffGame, List<Result> results);
+    PlayoffGame updatePlayoffGame(PlayoffGame playoffGame, List<Result> results);
 
 }

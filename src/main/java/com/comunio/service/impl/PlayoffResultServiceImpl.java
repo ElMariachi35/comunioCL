@@ -47,7 +47,7 @@ public class PlayoffResultServiceImpl implements PlayoffResultService, Serializa
             return;
         }
 
-        playoffInitializationService.initializePlayoff();
+        // playoffInitializationService.initializePlayoff();
         Playoff playoff = sessionData.getComunio().getPlayoff();
         for (int matchdayNumber = 10; matchdayNumber < 18; matchdayNumber++) {
             System.out.println("#################################   " + matchdayNumber);
@@ -55,30 +55,68 @@ public class PlayoffResultServiceImpl implements PlayoffResultService, Serializa
             if (results == null || results.isEmpty()) {
                 continue;
             }
-            switch (matchdayNumber) {
-            case MATCHDAY_NUMBER_QUATER_FINAL_FIRST_LEG:
-                playoffQuaterFinalService.updateFirstLeg(results);
-                break;
-            case MATCHDAY_NUMBER_QUATER_FINAL_SECOND_LEG:
-                playoffQuaterFinalService.updateSecondLeg(results);
-                break;
-            case MATCHDAY_NUMBER_SEMI_FINAL_FIRST_LEG:
-                playoffSemiFinalService.updateFirstLeg(results);
-                break;
-            case MATCHDAY_NUMBER_SEMI_FINAL_SECOND_LEG:
-                playoffSemiFinalService.updateSecondLeg(results);
-                break;
-            case MATCHDAY_NUMBER_PLAYOFF_FINAL_FIRST_LEG:
-                playoffFinalService.updateFirstLeg(results);
-                break;
-            case MATCHDAY_NUMBER_PLAYOFF_FINAL_SECOND_LEG:
-                playoffFinalService.updateSecondLeg(results);
-                break;
-            case MATCHDAY_NUMBER_PLAYOFF_FINAL_THIRD_LEG:
-                playoffFinalService.updateThirdLeg(results);
-                break;
-            }
+            // switch (matchdayNumber) {
+            // case MATCHDAY_NUMBER_QUATER_FINAL_FIRST_LEG:
+            // playoffQuaterFinalService.updateFirstLeg(results);
+            // break;
+            // case MATCHDAY_NUMBER_QUATER_FINAL_SECOND_LEG:
+            // playoffQuaterFinalService.updateSecondLeg(results);
+            // break;
+            // case MATCHDAY_NUMBER_SEMI_FINAL_FIRST_LEG:
+            // playoffSemiFinalService.updateFirstLeg(results);
+            // break;
+            // case MATCHDAY_NUMBER_SEMI_FINAL_SECOND_LEG:
+            // playoffSemiFinalService.updateSecondLeg(results);
+            // break;
+            // case MATCHDAY_NUMBER_PLAYOFF_FINAL_FIRST_LEG:
+            // playoffFinalService.updateFirstLeg(results);
+            // break;
+            // case MATCHDAY_NUMBER_PLAYOFF_FINAL_SECOND_LEG:
+            // playoffFinalService.updateSecondLeg(results);
+            // break;
+            // case MATCHDAY_NUMBER_PLAYOFF_FINAL_THIRD_LEG:
+            // playoffFinalService.updateThirdLeg(results);
+            // break;
+            // }
         }
         playoffService.save(playoff);
+    }
+
+    @Override
+    public void handlePlayoff(List<Result> results, long comunioId) {
+        int matchdayNumber = findMatchdayNumber(results);
+        Playoff playoff = playoffService.findBy(comunioId);
+        if (matchdayNumber == 10) {
+            playoff = playoffInitializationService.initializePlayoff(playoff, comunioId);
+        }
+
+        switch (matchdayNumber) {
+        case MATCHDAY_NUMBER_QUATER_FINAL_FIRST_LEG:
+            playoff = playoffQuaterFinalService.updateFirstLeg(results, playoff);
+            break;
+        case MATCHDAY_NUMBER_QUATER_FINAL_SECOND_LEG:
+            playoff = playoffQuaterFinalService.updateSecondLeg(results, playoff);
+            break;
+        case MATCHDAY_NUMBER_SEMI_FINAL_FIRST_LEG:
+            playoffSemiFinalService.updateFirstLeg(results, playoff);
+            break;
+        case MATCHDAY_NUMBER_SEMI_FINAL_SECOND_LEG:
+            playoffSemiFinalService.updateSecondLeg(results, playoff);
+            break;
+        case MATCHDAY_NUMBER_PLAYOFF_FINAL_FIRST_LEG:
+            playoffFinalService.updateFirstLeg(results, playoff);
+            break;
+        case MATCHDAY_NUMBER_PLAYOFF_FINAL_SECOND_LEG:
+            playoffFinalService.updateSecondLeg(results, playoff);
+            break;
+        case MATCHDAY_NUMBER_PLAYOFF_FINAL_THIRD_LEG:
+            playoffFinalService.updateThirdLeg(results, playoff);
+            break;
+        }
+        playoffService.save(playoff);
+    }
+
+    private int findMatchdayNumber(List<Result> results) {
+        return results.get(0).getMatchday();
     }
 }
