@@ -22,7 +22,7 @@ public class ResultDaoImpl implements ResultDao {
     @SuppressWarnings("unchecked")
     public Result saveOrUpdate(Result result) {
         Query query = sessionFactory.getCurrentSession()
-                .createSQLQuery("Select * from result where matchday=:matchday and teamId=:teamId")
+                .createSQLQuery("Select * from Result where matchday=:matchday and teamId=:teamId")
                 .addEntity(Result.class).setParameter("teamId", result.getTeam().getTeamId())
                 .setParameter("matchday", result.getMatchday());
         List<Result> resultList = query.list();
@@ -41,7 +41,7 @@ public class ResultDaoImpl implements ResultDao {
     @SuppressWarnings("unchecked")
     @Override
     public List<Result> getResultsByTeam(Team team) {
-        Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM result WHERE teamId=:teamId")
+        Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM Result WHERE teamId=:teamId")
                 .addEntity(Result.class).setParameter("teamId", team.getTeamId());
         return query.list();
     }
@@ -52,7 +52,7 @@ public class ResultDaoImpl implements ResultDao {
         Query query = sessionFactory
                 .getCurrentSession()
                 .createSQLQuery(
-                        "SELECT DISTINCT r.resultId, r.teamId, r.matchday, r.points, r.goals FROM groupe g JOIN team t ON g.groupId=t.groupId JOIN result r ON t.teamId=r.teamId WHERE g.comunioId=:comunioId")
+                        "SELECT DISTINCT r.resultId, r.teamId, r.matchday, r.points, r.goals FROM Groupe g JOIN Team t ON g.groupId=t.groupId JOIN result r ON t.teamId=r.teamId WHERE g.comunioId=:comunioId")
                 .addEntity(Result.class).setParameter("comunioId", comunioId);
         return query.list();
     }

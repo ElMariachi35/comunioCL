@@ -21,7 +21,7 @@ public class TeamDaoImpl implements TeamDao {
 
     @Override
     public void updateTeam(Team team) {
-        String queryString = "UPDATE team t SET t.gamesPlayed=" + team.getGamesPlayed() + ", t.gamesWon="
+        String queryString = "UPDATE Team t SET t.gamesPlayed=" + team.getGamesPlayed() + ", t.gamesWon="
                 + team.getGamesWon() + ", t.gamesDrawn=" + team.getGamesDrawn() + ", t.gamesLost="
                 + team.getGamesLost() + ", t.goalsFor=" + team.getGoalsFor() + ", t.goalsAgainst="
                 + team.getGoalsAgainst() + ", t.goalDifference=" + team.getGoalDifference() + ", t.points="
@@ -33,6 +33,6 @@ public class TeamDaoImpl implements TeamDao {
 
     @Override
     public Team findBy(long teamId) {
-	return (Team) sessionFactory.getCurrentSession().get(Team.class, teamId);
+        return (Team) sessionFactory.getCurrentSession().get(Team.class, teamId);
     }
 }

@@ -10,23 +10,25 @@ import com.comunio.model.Fixture;
 
 @Repository
 public class FixtureDaoImpl implements FixtureDao {
-	
-	@Autowired
-	private SessionFactory sessionFactory;
 
-	@Override
-	public void addFixture(Fixture fixture) {
-		sessionFactory.getCurrentSession().save(fixture);
-	}
+    @Autowired
+    private SessionFactory sessionFactory;
 
-	@Override
-	public void updateFixture(Fixture fixture) {
-		sessionFactory.getCurrentSession().update(fixture);
-	}
+    @Override
+    public void addFixture(Fixture fixture) {
+        sessionFactory.getCurrentSession().save(fixture);
+    }
 
-	@Override
-	public Fixture getFixtureByGroupId(long groupId) {
-		Query query = sessionFactory.getCurrentSession().createSQLQuery("Select * from fixture where groupId= :groupId").addEntity(Fixture.class).setParameter("groupId", groupId);
-		return (Fixture) query.list().get(0);
-	}
+    @Override
+    public void updateFixture(Fixture fixture) {
+        sessionFactory.getCurrentSession().update(fixture);
+    }
+
+    @Override
+    public Fixture getFixtureByGroupId(long groupId) {
+        Query query = sessionFactory.getCurrentSession()
+                .createSQLQuery("Select * from Fixture where groupId= :groupId").addEntity(Fixture.class)
+                .setParameter("groupId", groupId);
+        return (Fixture) query.list().get(0);
+    }
 }

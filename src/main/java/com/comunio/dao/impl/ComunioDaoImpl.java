@@ -39,7 +39,7 @@ public class ComunioDaoImpl implements ComunioDao {
 
     private boolean comunioExists(long comunioId) {
         Query query = session.getCurrentSession().createSQLQuery(
-                "SELECT COUNT(*) FROM comunio WHERE comunioId=" + comunioId);
+                "SELECT COUNT(*) FROM Comunio WHERE comunioId=" + comunioId);
         BigInteger numberOfComunios = (BigInteger) query.uniqueResult();
         if (numberOfComunios.intValue() == 0) {
             return false;
@@ -67,7 +67,7 @@ public class ComunioDaoImpl implements ComunioDao {
     @SuppressWarnings("unchecked")
     public long findByName(String name) {
         SQLQuery query = session.getCurrentSession().createSQLQuery(
-                "SELECT comunioId FROM comunio WHERE name='" + name + "';");
+                "SELECT comunioId FROM Comunio WHERE name='" + name + "';");
         List<BigInteger> list = query.list();
         if (list.isEmpty()) {
             return 0;
@@ -79,7 +79,7 @@ public class ComunioDaoImpl implements ComunioDao {
     @SuppressWarnings("unchecked")
     public long findById(long id) {
         SQLQuery query = session.getCurrentSession().createSQLQuery(
-                "SELECT comunioId FROM comunio WHERE comunioId='" + id + "';");
+                "SELECT comunioId FROM Comunio WHERE comunioId='" + id + "';");
         List<BigInteger> list = query.list();
         if (list.isEmpty()) {
             return 0;
@@ -90,12 +90,12 @@ public class ComunioDaoImpl implements ComunioDao {
     @Override
     public String findPassword(long comunioId) {
         return (String) session.getCurrentSession()
-                .createSQLQuery("SELECT password FROM comunio WHERE comunioId='" + comunioId + "';").uniqueResult();
+                .createSQLQuery("SELECT password FROM Comunio WHERE comunioId='" + comunioId + "';").uniqueResult();
     }
 
     @Override
     public int countByName(String comName) {
         return ((BigInteger) session.getCurrentSession()
-                .createSQLQuery("SELECT COUNT(*) FROM comunio WHERE name='" + comName + "'").uniqueResult()).intValue();
+                .createSQLQuery("SELECT COUNT(*) FROM Comunio WHERE name='" + comName + "'").uniqueResult()).intValue();
     }
 }
