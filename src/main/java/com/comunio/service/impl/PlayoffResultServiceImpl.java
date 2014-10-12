@@ -87,6 +87,7 @@ public class PlayoffResultServiceImpl implements PlayoffResultService, Serializa
         int matchdayNumber = findMatchdayNumber(results);
         Playoff playoff = playoffService.findBy(comunioId);
         if (matchdayNumber == 10) {
+            //TODO check if playoffs can be initialized
             playoff = playoffInitializationService.initializePlayoff(playoff, comunioId);
         }
 

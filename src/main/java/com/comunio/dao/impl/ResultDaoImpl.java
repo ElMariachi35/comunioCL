@@ -52,7 +52,7 @@ public class ResultDaoImpl implements ResultDao {
         Query query = sessionFactory
                 .getCurrentSession()
                 .createSQLQuery(
-                        "SELECT DISTINCT r.resultId, r.teamId, r.matchday, r.points, r.goals FROM Groupe g JOIN Team t ON g.groupId=t.groupId JOIN result r ON t.teamId=r.teamId WHERE g.comunioId=:comunioId")
+                        "SELECT DISTINCT r.resultId, r.teamId, r.matchday, r.points, r.goals FROM Groupe g JOIN Team t ON g.groupId=t.groupId JOIN Result r ON t.teamId=r.teamId WHERE g.comunioId=:comunioId")
                 .addEntity(Result.class).setParameter("comunioId", comunioId);
         return query.list();
     }
@@ -63,7 +63,7 @@ public class ResultDaoImpl implements ResultDao {
         Query query = sessionFactory
                 .getCurrentSession()
                 .createSQLQuery(
-                        "SELECT result.resultId, result.teamId, result.matchday, result.points, result.goals FROM result JOIN team ON result.teamId=team.teamId JOIN groupe ON team.groupId=groupe.groupId WHERE comunioId="
+                        "SELECT r.resultId, r.teamId, r.matchday, r.points, r.goals FROM Result r JOIN Team t ON r.teamId=t.teamId JOIN Groupe g ON t.groupId=g.groupId WHERE comunioId="
                                 + comunioId + " AND matchday=" + matchdayNumber + ";").addEntity(Result.class);
         return query.list();
     }
@@ -73,7 +73,7 @@ public class ResultDaoImpl implements ResultDao {
         SQLQuery query = sessionFactory
                 .getCurrentSession()
                 .createSQLQuery(
-                        "SELECT MAX(matchday) FROM result JOIN team ON result.teamId=team.teamId JOIN groupe ON team.groupId=groupe.groupId WHERE comunioId="
+                        "SELECT MAX(matchday) FROM Result r JOIN Team t ON r.teamId=t.teamId JOIN Groupe g ON t.groupId=g.groupId WHERE comunioId="
                                 + comunioId + ";");
         int latestMatchday = (Integer) query.uniqueResult();
         return latestMatchday;

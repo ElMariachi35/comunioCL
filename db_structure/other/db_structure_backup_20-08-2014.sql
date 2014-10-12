@@ -1,6 +1,6 @@
 /*
 SQLyog Community v8.32 
-MySQL - 5.5.32-log : Database - sql352879
+MySQL - 5.5.32-log : Database - comunioCL
 *********************************************************************
 */
 
@@ -12,9 +12,9 @@ MySQL - 5.5.32-log : Database - sql352879
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`sql352879` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`comunioCL` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
-USE `sql352879`;
+USE `comunioCL`;
 
 /*Table structure for table `comunio` */
 
@@ -42,7 +42,7 @@ CREATE TABLE `fixture` (
   KEY `IDX_fixture` (`fixtureId`),
   KEY `FK_fixture_group` (`groupId`),
   CONSTRAINT `FK_fixture_group` FOREIGN KEY (`groupId`) REFERENCES `groupe` (`groupId`)
-) ENGINE=InnoDB AUTO_INCREMENT=205 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `game` */
 
@@ -62,7 +62,7 @@ CREATE TABLE `game` (
   CONSTRAINT `FK_game_awayTeam` FOREIGN KEY (`awayTeam`) REFERENCES `team` (`teamId`),
   CONSTRAINT `FK_game_homeTeam` FOREIGN KEY (`homeTeam`) REFERENCES `team` (`teamId`),
   CONSTRAINT `FK_game_matchday` FOREIGN KEY (`matchdayId`) REFERENCES `matchday` (`matchdayId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3626 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3566 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `groupe` */
 
@@ -75,7 +75,7 @@ CREATE TABLE `groupe` (
   PRIMARY KEY (`groupId`),
   KEY `IDX_comunio` (`comunioId`),
   CONSTRAINT `FK_groupe_comunio` FOREIGN KEY (`comunioId`) REFERENCES `comunio` (`comunioId`)
-) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `knockoutpairing` */
 
@@ -113,7 +113,7 @@ CREATE TABLE `matchday` (
   KEY `IDX_byeTeam` (`byeTeam`),
   CONSTRAINT `FK_matchday_fixture` FOREIGN KEY (`fixtureId`) REFERENCES `fixture` (`fixtureId`),
   CONSTRAINT `FK_matchday_team` FOREIGN KEY (`byeTeam`) REFERENCES `team` (`teamId`)
-) ENGINE=InnoDB AUTO_INCREMENT=1805 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1775 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `playoff` */
 
@@ -130,7 +130,7 @@ CREATE TABLE `playoff` (
   KEY `IDX_playoffFinal` (`playoffFinal`),
   CONSTRAINT `FK_playoff_quaterFinal` FOREIGN KEY (`quaterFinal`) REFERENCES `playofffixture` (`playoffFixtureId`),
   CONSTRAINT `FK_playoff_semiFinal` FOREIGN KEY (`semiFinal`) REFERENCES `playofffixture` (`playoffFixtureId`)
-) ENGINE=InnoDB AUTO_INCREMENT=219 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `playofffinale` */
 
@@ -191,7 +191,7 @@ CREATE TABLE `result` (
   PRIMARY KEY (`resultId`),
   KEY `IDX_team` (`teamId`),
   CONSTRAINT `FK_result_team` FOREIGN KEY (`teamId`) REFERENCES `team` (`teamId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7040 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6953 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `team` */
 
@@ -213,7 +213,7 @@ CREATE TABLE `team` (
   PRIMARY KEY (`teamId`),
   KEY `IDX_groupId` (`groupId`),
   CONSTRAINT `FK_team_group` FOREIGN KEY (`groupId`) REFERENCES `groupe` (`groupId`)
-) ENGINE=InnoDB AUTO_INCREMENT=860 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=845 DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
