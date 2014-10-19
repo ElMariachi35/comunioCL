@@ -54,9 +54,5 @@ public class TeamServiceImplTest {
         assertEquals(TEAM3_NAME, teams.get(2).getTeamName());
     }
 
-    @Test
-    public void findTeamNameByComunioIdCallsCorrectMethod() {
-        teamService.findAllTeamNames();
-        verify(groupService).getGroups();
-    }
+
 }

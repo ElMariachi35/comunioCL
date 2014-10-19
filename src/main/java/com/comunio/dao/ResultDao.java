@@ -15,4 +15,6 @@ public interface ResultDao {
     public List<Result> findResultsBy(long comunioId, int matchdayNumber);
 
     int findLatestMatchday(long comunioId);
+
+    public long findNumberOfResults(long comunioId);
 }

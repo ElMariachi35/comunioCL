@@ -16,23 +16,38 @@ public class TeamDaoImpl implements TeamDao {
 
     @Override
     public void saveTeam(Team team) {
-        sessionFactory.getCurrentSession().save(team);
+	sessionFactory.getCurrentSession().save(team);
     }
 
     @Override
     public void updateTeam(Team team) {
-        String queryString = "UPDATE Team t SET t.gamesPlayed=" + team.getGamesPlayed() + ", t.gamesWon="
-                + team.getGamesWon() + ", t.gamesDrawn=" + team.getGamesDrawn() + ", t.gamesLost="
-                + team.getGamesLost() + ", t.goalsFor=" + team.getGoalsFor() + ", t.goalsAgainst="
-                + team.getGoalsAgainst() + ", t.goalDifference=" + team.getGoalDifference() + ", t.points="
-                + team.getPoints() + " WHERE t.teamId=" + team.getTeamId();
-        System.out.println(queryString);
-        Query query = sessionFactory.getCurrentSession().createSQLQuery(queryString);
-        query.executeUpdate();
+	String queryString = "UPDATE Team t SET t.gamesPlayed="
+		+ team.getGamesPlayed() + ", t.gamesWon=" + team.getGamesWon()
+		+ ", t.gamesDrawn=" + team.getGamesDrawn() + ", t.gamesLost="
+		+ team.getGamesLost() + ", t.goalsFor=" + team.getGoalsFor()
+		+ ", t.goalsAgainst=" + team.getGoalsAgainst()
+		+ ", t.goalDifference=" + team.getGoalDifference()
+		+ ", t.points=" + team.getPoints() + " WHERE t.teamId="
+		+ team.getTeamId();
+	System.out.println(queryString);
+	Query query = sessionFactory.getCurrentSession().createSQLQuery(
+		queryString);
+	query.executeUpdate();
     }
 
     @Override
     public Team findBy(long teamId) {
-        return (Team) sessionFactory.getCurrentSession().get(Team.class, teamId);
+	return (Team) sessionFactory.getCurrentSession()
+		.get(Team.class, teamId);
+    }
+
+    @Override
+    public long findNumberOfTeams(long comunioId) {
+	Query query = sessionFactory
+		.getCurrentSession()
+		.createSQLQuery(
+			"SELECT  COUNT(*) FROM Comunio c, Groupe g, Team t WHERE g.comunioId= :comunioId AND c.comunioId=g.comunioId AND t.groupId=g.groupId")
+		.setParameter("comunioId", comunioId);
+	return Long.valueOf(query.uniqueResult().toString());
     }
 }

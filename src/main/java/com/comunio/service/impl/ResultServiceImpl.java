@@ -65,6 +65,13 @@ public class ResultServiceImpl implements ResultService {
         }
         return LAST_MATCHDAY;
     }
+    
+
+    @Override
+    @Transactional
+    public long findNumberOfResults(long comunioId) {
+	return resultDao.findNumberOfResults(comunioId);
+    }
 
     @Override
     @Transactional
@@ -252,5 +259,4 @@ public class ResultServiceImpl implements ResultService {
     private int calculateGoals(int points) {
         return goalCalculator.calculateGoalsFromPoints(points);
     }
-
 }

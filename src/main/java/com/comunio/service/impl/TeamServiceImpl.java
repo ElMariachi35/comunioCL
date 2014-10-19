@@ -41,17 +41,6 @@ public class TeamServiceImpl implements TeamService {
         return teams;
     }
 
-    @Transactional
-    public List<String> findAllTeamNames() {
-        List<String> teamNames = new ArrayList<String>();
-        for (Groupe group : groupService.getGroups()) {
-            for (Team team : group.getSortedTeams()) {
-                teamNames.add(team.getTeamName());
-            }
-        }
-        return teamNames;
-    }
-
     @Override
     public void updateTeam(Team team) {
         teamDao.updateTeam(team);
@@ -73,5 +62,11 @@ public class TeamServiceImpl implements TeamService {
     @Transactional
     public Team findBy(long teamId) {
         return teamDao.findBy(teamId);
+    }
+
+    @Override
+    @Transactional
+    public long findNumberOfTeams(long comunioId) {
+	return teamDao.findNumberOfTeams(comunioId);
     }
 }

@@ -12,4 +12,6 @@ public interface ResultService {
     void updateResult(List<JsonResult> jsonResults, long comunioId);
 
     int findNextMatchday(long comunioId);
+
+    long findNumberOfResults(long comunioId);
 }

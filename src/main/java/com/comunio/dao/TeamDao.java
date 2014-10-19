@@ -8,4 +8,6 @@ public interface TeamDao {
     void updateTeam(Team team);
 
     Team findBy(long teamId);
+
+    long findNumberOfTeams(long comunioId);
 }
