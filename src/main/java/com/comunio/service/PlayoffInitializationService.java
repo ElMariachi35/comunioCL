@@ -16,4 +16,6 @@ public interface PlayoffInitializationService extends Serializable {
     Playoff initializeFinal(Map<Integer, Team> promotedTeams, Playoff playoff);
 
     PlayoffFinale createFinal(Team team1, Team team2);
+
+    boolean playoffsCanBeInitialized(int matchdayNumber, long comunioId);
 }

@@ -8,5 +8,4 @@ public interface PlayoffService {
     void delete(Playoff playoff);
 
     Playoff findBy(long comunioId);
-
 }

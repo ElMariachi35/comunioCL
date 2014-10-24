@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.comunio.exception.PlayoffCannotBeInitializedException;
 import com.comunio.model.Groupe;
 import com.comunio.model.Playoff;
 import com.comunio.model.PlayoffFinale;
@@ -19,6 +20,7 @@ import com.comunio.service.PlayoffFixtureService;
 import com.comunio.service.PlayoffGameService;
 import com.comunio.service.PlayoffInitializationService;
 import com.comunio.service.PlayoffService;
+import com.comunio.service.ResultService;
 import com.comunio.service.TeamService;
 
 @Service
@@ -42,6 +44,8 @@ public class PlayoffInitializationServiceImpl implements PlayoffInitializationSe
     ComunioService comunioService;
     @Autowired
     GroupService groupService;
+    @Autowired
+    ResultService resultService;
 
     @Override
     @Transactional
@@ -110,5 +114,26 @@ public class PlayoffInitializationServiceImpl implements PlayoffInitializationSe
         playoffFinale.setSecondLeg(playoffGameService.createPlayoffGame(team2, team1));
         playoffFinale.setThirdLeg(playoffGameService.createPlayoffGame(team1, team2));
         return playoffFinale;
+    }
+    
+
+    @Override
+    @Transactional
+    public boolean playoffsCanBeInitialized(int matchdayNumber, long comunioId) {
+	if (matchdayNumber != PlayoffResultServiceImpl.MATCHDAY_NUMBER_LAST_GROUP_GAME) {
+	    return false;
+	}
+	long numberOfResults = resultService.findNumberOfResults(comunioId);
+	long expectedNumberOfResults = determineExpectedNumberOfResults(comunioId);
+	if (numberOfResults != expectedNumberOfResults) {
+	    throw new PlayoffCannotBeInitializedException();
+	}
+	return true;
+    }
+
+    private long determineExpectedNumberOfResults(long comunioId) {
+	return teamService
+		.findNumberOfTeams(comunioId)
+		* PlayoffResultServiceImpl.MATCHDAY_NUMBER_LAST_GROUP_GAME;
     }
 }

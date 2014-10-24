@@ -20,18 +20,18 @@ public class PlayoffServiceImpl implements PlayoffService, Serializable {
     @Override
     @Transactional
     public void save(Playoff playoff) {
-        playoffDao.save(playoff);
+	playoffDao.save(playoff);
     }
 
     @Override
     @Transactional
     public void delete(Playoff playoff) {
-        playoffDao.delete(playoff);
+	playoffDao.delete(playoff);
     }
 
     @Override
     @Transactional
     public Playoff findBy(long comunioId) {
-        return playoffDao.findBy(comunioId);
+	return playoffDao.findBy(comunioId);
     }
 }

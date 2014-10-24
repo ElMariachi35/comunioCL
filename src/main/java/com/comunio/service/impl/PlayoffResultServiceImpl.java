@@ -2,7 +2,6 @@ package com.comunio.service.impl;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,14 +22,14 @@ import com.comunio.service.TeamService;
 public class PlayoffResultServiceImpl implements PlayoffResultService,
 	Serializable {
 
-    private static final int MATCHDAY_NUMBER_LAST_GROUP_GAME = 10;
-    private static final int MATCHDAY_NUMBER_QUATER_FINAL_FIRST_LEG = 11;
-    private static final int MATCHDAY_NUMBER_QUATER_FINAL_SECOND_LEG = 12;
-    private static final int MATCHDAY_NUMBER_SEMI_FINAL_FIRST_LEG = 13;
-    private static final int MATCHDAY_NUMBER_SEMI_FINAL_SECOND_LEG = 14;
-    private static final int MATCHDAY_NUMBER_PLAYOFF_FINAL_FIRST_LEG = 15;
-    private static final int MATCHDAY_NUMBER_PLAYOFF_FINAL_SECOND_LEG = 16;
-    private static final int MATCHDAY_NUMBER_PLAYOFF_FINAL_THIRD_LEG = 17;
+    public static final int MATCHDAY_NUMBER_LAST_GROUP_GAME = 10;
+    public static final int MATCHDAY_NUMBER_QUATER_FINAL_FIRST_LEG = 11;
+    public static final int MATCHDAY_NUMBER_QUATER_FINAL_SECOND_LEG = 12;
+    public static final int MATCHDAY_NUMBER_SEMI_FINAL_FIRST_LEG = 13;
+    public static final int MATCHDAY_NUMBER_SEMI_FINAL_SECOND_LEG = 14;
+    public static final int MATCHDAY_NUMBER_PLAYOFF_FINAL_FIRST_LEG = 15;
+    public static final int MATCHDAY_NUMBER_PLAYOFF_FINAL_SECOND_LEG = 16;
+    public static final int MATCHDAY_NUMBER_PLAYOFF_FINAL_THIRD_LEG = 17;
 
     @Autowired
     SessionData sessionData;
@@ -48,6 +47,7 @@ public class PlayoffResultServiceImpl implements PlayoffResultService,
     TeamService teamService;
     @Autowired
     ResultService resultService;
+    
 
     @Override
     public void handlePlayoff(List<Result> results, long comunioId) {
@@ -56,7 +56,7 @@ public class PlayoffResultServiceImpl implements PlayoffResultService,
 	if (matchdayNumber < MATCHDAY_NUMBER_LAST_GROUP_GAME) {
 	    return;
 	}
-	if (!playoffsCanBeInitialized(matchdayNumber, comunioId)) {
+	if (!playoffInitializationService.playoffsCanBeInitialized(matchdayNumber, comunioId)) {
 	    return;
 	}
 	playoff = playoffInitializationService.initializePlayoff(playoff,
@@ -88,17 +88,6 @@ public class PlayoffResultServiceImpl implements PlayoffResultService,
 	    break;
 	}
 	playoffService.save(playoff);
-    }
-
-    private boolean playoffsCanBeInitialized(int matchdayNumber, long comunioId) {
-	if (matchdayNumber != MATCHDAY_NUMBER_LAST_GROUP_GAME) {
-	    return false;
-	}
-	if (resultService.findNumberOfResults(comunioId) != teamService
-		.findNumberOfTeams(comunioId) * MATCHDAY_NUMBER_LAST_GROUP_GAME) {
-	    return false;
-	}
-	return true;
     }
 
     private int findMatchdayNumber(List<Result> results) {
