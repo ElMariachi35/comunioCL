@@ -35,10 +35,10 @@
 
 ### IN PROGRESS ###
 
+-   8   - Style playoff
 
 ###################
 
--   8   - Style playoff
 -	5	- Interface for pop-up messages in admin-area (timespan is configurable)
 -	3	- Interface for pop-up messages in index  (timespan is configurable)
 -   2   - Rules - explain Playoff

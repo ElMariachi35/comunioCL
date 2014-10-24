@@ -270,7 +270,7 @@
 			</div>
 		</div>
 		<div id="playoff">
-			<div class="playoffContainer">
+			<div class="playoffContainer" data-bind="visible: playoff==null">
 				<div class="header">KO-Phase</div>
 				<div class="header-separator"></div>
 				<div>Die KO-Phase beginnt erst am 11. Spieltag.</div>
@@ -282,7 +282,7 @@
 				<div class="header-separator"></div>
 				<table>
 					<tbody
-						data-bind="foreach: playoff.quaterFinal==undefined ? new Array() : playoff.quaterFinal.pairings">
+						data-bind="foreach: playoff.quaterFinal==undefined ? new Array() : playoff.quaterFinal.pairings" class="pairings">
 						<tr>
 							<td data-bind="text: firstLeg.homeTeam.teamName"></td>
 							<td data-bind="text: firstLeg.homeGoals"></td>
@@ -306,7 +306,7 @@
 				<div class="header-separator"></div>
 				<table>
 					<tbody
-						data-bind="foreach: playoff.semiFinal==undefined ? new Array() : playoff.semiFinal.pairings">
+						data-bind="foreach: playoff.semiFinal==undefined ? new Array() : playoff.semiFinal.pairings"  class="pairings">
 						<tr>
 							<td data-bind="text: firstLeg.homeTeam.teamName"></td>
 							<td data-bind="text: firstLeg.homeGoals"></td>

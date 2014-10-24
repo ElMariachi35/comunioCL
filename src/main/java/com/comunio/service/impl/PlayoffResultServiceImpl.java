@@ -56,7 +56,9 @@ public class PlayoffResultServiceImpl implements PlayoffResultService,
 	if (matchdayNumber < MATCHDAY_NUMBER_LAST_GROUP_GAME) {
 	    return;
 	}
+	
 	if (!playoffInitializationService.playoffsCanBeInitialized(matchdayNumber, comunioId)) {
+		//On Matchday > 10 still returns here
 	    return;
 	}
 	playoff = playoffInitializationService.initializePlayoff(playoff,
