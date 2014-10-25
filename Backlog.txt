@@ -32,10 +32,11 @@
 -  DONE	- Fix databases - Change to Mocha-Database
 -  DONE - Message that playoff is initialized on saving Matchday 10
 -  DONE	- Check if playoff can be initialized (look for TODO)
+-  DONE - Style playoff
 
 ### IN PROGRESS ###
 
--   8   - Style playoff
+-   3   - Mark current teams qualified for playoffs ->TODO: test, + account for Third-Place goals if points are equal
 
 ###################
 

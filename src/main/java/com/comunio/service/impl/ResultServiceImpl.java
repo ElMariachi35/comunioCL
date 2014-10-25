@@ -83,20 +83,7 @@ public class ResultServiceImpl implements ResultService {
         for (Team team : comunioService.getAllTeams(comunioId)) {
             updateTeams(team, comunioId);
         }
-        // Map<Integer, List<Result>> preparedResults = new HashMap<Integer,
-        // List<Result>>();
-        // for (int i = 10; i < 18; i++) {
-        // List<Result> resultsOfMatchday = new ArrayList<Result>();
-        // for (Result result : results) {
-        // if (result.getMatchday() == i) {
-        // resultsOfMatchday.add(result);
-        // }
-        // }
-        // if (!resultsOfMatchday.isEmpty()) {
-        // preparedResults.put(i, resultsOfMatchday);
-        // }
-        // }
-
+        
         playoffResultService.handlePlayoff(results, comunioId);
     }
 

@@ -53,7 +53,6 @@ public class PlayoffInitializationServiceImpl implements PlayoffInitializationSe
         if (isAreadyInitialized(playoff)) {
             return playoff;
         }
-        // check if all results are entered
         List<Groupe> groups = groupService.findGroupsByComunioId(comunioId);
         int numberOfTeams = determineNumberOfTeams(groups);
         Map<Integer, Team> playoffTeams = playoffRankingService.determinePlayoffTeam(groups, numberOfTeams);

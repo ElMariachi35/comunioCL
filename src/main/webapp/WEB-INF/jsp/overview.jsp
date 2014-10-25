@@ -55,7 +55,7 @@
 					<tbody data-bind="foreach: groups[0].sortedTeams">
 						<tr>
 							<td class="position" data-bind="text: presentPos($index())"></td>
-							<td class="teamName" data-bind="text: teamName"></td>
+							<td class="teamName" data-bind="text: teamName, css: {bold: isTeamInPlayoffs($index(), $data)}"></td>
 							<td class="gamesPlayed" data-bind="text: gamesPlayed"></td>
 							<td class="gamesWon" data-bind="text: gamesWon"></td>
 							<td class="gamesDrawn" data-bind="text: gamesDrawn"></td>
@@ -113,7 +113,7 @@
 						data-bind="foreach: groups[1]==undefined ? new Array() : groups[1].sortedTeams">
 						<tr>
 							<td class="position" data-bind="text: presentPos($index())"></td>
-							<td class="teamName" data-bind="text: teamName"></td>
+							<td class="teamName" data-bind="text: teamName, css: {bold: isTeamInPlayoffs($index(), $data)}"></td>
 							<td class="gamesPlayed" data-bind="text: gamesPlayed"></td>
 							<td class="gamesWon" data-bind="text: gamesWon"></td>
 							<td class="gamesDrawn" data-bind="text: gamesDrawn"></td>
@@ -172,7 +172,7 @@
 						data-bind="foreach: groups[2]==undefined ? new Array() : groups[2].sortedTeams">
 						<tr>
 							<td class="position" data-bind="text: presentPos($index())"></td>
-							<td class="teamName" data-bind="text: teamName"></td>
+							<td class="teamName" data-bind="text: teamName, css: {bold: isTeamInPlayoffs($index(), $data)}"></td>
 							<td class="gamesPlayed" data-bind="text: gamesPlayed"></td>
 							<td class="gamesWon" data-bind="text: gamesWon"></td>
 							<td class="gamesDrawn" data-bind="text: gamesDrawn"></td>
@@ -231,7 +231,7 @@
 						data-bind="foreach: groups[3]==undefined ? new Array() : groups[3].sortedTeams">
 						<tr>
 							<td class="position" data-bind="text: presentPos($index())"></td>
-							<td class="teamName" data-bind="text: teamName"></td>
+							<td class="teamName" data-bind="text: teamName, css: {bold: isTeamInPlayoffs($index(), $data)}"></td>
 							<td class="gamesPlayed" data-bind="text: gamesPlayed"></td>
 							<td class="gamesWon" data-bind="text: gamesWon"></td>
 							<td class="gamesDrawn" data-bind="text: gamesDrawn"></td>
