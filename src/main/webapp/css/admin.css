@@ -12,6 +12,28 @@
 	-moz-border-radius-topleft: 10px;
 	border-top-left-radius: 10px;
 	display: inline-block;
+	float: left;
+}
+
+.admin-message-container {
+	width: 300px;
+	display: none;
+}
+
+.admin-message {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.message-container {
+	clear: both;
+	margin-top: 10px;
+	display: none;
+}
+
+#message {
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 #numberOfMatchday {
@@ -30,12 +52,6 @@
 
 .save-button-cell {
 	text-align: right;
-}
-
-#message {
-	text-align: right;
-	margin-bottom: 10px;
-	min-height: 22px;
 }
 
 .save-loader {

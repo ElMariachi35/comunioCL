@@ -30,15 +30,16 @@
 -  DONE - Error Message when creating a comunio with already existing name
 -  DONE - ' is not allowed in teamName
 -  DONE	- Fix databases - Change to Mocha-Database
+-  DONE - Message that playoff is initialized on saving Matchday 10
+-  DONE	- Check if playoff can be initialized (look for TODO)
+-  DONE - Style playoff
 
 ### IN PROGRESS ###
 
+-   3   - Mark current teams qualified for playoffs ->TODO: test, + account for Third-Place goals if points are equal
 
 ###################
 
--   8   - Style playoff
--	5	- Check if playoff can be initialized (look for TODO)
--	2	- Message that playoff is initialized on saving Matchday 10
 -	5	- Interface for pop-up messages in admin-area (timespan is configurable)
 -	3	- Interface for pop-up messages in index  (timespan is configurable)
 -   2   - Rules - explain Playoff

@@ -63,7 +63,6 @@ public class ApplicationController {
             JsonMappingException, IOException {
         sessionData.setComunio(comunioService.retrieveComunio(comunioId));
         map.put("comunioJSON", objectMapper.writeValueAsString(sessionData.getComunio()));
-        System.out.println(objectMapper.writeValueAsString(sessionData.getComunio()));
         return "overview";
     }
 

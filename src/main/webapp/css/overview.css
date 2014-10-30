@@ -211,3 +211,27 @@
 	border-top-left-radius: 10px;
 	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.68);
 }
+
+.playoffContainer table {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.playoffContainer .team-name {
+	min-width: 100px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.playoffContainer .right {
+	text-align: right;
+}
+
+.pairings tr:nth-child(even) {
+	height: 49px;
+	vertical-align: top;
+}
+
+.pairings tr:nth-last-child() {
+	height: 21px !important;
+}

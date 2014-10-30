@@ -55,7 +55,7 @@
 					<tbody data-bind="foreach: groups[0].sortedTeams">
 						<tr>
 							<td class="position" data-bind="text: presentPos($index())"></td>
-							<td class="teamName" data-bind="text: teamName"></td>
+							<td class="teamName" data-bind="text: teamName, css: {bold: isTeamInPlayoffs($index(), $data)}"></td>
 							<td class="gamesPlayed" data-bind="text: gamesPlayed"></td>
 							<td class="gamesWon" data-bind="text: gamesWon"></td>
 							<td class="gamesDrawn" data-bind="text: gamesDrawn"></td>
@@ -113,7 +113,7 @@
 						data-bind="foreach: groups[1]==undefined ? new Array() : groups[1].sortedTeams">
 						<tr>
 							<td class="position" data-bind="text: presentPos($index())"></td>
-							<td class="teamName" data-bind="text: teamName"></td>
+							<td class="teamName" data-bind="text: teamName, css: {bold: isTeamInPlayoffs($index(), $data)}"></td>
 							<td class="gamesPlayed" data-bind="text: gamesPlayed"></td>
 							<td class="gamesWon" data-bind="text: gamesWon"></td>
 							<td class="gamesDrawn" data-bind="text: gamesDrawn"></td>
@@ -172,7 +172,7 @@
 						data-bind="foreach: groups[2]==undefined ? new Array() : groups[2].sortedTeams">
 						<tr>
 							<td class="position" data-bind="text: presentPos($index())"></td>
-							<td class="teamName" data-bind="text: teamName"></td>
+							<td class="teamName" data-bind="text: teamName, css: {bold: isTeamInPlayoffs($index(), $data)}"></td>
 							<td class="gamesPlayed" data-bind="text: gamesPlayed"></td>
 							<td class="gamesWon" data-bind="text: gamesWon"></td>
 							<td class="gamesDrawn" data-bind="text: gamesDrawn"></td>
@@ -231,7 +231,7 @@
 						data-bind="foreach: groups[3]==undefined ? new Array() : groups[3].sortedTeams">
 						<tr>
 							<td class="position" data-bind="text: presentPos($index())"></td>
-							<td class="teamName" data-bind="text: teamName"></td>
+							<td class="teamName" data-bind="text: teamName, css: {bold: isTeamInPlayoffs($index(), $data)}"></td>
 							<td class="gamesPlayed" data-bind="text: gamesPlayed"></td>
 							<td class="gamesWon" data-bind="text: gamesWon"></td>
 							<td class="gamesDrawn" data-bind="text: gamesDrawn"></td>
@@ -258,11 +258,11 @@
 						</thead>
 						<tbody data-bind="foreach: matches">
 							<tr>
-								<td class="home-team" data-bind="text: homeTeam.teamName"></td>
+								<td class="home-team" data-bind="text: homeTeam.teamName" class="team-name"></td>
 								<td class="home-goals" data-bind="text: homeGoals"></td>
 								<td>:</td>
 								<td class="away-goals" data-bind="text: awayGoals"></td>
-								<td class="away-team" data-bind="text: awayTeam.teamName"></td>
+								<td class="away-team" data-bind="text: awayTeam.teamName" class="team-name right"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -270,7 +270,7 @@
 			</div>
 		</div>
 		<div id="playoff">
-			<div class="playoffContainer">
+			<div class="playoffContainer" data-bind="visible: playoff==null">
 				<div class="header">KO-Phase</div>
 				<div class="header-separator"></div>
 				<div>Die KO-Phase beginnt erst am 11. Spieltag.</div>
@@ -282,20 +282,20 @@
 				<div class="header-separator"></div>
 				<table>
 					<tbody
-						data-bind="foreach: playoff.quaterFinal==undefined ? new Array() : playoff.quaterFinal.pairings">
+						data-bind="foreach: playoff.quaterFinal==undefined ? new Array() : playoff.quaterFinal.pairings" class="pairings">
 						<tr>
-							<td data-bind="text: firstLeg.homeTeam.teamName"></td>
+							<td data-bind="text: firstLeg.homeTeam.teamName" class="team-name" ></td>
 							<td data-bind="text: firstLeg.homeGoals"></td>
 							<td>:</td>
 							<td data-bind="text: firstLeg.awayGoals"></td>
-							<td data-bind="text: firstLeg.awayTeam.teamName"></td>
+							<td data-bind="text: firstLeg.awayTeam.teamName" class="team-name  right"></td>
 						</tr>
 						<tr>
-							<td data-bind="text: secondLeg.homeTeam.teamName"></td>
+							<td data-bind="text: secondLeg.homeTeam.teamName" class="team-name"></td>
 							<td data-bind="text: secondLeg.homeGoals"></td>
 							<td>:</td>
 							<td data-bind="text: secondLeg.awayGoals"></td>
-							<td data-bind="text: secondLeg.awayTeam.teamName"></td>
+							<td data-bind="text: secondLeg.awayTeam.teamName" class="team-name right"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -306,20 +306,20 @@
 				<div class="header-separator"></div>
 				<table>
 					<tbody
-						data-bind="foreach: playoff.semiFinal==undefined ? new Array() : playoff.semiFinal.pairings">
+						data-bind="foreach: playoff.semiFinal==undefined ? new Array() : playoff.semiFinal.pairings"  class="pairings">
 						<tr>
-							<td data-bind="text: firstLeg.homeTeam.teamName"></td>
+							<td data-bind="text: firstLeg.homeTeam.teamName" class="team-name"></td>
 							<td data-bind="text: firstLeg.homeGoals"></td>
 							<td>:</td>
 							<td data-bind="text: firstLeg.awayGoals"></td>
-							<td data-bind="text: firstLeg.awayTeam.teamName"></td>
+							<td data-bind="text: firstLeg.awayTeam.teamName" class="team-name right"></td>
 						</tr>
 						<tr>
-							<td data-bind="text: secondLeg.homeTeam.teamName"></td>
+							<td data-bind="text: secondLeg.homeTeam.teamName" class="team-name"></td>
 							<td data-bind="text: secondLeg.homeGoals"></td>
 							<td>:</td>
 							<td data-bind="text: secondLeg.awayGoals"></td>
-							<td data-bind="text: secondLeg.awayTeam.teamName"></td>
+							<td data-bind="text: secondLeg.awayTeam.teamName" class="team-name right"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -332,30 +332,30 @@
 					<tbody>
 						<tr>
 							<td
-								data-bind="text: playoff.playoffFinal.firstLeg.homeTeam.teamName"></td>
+								data-bind="text: playoff.playoffFinal.firstLeg.homeTeam.teamName" class="team-name"></td>
 							<td data-bind="text: playoff.playoffFinal.firstLeg.homeGoals"></td>
 							<td>:</td>
 							<td data-bind="text: playoff.playoffFinal.firstLeg.awayGoals"></td>
 							<td
-								data-bind="text: playoff.playoffFinal.firstLeg.awayTeam.teamName"></td>
+								data-bind="text: playoff.playoffFinal.firstLeg.awayTeam.teamName" class="team-name right"></td>
 						</tr>
 						<tr>
 							<td
-								data-bind="text: playoff.playoffFinal.secondLeg.homeTeam.teamName"></td>
+								data-bind="text: playoff.playoffFinal.secondLeg.homeTeam.teamName" class="team-name"></td>
 							<td data-bind="text: playoff.playoffFinal.secondLeg.homeGoals"></td>
 							<td>:</td>
 							<td data-bind="text: playoff.playoffFinal.secondLeg.awayGoals"></td>
 							<td
-								data-bind="text: playoff.playoffFinal.secondLeg.awayTeam.teamName"></td>
+								data-bind="text: playoff.playoffFinal.secondLeg.awayTeam.teamName" class="team-name right"></td>
 						</tr>
 						<tr>
 							<td
-								data-bind="text: playoff.playoffFinal.thirdLeg.homeTeam.teamName"></td>
+								data-bind="text: playoff.playoffFinal.thirdLeg.homeTeam.teamName" class="team-name"></td>
 							<td data-bind="text: playoff.playoffFinal.thirdLeg.homeGoals"></td>
 							<td>:</td>
 							<td data-bind="text: playoff.playoffFinal.thirdLeg.awayGoals"></td>
 							<td
-								data-bind="text: playoff.playoffFinal.thirdLeg.awayTeam.teamName"></td>
+								data-bind="text: playoff.playoffFinal.thirdLeg.awayTeam.teamName" class="team-name right"></td>
 						</tr>
 					</tbody>
 				</table>

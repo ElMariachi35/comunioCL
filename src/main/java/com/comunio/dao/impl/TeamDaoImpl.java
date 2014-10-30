@@ -29,7 +29,6 @@ public class TeamDaoImpl implements TeamDao {
 		+ ", t.goalDifference=" + team.getGoalDifference()
 		+ ", t.points=" + team.getPoints() + " WHERE t.teamId="
 		+ team.getTeamId();
-	System.out.println(queryString);
 	Query query = sessionFactory.getCurrentSession().createSQLQuery(
 		queryString);
 	query.executeUpdate();
