@@ -22,18 +22,18 @@ public class PlayoffTeamComparator implements Comparator<Team> {
     }
 
     private double getGamesWonPerGame(Team team) {
-        return team.getGamesWon() / team.getGamesPlayed();
+        return Double.valueOf(team.getGamesWon()) / Double.valueOf(team.getGamesPlayed());
     }
 
     private double getGoalsForPerGame(Team team) {
-        return team.getGoalsFor() / team.getGamesPlayed();
+        return Double.valueOf(team.getGoalsFor()) / Double.valueOf(team.getGamesPlayed());
     }
 
     private double getGoalsAgainstPerGame(Team team) {
-        return team.getGoalsAgainst() / team.getGamesPlayed();
+        return Double.valueOf(team.getGoalsAgainst()) / Double.valueOf(team.getGamesPlayed());
     }
 
     private double getPointsPerGame(Team team) {
-        return team.getPoints() / team.getGamesPlayed();
+        return Double.valueOf(team.getPoints()) / Double.valueOf(team.getGamesPlayed());
     }
 }

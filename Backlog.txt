@@ -36,10 +36,11 @@
 
 ### IN PROGRESS ###
 
--   3   - Mark current teams qualified for playoffs ->TODO: test, + account for Third-Place goals if points are equal
+-   3   - Mark current teams qualified for playoffs ->TODO: test, + account for Third-Place goals if points are equalv ==>PlayoffTeamComparator
 
 ###################
 
+-	1	- Show playoff-info when playoffs are not started
 -	5	- Interface for pop-up messages in admin-area (timespan is configurable)
 -	3	- Interface for pop-up messages in index  (timespan is configurable)
 -   2   - Rules - explain Playoff
